@@ -1,6 +1,6 @@
 import json
 import unittest
-from hed.tools.remodeling.operations.number_rows_op import NumberRowsOp
+from remodeling.operations.number_rows_op import NumberRowsOp
 
 
 class Test(unittest.TestCase):

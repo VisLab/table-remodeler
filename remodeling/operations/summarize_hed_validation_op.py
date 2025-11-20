@@ -6,8 +6,8 @@ from hed.errors import error_reporter
 from hed.errors import error_types
 from hed.models.sidecar import Sidecar
 from hed.models.tabular_input import TabularInput
-from hed.tools.remodeling.operations.base_op import BaseOp
-from hed.tools.remodeling.operations.base_summary import BaseSummary
+from remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_summary import BaseSummary
 
 
 class SummarizeHedValidationOp(BaseOp):

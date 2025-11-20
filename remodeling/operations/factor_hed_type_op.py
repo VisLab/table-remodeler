@@ -1,7 +1,7 @@
 """Append to columnar file the factors computed from type variables."""
 
 import pandas as pd
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 from hed.models.tabular_input import TabularInput
 from hed.tools.analysis.event_manager import EventManager
 from hed.tools.analysis.hed_type_manager import HedTypeManager

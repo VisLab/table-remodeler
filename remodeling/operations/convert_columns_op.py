@@ -2,7 +2,7 @@
 
 # TODO finish implementation
 
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 
 
 class ConvertColumnsOp(BaseOp):

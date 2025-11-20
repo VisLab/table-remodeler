@@ -1,6 +1,6 @@
 """Implementation in progress."""
 
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 
 # TODO: This class is under development
 

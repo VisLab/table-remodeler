@@ -1,8 +1,8 @@
 import os
 import pandas as pd
 import unittest
-from hed.tools.remodeling.dispatcher import Dispatcher
-from hed.tools.remodeling.operations.summarize_sidecar_from_events_op import (
+from remodeling.dispatcher import Dispatcher
+from remodeling.operations.summarize_sidecar_from_events_op import (
     EventsToSidecarSummary,
     SummarizeSidecarFromEventsOp,
 )

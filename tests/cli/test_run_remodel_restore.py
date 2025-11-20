@@ -3,8 +3,8 @@ import shutil
 import unittest
 import zipfile
 from hed.errors import HedFileError
-from hed.tools.remodeling.cli.run_remodel_backup import main as back_main
-from hed.tools.remodeling.cli.run_remodel_restore import main
+from remodeling.cli.run_remodel_backup import main as back_main
+from remodeling.cli.run_remodel_restore import main
 from hed.tools.util.io_util import get_file_list
 
 

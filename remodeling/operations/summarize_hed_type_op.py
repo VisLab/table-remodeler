@@ -6,8 +6,8 @@ from hed.models.sidecar import Sidecar
 from hed.tools.analysis.hed_type import HedType
 from hed.tools.analysis.hed_type_counts import HedTypeCounts
 from hed.tools.analysis.event_manager import EventManager
-from hed.tools.remodeling.operations.base_op import BaseOp
-from hed.tools.remodeling.operations.base_summary import BaseSummary
+from remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_summary import BaseSummary
 
 
 class SummarizeHedTypeOp(BaseOp):

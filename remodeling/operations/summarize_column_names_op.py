@@ -2,8 +2,8 @@
 
 import pandas as pd
 from hed.tools.analysis.column_name_summary import ColumnNameSummary
-from hed.tools.remodeling.operations.base_op import BaseOp
-from hed.tools.remodeling.operations.base_summary import BaseSummary
+from remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_summary import BaseSummary
 
 
 class SummarizeColumnNamesOp(BaseOp):

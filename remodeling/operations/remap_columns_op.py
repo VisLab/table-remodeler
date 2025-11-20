@@ -2,7 +2,7 @@
 
 import pandas as pd
 import numpy as np
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 from hed.tools.analysis.key_map import KeyMap
 
 

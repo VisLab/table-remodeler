@@ -2,8 +2,8 @@
 
 import pandas as pd
 from hed.models.tabular_input import TabularInput
-from hed.tools.remodeling.operations.base_op import BaseOp
-from hed.tools.remodeling.operations.base_summary import BaseSummary
+from remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_summary import BaseSummary
 from hed.models.def_expand_gather import DefExpandGatherer
 
 

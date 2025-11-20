@@ -2,8 +2,8 @@
 
 import json
 from hed.tools.analysis.tabular_summary import TabularSummary
-from hed.tools.remodeling.operations.base_op import BaseOp
-from hed.tools.remodeling.operations.base_summary import BaseSummary
+from remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_summary import BaseSummary
 
 
 class SummarizeSidecarFromEventsOp(BaseOp):

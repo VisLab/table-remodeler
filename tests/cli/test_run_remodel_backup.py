@@ -4,8 +4,8 @@ import shutil
 import unittest
 import zipfile
 from hed.errors import HedFileError
-from hed.tools.remodeling.backup_manager import BackupManager
-from hed.tools.remodeling.cli.run_remodel_backup import main
+from remodeling.backup_manager import BackupManager
+from remodeling.cli.run_remodel_backup import main
 from hed.tools.util.io_util import get_file_list
 
 

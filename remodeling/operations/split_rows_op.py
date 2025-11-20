@@ -2,7 +2,7 @@
 
 import numpy as np
 import pandas as pd
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 
 
 class SplitRowsOp(BaseOp):

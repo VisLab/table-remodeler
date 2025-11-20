@@ -1,7 +1,7 @@
 """Append columns of factors based on column values to a columnar file."""
 
 import pandas as pd
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 from hed.models.tabular_input import TabularInput
 from hed.models.sidecar import Sidecar
 from hed.models import query_service

@@ -11,8 +11,8 @@ from hed.errors.exceptions import HedFileError
 from hed.schema.hed_schema_io import load_schema_version
 from hed.schema.hed_schema import HedSchema
 from hed.schema.hed_schema_group import HedSchemaGroup
-from hed.tools.remodeling.backup_manager import BackupManager
-from hed.tools.remodeling.operations.valid_operations import valid_operations
+from remodeling.backup_manager import BackupManager
+from remodeling.operations.valid_operations import valid_operations
 from hed.tools.util import io_util
 
 # This isn't supported in all versions of pandas

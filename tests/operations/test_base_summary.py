@@ -1,8 +1,8 @@
 import os
 import shutil
 import unittest
-from hed.tools.remodeling.operations.base_summary import BaseSummary
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_summary import BaseSummary
+from remodeling.operations.base_op import BaseOp
 
 
 class TestOp(BaseOp):

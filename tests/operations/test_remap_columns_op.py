@@ -1,8 +1,8 @@
 import json
 import pandas as pd
 import unittest
-from hed.tools.remodeling.dispatcher import Dispatcher
-from hed.tools.remodeling.operations.remap_columns_op import RemapColumnsOp
+from remodeling.dispatcher import Dispatcher
+from remodeling.operations.remap_columns_op import RemapColumnsOp
 
 
 class Test(unittest.TestCase):

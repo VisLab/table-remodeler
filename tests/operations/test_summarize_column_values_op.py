@@ -2,8 +2,8 @@ import json
 import os
 import pandas as pd
 import unittest
-from hed.tools.remodeling.dispatcher import Dispatcher
-from hed.tools.remodeling.operations.summarize_column_values_op import ColumnValueSummary, SummarizeColumnValuesOp
+from remodeling.dispatcher import Dispatcher
+from remodeling.operations.summarize_column_values_op import ColumnValueSummary, SummarizeColumnValuesOp
 
 
 class Test(unittest.TestCase):

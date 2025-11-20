@@ -1,6 +1,6 @@
 import json
 import unittest
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 
 
 class TestOp(BaseOp):

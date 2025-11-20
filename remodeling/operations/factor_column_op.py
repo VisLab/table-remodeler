@@ -1,7 +1,7 @@
 """Append to tabular file columns of factors based on column values."""
 
 import pandas as pd
-from hed.tools.remodeling.operations.base_op import BaseOp
+from remodeling.operations.base_op import BaseOp
 
 
 class FactorColumnOp(BaseOp):
