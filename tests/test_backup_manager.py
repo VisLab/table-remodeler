@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 import zipfile
 from hed.errors import HedFileError
-from remodeling.backup_manager import BackupManager
+from remodel.backup_manager import BackupManager
 from hed.tools.util.io_util import get_file_list
 
 
@@ -24,17 +24,13 @@ class Test(unittest.TestCase):
         test_root_back1 = os.path.realpath(os.path.join(os.path.dirname(__file__), "./data//test_root_back1"))
         cls.test_root_back1 = test_root_back1
         cls.test_paths_back1 = [os.path.join(test_root_back1, file) for file in file_list]
-        cls.test_zip_back1 = os.path.realpath(
-            os.path.join(os.path.dirname(__file__), "./data//test_root_back1.zip")
-        )
+        cls.test_zip_back1 = os.path.realpath(os.path.join(os.path.dirname(__file__), "./data//test_root_back1.zip"))
 
         test_root_bad = os.path.realpath(os.path.join(os.path.dirname(__file__), "./data//test_root_bad"))
         cls.test_root_bad = test_root_bad
         cls.test_root_bad_backups = os.path.join(test_root_bad, BackupManager.RELATIVE_BACKUP_LOCATION)
         cls.test_paths_bad = [os.path.join(test_root_bad, file) for file in file_list]
-        cls.test_zip_bad = os.path.realpath(
-            os.path.join(os.path.dirname(__file__), "./data//test_root_bad.zip")
-        )
+        cls.test_zip_bad = os.path.realpath(os.path.join(os.path.dirname(__file__), "./data//test_root_bad.zip"))
 
     def setUp(self):
         with zipfile.ZipFile(self.test_zip, "r") as zip_ref:
