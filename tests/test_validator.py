@@ -10,7 +10,7 @@ class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         with open(
-            os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "./data//all_remodel_operations.json"))
+            os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "./data/all_remodel_operations.json"))
         ) as f:
             cls.remodel_file = json.load(f)
         cls.validator = RemodelerValidator()

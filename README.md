@@ -26,7 +26,7 @@ pip install table-remodeler
 
 For development:
 ```bash
-git clone https://github.com/VisLab/table-remodeler.git
+git clone https://github.com/hed-standard/table-remodeler.git
 cd table-remodeler
 pip install -e .
 ```

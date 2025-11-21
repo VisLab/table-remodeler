@@ -5,7 +5,7 @@ This comprehensive guide provides step-by-step instructions for using Table Remo
 ## Quick links
 
 - 📚 [API Reference](api/index.rst)
-- 🐛 [GitHub Issues](https://github.com/VisLab/table-remodeler/issues)
+- 🐛 [GitHub Issues](https://github.com/hed-standard/table-remodeler/issues)
 - 🔗 [hed-python](https://github.com/hed-standard/hed-python) - Core HED tools
 - 📖 [HED Specification](https://hed-specification.readthedocs.io/)
 
@@ -32,7 +32,7 @@ pip install table-remodeler
 
 For development with testing tools:
 ```bash
-git clone https://github.com/VisLab/table-remodeler.git
+git clone https://github.com/hed-standard/table-remodeler.git
 cd table-remodeler
 pip install -e ".[dev,test]"
 ```
@@ -374,5 +374,5 @@ valid_operations = {
 ### Getting help
 
 - Check the [API Reference](api/index.rst) for detailed documentation
-- Visit our [GitHub Issues](https://github.com/VisLab/table-remodeler/issues) page
+- Visit our [GitHub Issues](https://github.com/hed-standard/table-remodeler/issues) page
 - Review examples in the repository README

@@ -21,16 +21,16 @@ You can install table-remodeler from PyPI:
 pip install table-remodeler
 ```
 
-Or install directly from the [GitHub repository](https://github.com/VisLab/table-remodeler):
+Or install directly from the [GitHub repository](https://github.com/hed-standard/table-remodeler):
 
 ```bash
-pip install git+https://github.com/VisLab/table-remodeler.git
+pip install git+https://github.com/hed-standard/table-remodeler.git
 ```
 
 For development installation with testing tools:
 
 ```bash
-git clone https://github.com/VisLab/table-remodeler.git
+git clone https://github.com/hed-standard/table-remodeler.git
 cd table-remodeler
 pip install -e ".[dev,test]"
 ```
@@ -68,7 +68,7 @@ dispatcher.run_operations()
 
 - 📖 [User Guide](user_guide.md) - Comprehensive tutorials and examples
 - 📚 [API Reference](api/index.rst) - Complete API documentation
-- 🔗 [GitHub Repository](https://github.com/VisLab/table-remodeler) - Source code and issues
+- 🔗 [GitHub Repository](https://github.com/hed-standard/table-remodeler) - Source code and issues
 - 🔗 [Related Projects](#related-projects) - HED and related tools
 
 ## Related projects

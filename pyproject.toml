@@ -8,7 +8,6 @@ version = "0.1.0"
 description = "Tabular file remodeling and reorganizing tools for event files and datasets."
 readme = "README.md"
 authors = [
-    { name = "VisLab" },
     { name = "Monique Dennisen", email = "moniquedenissen.95@gmail.com" },
     { name = "Kay Robbins", email = "Kay.Robbins@utsa.edu" },
 ]
@@ -36,7 +35,7 @@ classifiers = [
 requires-python = ">=3.10"
 
 dependencies = [
-    "hedtools",
+    "hedtools>=0.8.0",
     "jsonschema>=4.23.0",
     "numpy>=2.0.2",
     "openpyxl>=3.1.5",
@@ -46,7 +45,7 @@ dependencies = [
 
 [project.urls]
 "Homepage" = "https://www.hedtags.org/table-remodeler/"
-"Documentation" = "www.hedtags.org/table-remodeler/"
+"Documentation" = "https://www.hedtags.org/table-remodeler/"
 "Repository" = "https://github.com/hed-standard/table-remodeler"
 "Bug Tracker" = "https://github.com/hed-standard/table-remodeler/issues"
 "Changelog" = "https://github.com/hed-standard/table-remodeler/blob/main/CHANGELOG.md"

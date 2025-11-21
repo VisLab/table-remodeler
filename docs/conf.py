@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "Table Remodeler"
-copyright = "2024, VisLab"
-author = "VisLab"
+copyright = "2024, HED Standard"
+author = "HED Standard"
 
 # The full version, including alpha/beta/rc tags
 release = "0.1.0"
@@ -46,7 +46,7 @@ html_theme_options = {
         "color-brand-primary": "#58a6ff",
         "color-brand-content": "#58a6ff",
     },
-    "source_repository": "https://github.com/VisLab/table-remodeler/",
+    "source_repository": "https://github.com/hed-standard/table-remodeler/",
     "source_branch": "main",
     "source_directory": "docs/",
 }
