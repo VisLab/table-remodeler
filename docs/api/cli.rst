@@ -1,4 +1,4 @@
-Command-Line Interface
+Command-line interface
 ======================
 
 Command-line tools for executing remodeling workflows.
