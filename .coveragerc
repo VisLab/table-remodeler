@@ -1,4 +1,5 @@
 [run]
+source = remodel
 branch = True
 omit =
         */__init__.py

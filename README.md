@@ -11,7 +11,7 @@ Tabular file remodeling and reorganizing tools for event files and datasets.
 
 `table-remodeler` provides a flexible, operation-based framework for transforming tabular data files through JSON-configurable pipelines. Originally extracted from the [hed-python](https://github.com/hed-standard/hed-python) remodeling tools, this package operates as a standalone tool while maintaining compatibility with HED (Hierarchical Event Descriptors) annotations.
 
-**Key Features:**
+**Key features:**
 - Operation-based architecture for reproducible data transformations
 - JSON-configurable pipelines for batch processing
 - Support for HED-annotated event files
@@ -31,7 +31,7 @@ cd table-remodeler
 pip install -e .
 ```
 
-## Quick Start
+## Quick start
 
 ### Python API
 
@@ -55,7 +55,7 @@ dispatcher = Dispatcher(operations, data_root="/path/to/dataset")
 dispatcher.run_operations()
 ```
 
-### Command Line
+### Command line
 
 ```bash
 # Run remodeling operations
@@ -68,7 +68,7 @@ run_remodel_backup /path/to/data --backup-name my_backup
 run_remodel_restore /path/to/data --backup-name my_backup
 ```
 
-## Available Operations
+## Available operations
 
 ### Data Transformation
 - `convert_columns` - Convert column data types
@@ -83,7 +83,7 @@ run_remodel_restore /path/to/data --backup-name my_backup
 - `reorder_columns` - Reorder columns
 - `split_rows` - Split rows based on criteria
 
-### HED-Specific Operations
+### HED-specific operations
 - `factor_hed_tags` - Factor HED tags into separate columns
 - `factor_hed_type` - Factor by HED tag types
 - `summarize_hed_tags` - Summarize HED tag usage
@@ -92,13 +92,31 @@ run_remodel_restore /path/to/data --backup-name my_backup
 - `summarize_definitions` - Extract HED definitions
 - `summarize_sidecar_from_events` - Generate sidecar from events
 
-### Analysis Operations
+### Analysis operations
 - `summarize_column_names` - List column names across files
 - `summarize_column_values` - Summarize unique values per column
 
 ## Documentation
 
-Full documentation is available at [table-remodeler.readthedocs.io](https://table-remodeler.readthedocs.io/)
+Full API and developer documentation is available at [https://wwww.hedtags.org/table-remodeler]([https://wwww.hedtags.org/table-remodeler). 
+
+Users of the table-remodeler should look at the [HED remodeling quickstart](https://www.hedtags.org/hed-resources/HedRemodelingQuickstart.html) and [HED remodeling tools](https://www.hedtags.org/hed-resources/HedRemodelingTools.html).
+
+### Building Documentation
+
+To build the documentation locally:
+
+1. Install documentation dependencies:
+   ```bash
+   pip install -r docs/requirements.txt
+   ```
+
+2. Build the HTML documentation:
+   ```bash
+   sphinx-build -b html docs docs/_build/html
+   ```
+
+3. View the documentation by opening `docs/_build/html/index.html` in your web browser.
 
 ## Requirements
 
