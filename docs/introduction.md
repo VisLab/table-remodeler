@@ -35,7 +35,7 @@ cd table-remodeler
 pip install -e ".[dev,test]"
 ```
 
-## Quick start
+## Example usage
 
 ### Command line
 
