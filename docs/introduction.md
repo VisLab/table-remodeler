@@ -78,7 +78,6 @@ dispatcher.run_operations()
 - **[hed-specification](https://github.com/hed-standard/hed-specification)**: Formal HED specification
 - **[hed-examples](https://github.com/hed-standard/hed-examples)**: Example datasets and notebooks
 
-
 ### Issues and problems
 
 If you encounter problems using table-remodeler, please [open an issue](https://github.com/hed-standard/table-remodeler/issues) in the table-remodeler repository on GitHub.

@@ -44,6 +44,7 @@ pip install -e ".[dev,test]"
 The `-e` flag installs in editable mode, so code changes are immediately reflected.
 
 **Requirements:**
+
 - Python 3.10 or later
 - Core dependencies: pandas, numpy, jsonschema
 - HED support: `hedtools` package (automatically installed from [hed-python](https://github.com/hed-standard/hed-python))
@@ -170,11 +171,13 @@ If you're new to HED, see the [**HED documentation**](https://www.hedtags.org/di
 HED annotations use a controlled vocabulary defined by HED schemas. Schemas are versioned (e.g., `8.3.0`) and automatically downloaded and cached in `~/.hedtools/` (cross-platform location) when needed. The `hedtools` package (from hed-python) manages schema loading and caching.
 
 **Standard schema versions:**
+
 ```python
 dispatcher = Dispatcher(operations, hed_versions="8.3.0")
 ```
 
 **Multiple schemas with libraries:**
+
 ```python
 # Using standard HED 8.3.0 + SCORE library 1.0.0
 dispatcher = Dispatcher(
@@ -190,16 +193,19 @@ When using multiple schemas, all but one must have a namespace prefix (e.g., `sc
 The easiest way to use HED operations is with BIDS-formatted datasets:
 
 **Command line:**
+
 ```bash
 run_remodel /data/my_bids_dataset /data/operations_rmdl.json -b -hv 8.3.0
 ```
 
 The `-b` flag enables BIDS mode, which:
+
 - Extracts HED schema version from `dataset_description.json`
 - Automatically locates JSON sidecars for each data file
 - Uses BIDS inheritance rules for annotation resolution
 
 **Python:**
+
 ```python
 from remodel import Dispatcher
 
@@ -224,12 +230,14 @@ dispatcher.run_operations()
 For non-BIDS datasets, explicitly provide the HED schema version and sidecar path:
 
 **Command line:**
+
 ```bash
 run_remodel /data/my_experiment /data/operations_rmdl.json \
   -hv 8.3.0 -j /data/my_experiment/task_events.json
 ```
 
 **Python:**
+
 ```python
 dispatcher = Dispatcher(
     operations,
@@ -286,6 +294,7 @@ dispatcher.run_operations()
 ```
 
 The summary includes:
+
 - All unique HED tags used
 - Frequency of each tag
 - Files containing each tag
@@ -441,12 +450,14 @@ Backup file → Remodeling operations → Original file
 ```
 
 This means:
+
 - ✅ Original data is never directly modified
 - ✅ You can rerun operations multiple times safely
 - ✅ Each run starts fresh from the original backup
 - ✅ No need to restore between remodeling runs
 
 **Example workflow:**
+
 ```bash
 # 1. Create backup once
 run_remodel_backup /data/my_dataset
@@ -495,6 +506,7 @@ dispatcher = Dispatcher(
 ### Restoring from backups
 
 **When to restore:**
+
 - After completing analysis, to return files to original state
 - To completely start over from a checkpoint
 - To switch between different analysis workflows
@@ -532,18 +544,20 @@ backup_manager.restore_backup(backup_name="before_major_changes")
 
 2. **Don't delete backups**: They provide provenance and safety. Disk space is cheap compared to lost data.
 
-3. **Use meaningful names**: 
+3. **Use meaningful names**:
+
    ```bash
    # Good names
    run_remodel_backup /data -bn "2024-01-15_before_recoding"
    run_remodel_backup /data -bn "checkpoint_after_validation"
-   
+
    # Less helpful
    run_remodel_backup /data -bn "backup1"
    run_remodel_backup /data -bn "test"
    ```
 
 4. **No backup needed for summarization**: If you're only using summarization operations (no transformations), you can skip backup with `-nb`:
+
    ```bash
    run_remodel /data summaries_only_rmdl.json -nb
    ```
@@ -551,6 +565,7 @@ backup_manager.restore_backup(backup_name="before_major_changes")
 5. **Backup lock file**: Don't manually modify `backup_lock.json` - it's used internally by the remodeling tools
 
 6. **Storage location**: Backups go in `derivatives/remodel/backups/` by default, but you can specify a different location:
+
    ```bash
    run_remodel_backup /data -bd /external_drive/backups
    ```
@@ -568,10 +583,12 @@ These scripts can be run from the command line or called from Python/Jupyter not
 ### Command-line argument types
 
 **Positional arguments** are required and must appear in order:
+
 - `data_dir`: Full path to dataset root directory
 - `model_path`: Full path to JSON remodel file (run_remodel only)
 
 **Named arguments** are optional and can appear in any order:
+
 - Short form: single hyphen + letter (e.g., `-v`)
 - Long form: double hyphen + name (e.g., `--verbose`)
 - Flag arguments: presence = true, absence = false
@@ -582,11 +599,13 @@ These scripts can be run from the command line or called from Python/Jupyter not
 Create a backup of specified tabular files before remodeling.
 
 **Basic usage:**
+
 ```bash
 run_remodel_backup /path/to/dataset
 ```
 
 **With options:**
+
 ```bash
 run_remodel_backup /path/to/dataset -bn my_backup -x derivatives stimuli -v
 ```
@@ -594,29 +613,37 @@ run_remodel_backup /path/to/dataset -bn my_backup -x derivatives stimuli -v
 **Available options:**
 
 `-bd`, `--backup-dir PATH`
+
 > Directory for backups (default: `[data_root]/derivatives/remodel/backups`)
 
 `-bn`, `--backup-name NAME`
+
 > Name for this backup (default: `default_back`). Use named backups as checkpoints.
 
 `-fs`, `--file-suffix SUFFIX [SUFFIX ...]`
+
 > File suffixes to process (default: `events`). Files must end with suffix (e.g., `events.tsv`).
 
 `-t`, `--task-names TASK [TASK ...]`
+
 > Process only specific tasks (BIDS format only). Omit to process all tasks.
 
 `-v`, `--verbose`
+
 > Print detailed progress messages.
 
 `-x`, `--exclude-dirs DIR [DIR ...]`
+
 > Exclude directories (e.g., `derivatives stimuli`). Paths with `remodel` are auto-excluded.
 
 **Example - BIDS dataset:**
+
 ```bash
 run_remodel_backup /data/ds002790 -x derivatives -t stopsignal -v
 ```
 
 **From Python/Jupyter:**
+
 ```python
 import remodel.cli.run_remodel_backup as cli_backup
 
@@ -630,11 +657,13 @@ cli_backup.main(arg_list)
 Execute remodeling operations specified in a JSON file.
 
 **Basic usage:**
+
 ```bash
 run_remodel /path/to/dataset /path/to/operations_rmdl.json
 ```
 
 **Full example:**
+
 ```bash
 run_remodel /data/ds002790 /data/ds002790/derivatives/remodel/remodeling_files/cleanup_rmdl.json \
   -b -x derivatives -t stopsignal -s .txt -s .json -hv 8.3.0 -v
@@ -643,72 +672,93 @@ run_remodel /data/ds002790 /data/ds002790/derivatives/remodel/remodeling_files/c
 **Available options:**
 
 `-b`, `--bids-format`
+
 > Dataset is BIDS-formatted. Enables automatic sidecar and schema detection.
 
 `-bd`, `--backup-dir PATH`
+
 > Directory containing backups (default: `[data_root]/derivatives/remodel/backups`)
 
 `-bn`, `--backup-name NAME`
+
 > Backup to use (default: `default_back`)
 
 `-fs`, `--file-suffix SUFFIX [SUFFIX ...]`
+
 > File suffixes to process (default: `events`)
 
 `-hv`, `--hed-versions VERSION [VERSION ...]`
+
 > HED schema versions for HED operations (e.g., `8.3.0` or `8.3.0 sc:score_1.0.0`)
 
 `-i`, `--individual-summaries {separate,consolidated,none}`
+
 > How to save individual file summaries:
+>
 > - `separate`: Each file in separate file + overall summary
 > - `consolidated`: All in same file as overall summary
 > - `none`: Only overall summary
 
 `-j`, `--json-sidecar PATH`
+
 > Path to JSON sidecar with HED annotations (for non-BIDS datasets)
 
 `-ld`, `--log-dir PATH`
+
 > Directory for log files (written on exceptions)
 
 `-nb`, `--no-backup`
+
 > Skip backup, operate directly on files (NOT RECOMMENDED)
 
 `-ns`, `--no-summaries`
+
 > Don't save summary files
 
 `-nu`, `--no-update`
+
 > Don't write modified files (useful for dry runs)
 
 `-s`, `--save-formats EXT [EXT ...]`
+
 > Summary formats (default: `.txt .json`)
 
 `-t`, `--task-names TASK [TASK ...] | *`
+
 > Tasks to process (BIDS only):
+>
 > - Omit: process all tasks, combined summaries
 > - List: process listed tasks with separate summaries per task
 > - `*`: process all tasks with separate summaries per task
 
 `-v`, `--verbose`
+
 > Print detailed progress
 
 `-w`, `--work-dir PATH`
+
 > Working directory for outputs (default: `[data_root]/derivatives/remodel`)
 
 `-x`, `--exclude-dirs DIR [DIR ...]`
+
 > Directories to exclude from processing
 
 **Example - BIDS with HED:**
+
 ```bash
 run_remodel /data/ds002790 /data/remodeling_files/hed_analysis_rmdl.json \
   -b -hv 8.3.0 -s .txt -s .json -x derivatives -v
 ```
 
 **Example - Non-BIDS with explicit sidecar:**
+
 ```bash
 run_remodel /data/my_experiment /data/my_experiment/cleanup_rmdl.json \
   -hv 8.3.0 -j /data/my_experiment/annotations.json -x derivatives
 ```
 
 **From Python/Jupyter:**
+
 ```python
 import remodel.cli.run_remodel as cli_remodel
 
@@ -719,6 +769,7 @@ cli_remodel.main(arg_list)
 ```
 
 **Important notes:**
+
 - Always reads from backup (unless `-nb` specified)
 - Overwrites original data files (backup remains safe)
 - Can be run multiple times - always starts fresh from backup
@@ -729,11 +780,13 @@ cli_remodel.main(arg_list)
 Restore data files from a backup.
 
 **Basic usage:**
+
 ```bash
 run_remodel_restore /path/to/dataset
 ```
 
 **With specific backup:**
+
 ```bash
 run_remodel_restore /path/to/dataset -bn checkpoint_20240115 -v
 ```
@@ -741,18 +794,23 @@ run_remodel_restore /path/to/dataset -bn checkpoint_20240115 -v
 **Available options:**
 
 `-bd`, `--backup-dir PATH`
+
 > Directory containing backups
 
 `-bn`, `--backup-name NAME`
+
 > Backup to restore from (default: `default_back`)
 
 `-t`, `--task-names TASK [TASK ...]`
+
 > Restore only specific tasks (BIDS only)
 
 `-v`, `--verbose`
+
 > Print detailed progress
 
 **From Python/Jupyter:**
+
 ```python
 import remodel.cli.run_remodel_restore as cli_restore
 
@@ -762,6 +820,7 @@ cli_restore.main(arg_list)
 ```
 
 **When to restore:**
+
 - You don't need to restore between remodeling runs (always uses backup)
 - Restore when finished with analysis to return to original state
 - Restore if you want to start completely fresh
@@ -852,6 +911,7 @@ class MyCustomOp(BaseOp):
 ```
 
 Register your operation in `valid_operations.py`:
+
 ```python
 from my_module import MyCustomOp
 
@@ -880,6 +940,7 @@ Table-remodeler validates operations at multiple stages to catch errors early an
 **Stage 1: JSON syntax validation**
 
 The remodeling file must be valid JSON. Common JSON syntax errors:
+
 - Missing commas between dictionary items
 - Mismatched brackets/braces
 - Unquoted keys or values (where quotes are required)
@@ -892,6 +953,7 @@ Use a JSON validator or IDE with JSON support to catch these early.
 Each operation defines its required parameters using JSON Schema. The `RemodelerValidator` validates the entire remodeling file against compiled schemas before execution.
 
 Example error:
+
 ```
 Error in operation 'rename_columns' at index 0:
   Missing required parameter: 'column_mapping'
@@ -900,6 +962,7 @@ Error in operation 'rename_columns' at index 0:
 **Stage 3: Data validation**
 
 Each operation's `validate_input_data()` method performs additional checks beyond JSON schema:
+
 - Column names exist in the data
 - Value mappings are valid
 - Query syntax is correct
@@ -908,6 +971,7 @@ Each operation's `validate_input_data()` method performs additional checks beyon
 **Stage 4: Execution-time validation**
 
 Errors during actual operation execution:
+
 - File I/O errors (permissions, disk space)
 - Type conversion errors
 - HED validation errors (reported, not raised)
@@ -915,6 +979,7 @@ Errors during actual operation execution:
 **Stage 5: Output validation**
 
 Post-execution checks:
+
 - Files can be written
 - Summaries can be saved
 - Results are internally consistent
@@ -949,6 +1014,7 @@ except Exception as e:
 ```
 
 Common execution errors:
+
 - `FileNotFoundError`: Data file or sidecar not found
 - `PermissionError`: Can't write output files
 - `KeyError`: Column doesn't exist in data
@@ -987,18 +1053,21 @@ The online tools provide immediate feedback without modifying your dataset.
 **Common issues:**
 
 #### "File not found" errors
+
 - Use absolute paths, not relative paths
 - Check file extensions match (`.tsv` vs `.csv`)
 - Verify case-sensitive filenames on Linux/Mac
 - Ensure `-x` exclusions aren't hiding your files
 
-#### "Column not found" errors  
+#### "Column not found" errors
+
 - Column names are case-sensitive
 - Check operation order - earlier ops may have removed the column
 - Verify column names in original file (not just backup)
 - Try `summarize_column_names` to see actual column names
 
 #### "HED schema not found"
+
 - Ensure internet connection for automatic download
 - Schemas cached in `~/.hedtools/` directory (managed by `hedtools` package)
 - Specify version explicitly: `-hv 8.3.0`
@@ -1006,18 +1075,21 @@ The online tools provide immediate feedback without modifying your dataset.
 - Clear cache if corrupted: delete `~/.hedtools/` and rerun
 
 #### "Operations run but files don't change"
+
 - Check for `--no-update` or `-nu` flag
 - Verify write permissions on data directory
 - Confirm you're not only running summarization operations
 - Check if backup system is engaged (look for backup directory)
 
 #### "JSON parsing error"
+
 - Validate JSON syntax with online validator
 - Check for trailing commas
 - Ensure all strings are quoted
 - Verify bracket/brace matching
 
 #### "Import errors" or "Module not found"
+
 - Ensure table-remodeler is installed: `pip install table-remodeler`
 - For development, install in editable mode: `pip install -e .`
 - Check Python version: requires 3.10+
@@ -1030,11 +1102,13 @@ When exceptions occur, log files are written to help debugging:
 **Default log location:** `[data_root]/derivatives/remodel/logs/`
 
 **Custom log location:**
+
 ```bash
 run_remodel /data operations_rmdl.json -ld /custom/log/directory
 ```
 
 Log files include:
+
 - Full stack trace
 - Operation that failed
 - File being processed
@@ -1046,12 +1120,14 @@ Log files include:
 ### Getting help
 
 **Documentation:**
+
 - [Quickstart guide](./quickstart.md) for tutorials
 - [Operations reference](./operations_reference.md) for operation details
 - [Implementation guide](./implementation_guide.md) for creating custom operations
 - [API Reference](api/index.rst) for Python API details
 
 **Support:**
+
 - [table-remodeler Issues](https://github.com/hed-standard/table-remodeler/issues) for bugs and feature requests
 - [hed-python Issues](https://github.com/hed-standard/hed-python/issues) for HED validation issues
 - [HED Forum](https://github.com/hed-standard/hed-specification/discussions) for HED questions and discussions

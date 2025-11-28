@@ -8,7 +8,6 @@ The remodeling tools are written in Python and designed to operate on entire dat
 
 This quickstart covers the core concepts of remodeling with practical examples. For comprehensive operation details, see the [**Operations reference**](./operations_reference.md) and [**User guide**](./user_guide.md).
 
-
 ## Table of contents
 
 - [**What is remodeling?**](what-is-remodeling-anchor)
@@ -23,7 +22,6 @@ This quickstart covers the core concepts of remodeling with practical examples. 
   - [**Online tools for debugging**](online-tools-for-debugging-anchor)
   - [**Command-line interface**](the-command-line-interface-anchor)
   - [**Jupyter notebooks**](jupyter-notebooks-for-remodeling-anchor)
-
 
 (what-is-remodeling-anchor)=
 
@@ -76,7 +74,6 @@ Remodeling operations fall into two categories:
 
 The following table summarizes all available operations:
 
-
 (summary-of-operations-anchor)=
 
 ```{table} Summary of table-remodeler operations.
@@ -107,7 +104,6 @@ The following table summarizes all available operations:
 
 For detailed parameter descriptions and examples of each operation, see the [**Operations reference**](./operations_reference.md).
 
-
 (the-remodeling-process-anchor)=
 
 ## The remodeling process
@@ -131,6 +127,7 @@ Initially, you create a backup of the tabular files you plan to remodel. This ba
 </div>
 
 **Important:** The remodeling process always reads from the backup and writes to the original file location. This means:
+
 - You can iterate on your remodeling operations without fear of losing data
 - Rerunning operations always starts from the original backup
 - You can correct mistakes in your remodeling script and rerun
@@ -161,7 +158,6 @@ run_remodel_restore data_dir --backup-name "after_cleanup"
 ```
 
 This is useful when developing different versions of remodeling for different purposes.
-
 
 (json-remodeling-files-anchor)=
 
@@ -194,11 +190,11 @@ class: tip
 ````
 
 Each operation has its own specific required and optional parameters. For *rename_columns*:
+
 - **column_mapping** (required): Dictionary mapping old names to new names
 - **ignore_missing** (required): If `true`, don't error when a column doesn't exist
 
 See the [**Operations reference**](./operations_reference.md) for detailed parameter documentation.
-
 
 (applying-multiple-remodel-operations-anchor)=
 
@@ -236,7 +232,6 @@ class: tip
 
 **Important:** Remodeling always starts from the backup. If you run this script multiple times, each run begins with the original backup files, applies all operations in order, and overwrites the data files (but not the backup). This means you can safely iterate on your remodeling script.
 
-
 (more-complex-remodeling-anchor)=
 
 ### Complex remodeling
@@ -263,6 +258,7 @@ This stop-signal task presented faces to participants who decided the sex by pre
 #### Trial vs. event encoding
 
 The file uses **trial-level encoding**: each row represents an entire trial with multiple events encoded as offsets:
+
 - The `onset` column marks the face presentation (go signal)
 - The `stop_signal_delay` column contains the offset to the stop signal (if present)
 - The `response_time` column contains the offset to the button press (if present)
@@ -272,7 +268,6 @@ For many analyses, **event-level encoding** is preferable: each row represents a
 #### Applying split_rows
 
 The `split_rows` operation converts trial encoding to event encoding:
-
 
 ````{admonition} Splitting trial-level rows into events.
 ---
@@ -310,6 +305,7 @@ class: tip
 **new_events**: Dictionary where each key is a new event type name. Each event specification has:
 
 - **onset_source**: List of column names and/or numbers to compute the new event's onset. Values are added to the parent row's onset. Column names are evaluated; if any value is `n/a` or missing, no new event is created.
+
   - `["response_time"]` → new onset = parent onset + value in response_time column
   - `["stop_signal_delay"]` → new onset = parent onset + value in stop_signal_delay column
 
@@ -323,7 +319,6 @@ After remodeling, trials with responses will have additional rows for the respon
 
 You can find the complete remodeling file at: [**AOMIC_splitevents_rmdl.json**](./_static/data/AOMIC_splitevents_rmdl.json)
 
-
 (remodeling-file-locations-anchor)=
 
 ### Remodeling file locations
@@ -331,6 +326,7 @@ You can find the complete remodeling file at: [**AOMIC_splitevents_rmdl.json**](
 When executing remodeling operations, provide the full path to the JSON remodeling file. However, it's good practice to organize remodeling files within your dataset:
 
 **Recommended directory structure:**
+
 ```
 dataset_root/
 ├── sub-0001/
@@ -349,7 +345,6 @@ dataset_root/
 ```
 
 This organization keeps all remodeling-related files together and provides a clear record of transformations applied to your dataset.
-
 
 (using-the-remodeling-tools-anchor)=
 
@@ -377,6 +372,7 @@ Before running remodeling on an entire dataset, test your operations on a single
 </div>
 
 **Results:**
+
 - **If errors exist**: Downloads a text file with error descriptions
 - **If successful (transformations only)**: Downloads the remodeled data file
 - **If successful (with summaries)**: Downloads a zip file containing the remodeled data file and summary files
@@ -384,11 +380,11 @@ Before running remodeling on an entire dataset, test your operations on a single
 **For HED operations:** Also upload a JSON sidecar file containing HED annotations if using operations like `factor_hed_tags`, `summarize_hed_validation`, or other HED-dependent operations.
 
 The online tools are ideal for:
+
 - Debugging JSON syntax errors
 - Verifying operation parameters
 - Previewing transformation results
 - Testing with small data samples
-
 
 (the-command-line-interface-anchor)=
 
@@ -444,6 +440,7 @@ run_remodel /data/ds002790 \
 ```
 
 This command:
+
 - Processes the ds002790 dataset in BIDS format (`-b`)
 - Applies operations from `AOMIC_splitevents_rmdl.json`
 - Saves summaries in both text and JSON formats (`-s .txt -s .json`)
@@ -451,13 +448,13 @@ This command:
 - Only processes files with `stopsignal` in the filename (`-t stopsignal`)
 
 **Important notes:**
+
 - Always run from backup (default behavior)
 - Rerunning `run_remodel` starts fresh from backup each time
 - Summaries are saved to `derivatives/remodel/summaries/`
 - Original data files are overwritten (but backups remain safe)
 
 For comprehensive command-line documentation, see the [**User guide**](./user_guide.md#command-line-interface).
-
 
 (jupyter-notebooks-for-remodeling-anchor)=
 
@@ -466,6 +463,7 @@ For comprehensive command-line documentation, see the [**User guide**](./user_gu
 For programmatic control with documentation, use the command-line scripts from within Jupyter notebooks. Example notebooks are available at [**hed-examples/remodeling**](https://github.com/hed-standard/hed-examples/tree/main/src/jupyter_notebooks/remodeling).
 
 These notebooks demonstrate how to:
+
 - Create backups programmatically
 - Execute remodeling operations with custom parameters
 - Process summaries and visualize results

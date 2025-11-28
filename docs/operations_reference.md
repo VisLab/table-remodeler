@@ -5,6 +5,7 @@ This comprehensive reference documents all remodeling operations available in Ta
 ## Quick navigation
 
 ### Transformation operations
+
 - [Factor column](#factor-column) - Create factor vectors from column values
 - [Factor HED tags](#factor-hed-tags) - Create factor vectors from HED tag queries
 - [Factor HED type](#factor-hed-type) - Create factor vectors from HED type tags
@@ -17,6 +18,7 @@ This comprehensive reference documents all remodeling operations available in Ta
 - [Split rows](#split-rows) - Split trial-level encoding into event-level
 
 ### Summarization operations
+
 - [Summarize column names](#summarize-column-names) - List unique column name patterns
 - [Summarize column values](#summarize-column-values) - Count unique column values
 - [Summarize definitions](#summarize-definitions) - Summarize HED definitions
@@ -28,6 +30,7 @@ This comprehensive reference documents all remodeling operations available in Ta
 ## About this reference
 
 Each operation is documented with:
+
 - **Purpose**: What the operation does and when to use it
 - **Parameters**: Parameter specifications with types and descriptions
 - **Examples**: JSON configuration examples
@@ -36,8 +39,7 @@ Each operation is documented with:
 
 For tutorial-style learning, see the [Quickstart Guide](quickstart.md). For comprehensive usage documentation, see the [User Guide](user_guide.md).
 
----
-
+______________________________________________________________________
 
 ## Remodel transformations
 
