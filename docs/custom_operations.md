@@ -235,17 +235,20 @@ def __init__(self, parameters):
 ### The do_op method
 
 **Signature:**
+
 ```python
 def do_op(self, dispatcher, df, name, sidecar=None):
 ```
 
 **Parameters:**
+
 - `dispatcher`: Instance of `Dispatcher` managing the remodeling process
 - `df`: Pandas DataFrame representing the tabular file
 - `name`: Identifier for the file (usually filename or relative path)
 - `sidecar`: Optional JSON sidecar containing HED annotations (for HED operations)
 
 **Returns:**
+
 - Modified DataFrame (for transformations)
 - Original DataFrame (for summaries - they modify dispatcher.summary_dict instead)
 
@@ -459,6 +462,7 @@ The validator processes operations in stages:
 ### Error messages
 
 The validator provides user-friendly error messages indicating:
+
 - Operation index in the remodeling file
 - Operation name
 - Path to the invalid value

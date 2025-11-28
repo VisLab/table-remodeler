@@ -1,7 +1,4 @@
-[![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-python/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-python)
-[![Code Coverage](https://qlty.sh/gh/hed-standard/projects/table-remodeler/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/table-remodeler)
-![Python3](https://img.shields.io/badge/python->=3.10-yellow.svg)
-[![Documentation](https://img.shields.io/badge/docs-table-remodeler.svg)](https://www.hedtags.org/table-remodeler)
+[![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-python/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-python) [![Code Coverage](https://qlty.sh/gh/hed-standard/projects/table-remodeler/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/table-remodeler) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Documentation](https://img.shields.io/badge/docs-table-remodeler.svg)](https://www.hedtags.org/table-remodeler)
 
 # The table-remodeler
 
@@ -12,6 +9,7 @@ Tabular file remodeling and reorganizing tools for event files and datasets.
 `table-remodeler` provides a flexible, operation-based framework for transforming tabular data files through JSON-configurable pipelines. Originally extracted from the [hed-python](https://github.com/hed-standard/hed-python) remodeling tools, this package operates as a standalone tool while maintaining compatibility with HED (Hierarchical Event Descriptors) annotations via the `hedtools` dependency.
 
 **Key features:**
+
 - Operation-based architecture for reproducible data transformations
 - JSON-configurable pipelines for batch processing
 - Support for HED-annotated event files (via `hedtools` package)
@@ -26,6 +24,7 @@ pip install table-remodeler
 ```
 
 For development:
+
 ```bash
 git clone https://github.com/hed-standard/table-remodeler.git
 cd table-remodeler
@@ -72,6 +71,7 @@ run_remodel_restore /path/to/data --backup-name my_backup
 ## Available operations
 
 ### Data Transformation
+
 - `convert_columns` - Convert column data types
 - `factor_column` - Create factor columns from value mappings
 - `merge_consecutive` - Merge consecutive rows with same values
@@ -85,6 +85,7 @@ run_remodel_restore /path/to/data --backup-name my_backup
 - `split_rows` - Split rows based on criteria
 
 ### HED-specific operations
+
 - `factor_hed_tags` - Factor HED tags into separate columns
 - `factor_hed_type` - Factor by HED tag types
 - `summarize_hed_tags` - Summarize HED tag usage
@@ -94,12 +95,13 @@ run_remodel_restore /path/to/data --backup-name my_backup
 - `summarize_sidecar_from_events` - Generate sidecar from events
 
 ### Analysis operations
+
 - `summarize_column_names` - List column names across files
 - `summarize_column_values` - Summarize unique values per column
 
 ## Documentation
 
-Full API and developer documentation is available at [https://wwww.hedtags.org/table-remodeler]([https://wwww.hedtags.org/table-remodeler). 
+Full API and developer documentation is available at [https://wwww.hedtags.org/table-remodeler](%5Bhttps://wwww.hedtags.org/table-remodeler).
 
 Users of the table-remodeler should look at the [HED remodeling quickstart](https://www.hedtags.org/hed-resources/HedRemodelingQuickstart.html) and [HED remodeling tools](https://www.hedtags.org/hed-resources/HedRemodelingTools.html).
 
@@ -108,11 +110,13 @@ Users of the table-remodeler should look at the [HED remodeling quickstart](http
 To build the documentation locally:
 
 1. Install documentation dependencies:
+
    ```bash
    pip install -r docs/requirements.txt
    ```
 
 2. Build the HTML documentation:
+
    ```bash
    sphinx-build -b html docs docs/_build/html
    ```
