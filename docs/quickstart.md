@@ -80,29 +80,29 @@ The following table summarizes all available operations:
 | Category | Operation | Example use case |
 | -------- | ------- | -----|
 | **clean-up** |  |  | 
-|  | [*remove_columns*](operations_reference.md#remove-columns) | Remove temporary columns created during restructuring. |
-|  | [*remove_rows*](operations_reference.md#remove-rows) | Remove rows with a particular value in a specified column. |
-|  | [*rename_columns*](operations_reference.md#rename-columns) | Make columns names consistent across a dataset. |
-|  | [*reorder_columns*](operations_reference.md#reorder-columns) | Make column order consistent across a dataset. |
+|  | [*remove_columns*](operations/transformations/remove_columns.md) | Remove temporary columns created during restructuring. |
+|  | [*remove_rows*](operations/transformations/remove_rows.md) | Remove rows with a particular value in a specified column. |
+|  | [*rename_columns*](operations/transformations/rename_columns.md) | Make columns names consistent across a dataset. |
+|  | [*reorder_columns*](operations/transformations/reorder_columns.md) | Make column order consistent across a dataset. |
 | **factor** |   |   | 
-|  | [*factor_column*](operations_reference.md#factor-column) | Extract factor vectors from a column of condition variables. |
-|  | [*factor_hed_tags*](operations_reference.md#factor-hed-tags) | Extract factor vectors from search queries of HED annotations. |
-|  | [*factor_hed_type*](operations_reference.md#factor-hed-type) | Extract design matrices and/or condition variables. |
+|  | [*factor_column*](operations/transformations/factor_column.md) | Extract factor vectors from a column of condition variables. |
+|  | [*factor_hed_tags*](operations/transformations/factor_hed_tags.md) | Extract factor vectors from search queries of HED annotations. |
+|  | [*factor_hed_type*](operations/transformations/factor_hed_type.md) | Extract design matrices and/or condition variables. |
 | **restructure** |  |  | 
-|  | [*merge_consecutive*](operations_reference.md#merge-consecutive) | Replace multiple consecutive events of the same type<br/>with one event of longer duration. |
-|  | [*remap_columns*](operations_reference.md#remap-columns) | Create *m* columns from values in *n* columns (for recoding). |
-|  | [*split_rows*](operations_reference.md#split-rows) | Split trial-encoded rows into multiple events. |
+|  | [*merge_consecutive*](operations/transformations/merge_consecutive.md) | Replace multiple consecutive events of the same type<br/>with one event of longer duration. |
+|  | [*remap_columns*](operations/transformations/remap_columns.md) | Create *m* columns from values in *n* columns (for recoding). |
+|  | [*split_rows*](operations/transformations/split_rows.md) | Split trial-encoded rows into multiple events. |
 | **summarization** |  |  | 
-|  | [*summarize_column_names*](operations_reference.md#summarize-column-names) | Summarize column names and order in the files. |
-|  | [*summarize_column_values*](operations_reference.md#summarize-column-values) |Count the occurrences of the unique column values. |
-|  | [*summarize_definitions*](operations_reference.md#summarize-definitions) |Summarize definitions used and report inconsistencies. |       
-|  | [*summarize_hed_tags*](operations_reference.md#summarize-hed-tags) | Summarize the HED tags present in the  <br/> HED annotations for the dataset. |
-|  | [*summarize_hed_type*](operations_reference.md#summarize-hed-type) | Summarize the detailed usage of a particular type tag <br/> such as *Condition-variable* or *Task* <br/> (used to automatically extract experimental designs). |
-|  | [*summarize_hed_validation*](operations_reference.md#summarize-hed-validation) | Validate the data files and report any errors. | 
-|  | [*summarize_sidecar_from_events*](operations_reference.md#summarize-sidecar-from-events) | Generate a sidecar template from an event file. | 
+|  | [*summarize_column_names*](operations/summarizations/summarize_column_names.md) | Summarize column names and order in the files. |
+|  | [*summarize_column_values*](operations/summarizations/summarize_column_values.md) |Count the occurrences of the unique column values. |
+|  | [*summarize_definitions*](operations/summarizations/summarize_definitions.md) |Summarize definitions used and report inconsistencies. |       
+|  | [*summarize_hed_tags*](operations/summarizations/summarize_hed_tags.md) | Summarize the HED tags present in the  <br/> HED annotations for the dataset. |
+|  | [*summarize_hed_type*](operations/summarizations/summarize_hed_type.md) | Summarize the detailed usage of a particular type tag <br/> such as *Condition-variable* or *Task* <br/> (used to automatically extract experimental designs). |
+|  | [*summarize_hed_validation*](operations/summarizations/summarize_hed_validation.md) | Validate the data files and report any errors. | 
+|  | [*summarize_sidecar_from_events*](operations/summarizations/summarize_sidecar_from_events.md) | Generate a sidecar template from an event file. | 
 ```
 
-For detailed parameter descriptions and examples of each operation, see the [**Operations reference**](./operations_reference.md).
+For detailed parameter descriptions and examples of each operation, see the [**Operations reference**](./operations/index.rst).
 
 (the-remodeling-process-anchor)=
 

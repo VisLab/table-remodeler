@@ -10,7 +10,7 @@ Welcome to the Table Remodeler documentation. This package provides tools for re
    introduction
    quickstart
    user_guide
-   operations_reference
+   operations/index
    custom_operations
    api/index
 
