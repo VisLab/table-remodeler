@@ -59,8 +59,8 @@ class: tip
 A text format summary of the results of executing this operation on a HED-annotated dataset shows three sections:
 
 1. **Known Definitions**: Definitions found and their contents
-1. **Ambiguous Definitions**: Definitions with placeholder patterns that can't be uniquely resolved
-1. **Errors**: Conflicting expansions for the same definition
+2. **Ambiguous Definitions**: Definitions with placeholder patterns that can't be uniquely resolved
+3. **Errors**: Conflicting expansions for the same definition
 
 ````{admonition} Sample *summarize_definitions* operation results showing clean definitions.
 ---
