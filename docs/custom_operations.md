@@ -738,7 +738,7 @@ valid_operations = {
 - **Pandas DataFrame API**: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html
 - **Python unittest**: https://docs.python.org/3/library/unittest.html
 - **Table Remodeler Repository**: https://github.com/hed-standard/table-remodeler
-- **Operations Reference**: [operations_reference.md](operations_reference.md)
+- **Operations Reference**: [operations/index.rst](operations/index.rst)
 
 ## Getting help
 

@@ -6,7 +6,7 @@ This tutorial introduces the table-remodeler tools for restructuring tabular (`.
 
 The remodeling tools are written in Python and designed to operate on entire datasets. Datasets can be in [BIDS format](https://bids.neuroimaging.io/) or any directory structure containing tabular files with a particular suffix (e.g., `_events.tsv`). The tools support multiple execution modes: command-line scripts, Python programs, Jupyter notebooks, or online tools for debugging.
 
-This quickstart covers the core concepts of remodeling with practical examples. For comprehensive operation details, see the [**Operations reference**](./operations_reference.md) and [**User guide**](./user_guide.md).
+This quickstart covers the core concepts of remodeling with practical examples. For comprehensive operation details, see the [**Operations reference**](./operations/index.rst) and [**User guide**](./user_guide.md).
 
 ## Table of contents
 
@@ -194,7 +194,7 @@ Each operation has its own specific required and optional parameters. For *renam
 - **column_mapping** (required): Dictionary mapping old names to new names
 - **ignore_missing** (required): If `true`, don't error when a column doesn't exist
 
-See the [**Operations reference**](./operations_reference.md) for detailed parameter documentation.
+See the [**Operations reference**](./operations/index.rst) for detailed parameter documentation.
 
 (applying-multiple-remodel-operations-anchor)=
 
@@ -475,7 +475,7 @@ If you don't have access to a Jupyter environment, see [Six easy ways to run you
 
 Now that you understand the basics of remodeling:
 
-1. **Explore operations**: See the [**Operations reference**](./operations_reference.md) for detailed parameter documentation
+1. **Explore operations**: See the [**Operations reference**](./operations/index.rst) for detailed parameter documentation
 2. **Learn advanced workflows**: Read the [**User guide**](./user_guide.md) for CLI details, HED integration, and advanced topics
 3. **Create custom operations**: See the [**Implementation guide**](./implementation_guide.md) if you need custom remodeling operations
 4. **Try examples**: Download example datasets and remodeling files from [**hed-examples**](https://github.com/hed-standard/hed-examples)
