@@ -356,7 +356,7 @@ dispatcher.run_operations()
 
 This automatically extracts experimental design information encoded with `Condition-variable` tags.
 
-For more details on HED integration, see the [**Operations reference**](./operations_reference.md#hed-operations).
+For more details on HED integration, see the [**Transformation operations**](./operations/transformations/index.rst) and [**Summarization operations**](./operations/summarizations/index.rst).
 
 ## Backup and restore
 
@@ -1122,7 +1122,7 @@ Log files include:
 **Documentation:**
 
 - [Quickstart guide](./quickstart.md) for tutorials
-- [Operations reference](./operations_reference.md) for operation details
+- [Operations reference](./operations/index.rst) for operation details
 - [Implementation guide](./implementation_guide.md) for creating custom operations
 - [API Reference](api/index.rst) for Python API details
 
