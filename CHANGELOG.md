@@ -70,7 +70,7 @@ First public release of table-remodeler as a standalone package, extracted from 
 #### Dependencies
 
 - Python 3.10+
-- hedtools >= 0.8.0
+- hedtools >= 0.8.1
 - pandas >= 2.2.3
 - numpy >= 2.0.2
 - jsonschema >= 4.23.0
