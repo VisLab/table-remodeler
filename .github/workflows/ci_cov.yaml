@@ -53,5 +53,5 @@ jobs:
         uses: qltysh/qlty-action/coverage@v2
         with:
           files: coverage.xml
-          add-prefix: remodel
+          add-prefix: remodeler
           oidc: true

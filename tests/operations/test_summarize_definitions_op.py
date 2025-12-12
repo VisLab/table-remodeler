@@ -2,8 +2,8 @@ import json
 import os
 import unittest
 import pandas as pd
-from remodel.dispatcher import Dispatcher
-from remodel.operations.summarize_definitions_op import SummarizeDefinitionsOp, DefinitionSummary
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.summarize_definitions_op import SummarizeDefinitionsOp, DefinitionSummary
 
 
 class Test(unittest.TestCase):

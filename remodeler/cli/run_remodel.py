@@ -7,9 +7,9 @@ import argparse
 import logging
 from hed.errors.exceptions import HedFileError
 from hed.models.sidecar import Sidecar
-from remodel.remodeler_validator import RemodelerValidator
-from remodel.dispatcher import Dispatcher
-from remodel.backup_manager import BackupManager
+from remodeler.remodeler_validator import RemodelerValidator
+from remodeler.dispatcher import Dispatcher
+from remodeler.backup_manager import BackupManager
 from hed.tools.util import io_util
 from hed.tools.bids import bids_util
 

@@ -1,6 +1,6 @@
 import json
 import unittest
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 
 
 class TestOp(BaseOp):

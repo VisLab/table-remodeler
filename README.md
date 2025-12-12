@@ -1,12 +1,12 @@
 [![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-python/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-python) [![Code Coverage](https://qlty.sh/gh/hed-standard/projects/table-remodeler/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/table-remodeler) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Documentation](https://img.shields.io/badge/docs-table-remodeler.svg)](https://www.hedtags.org/table-remodeler)
 
-# The table-remodeler
+# The remodeler
 
 Tabular file remodeling and reorganizing tools for event files and datasets.
 
 ## Overview
 
-`table-remodeler` provides a flexible, operation-based framework for transforming tabular data files through JSON-configurable pipelines. Originally extracted from the [hed-python](https://github.com/hed-standard/hed-python) remodeling tools, this package operates as a standalone tool while maintaining compatibility with HED (Hierarchical Event Descriptors) annotations via the `hedtools` dependency.
+`remodeler` provides a flexible, operation-based framework for transforming tabular data files through JSON-configurable pipelines. Originally extracted from the [hed-python](https://github.com/hed-standard/hed-python) remodeling tools, this package operates as a standalone tool while maintaining compatibility with HED (Hierarchical Event Descriptors) annotations via the `hedtools` dependency.
 
 **Key features:**
 
@@ -20,7 +20,7 @@ Tabular file remodeling and reorganizing tools for event files and datasets.
 ## Installation
 
 ```bash
-pip install table-remodeler
+pip install remodeler
 ```
 
 For development:
@@ -36,7 +36,7 @@ pip install -e .
 ### Python API
 
 ```python
-from remodel import Dispatcher
+from remodeler import Dispatcher
 
 # Define operations
 operations = [

@@ -20,7 +20,7 @@ Main command for executing remodeling operations on datasets.
 
 **Module Reference:**
 
-.. automodule:: remodel.cli.run_remodel
+.. automodule:: remodeler.cli.run_remodel
    :members: main, parse_arguments
    :undoc-members:
 
@@ -41,7 +41,7 @@ Command for creating backups of datasets before remodeling.
 
 **Module Reference:**
 
-.. automodule:: remodel.cli.run_remodel_backup
+.. automodule:: remodeler.cli.run_remodel_backup
    :members: main, parse_arguments
    :undoc-members:
 
@@ -62,7 +62,7 @@ Command for restoring datasets from backups.
 
 **Module Reference:**
 
-.. automodule:: remodel.cli.run_remodel_restore
+.. automodule:: remodeler.cli.run_remodel_restore
    :members: main, parse_arguments
    :undoc-members:
 

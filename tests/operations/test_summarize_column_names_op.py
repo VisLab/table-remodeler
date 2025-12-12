@@ -4,8 +4,8 @@ import pandas as pd
 import unittest
 
 # from hed.tools.analysis.column_name_summary import ColumnNameSummary
-from remodel.dispatcher import Dispatcher
-from remodel.operations.summarize_column_names_op import SummarizeColumnNamesOp
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.summarize_column_names_op import SummarizeColumnNamesOp
 
 
 class Test(unittest.TestCase):

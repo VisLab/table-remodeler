@@ -55,7 +55,7 @@ run_remodel_restore /path/to/dataset
 ### Python api
 
 ```python
-from remodel import Dispatcher
+from remodeler import Dispatcher
 
 operations = [
     {"operation": "remove_columns", "parameters": {"column_names": ["unwanted_col"]}},

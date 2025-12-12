@@ -2,7 +2,7 @@
 
 import jsonschema
 from copy import deepcopy
-from remodel.operations.valid_operations import valid_operations
+from remodeler.operations.valid_operations import valid_operations
 
 
 class RemodelerValidator:

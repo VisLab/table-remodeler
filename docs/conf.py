@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Table Remodeler"
+project = "Remodeler"
 copyright = "2024, HED Standard"
 author = "HED Standard"
 
@@ -55,7 +55,7 @@ html_theme_options = {
     "source_directory": "docs/",
 }
 
-html_title = "Table Remodeler"
+html_title = "Remodeler"
 
 # Configure sidebar to show logo, search, navigation, and quick links
 html_sidebars = {

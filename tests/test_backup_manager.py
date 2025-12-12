@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 import zipfile
 from hed.errors import HedFileError
-from remodel.backup_manager import BackupManager
+from remodeler.backup_manager import BackupManager
 from hed.tools.util.io_util import get_file_list
 
 

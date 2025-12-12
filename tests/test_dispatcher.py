@@ -6,8 +6,8 @@ import pandas as pd
 import numpy as np
 import zipfile
 from hed.errors.exceptions import HedFileError
-from remodel.dispatcher import Dispatcher
-from remodel.operations.base_op import BaseOp
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.base_op import BaseOp
 from hed.tools.util.io_util import get_file_list
 
 

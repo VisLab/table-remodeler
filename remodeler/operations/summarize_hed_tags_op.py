@@ -6,8 +6,8 @@ from hed.models.tabular_input import TabularInput
 from hed.tools.analysis.hed_tag_counts import HedTagCounts
 from hed.tools.analysis.event_manager import EventManager
 from hed.tools.analysis.hed_tag_manager import HedTagManager
-from remodel.operations.base_op import BaseOp
-from remodel.operations.base_summary import BaseSummary
+from remodeler.operations.base_op import BaseOp
+from remodeler.operations.base_summary import BaseSummary
 
 
 class SummarizeHedTagsOp(BaseOp):

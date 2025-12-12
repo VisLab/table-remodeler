@@ -59,7 +59,7 @@ You can also use remodeling without installation via the [**HED online tools**](
 Here's a simple example to get you started:
 
 ```python
-from remodel import Dispatcher
+from remodeler import Dispatcher
 import pandas as pd
 
 # Define your remodeling operations
@@ -86,7 +86,7 @@ print("✓ Remodeling complete!")
 ### Renaming columns
 
 ```python
-from remodel import Dispatcher
+from remodeler import Dispatcher
 
 operations = [{
     "operation": "rename_columns",
@@ -207,7 +207,7 @@ The `-b` flag enables BIDS mode, which:
 **Python:**
 
 ```python
-from remodel import Dispatcher
+from remodeler import Dispatcher
 
 operations = [
     {
@@ -412,7 +412,7 @@ run_remodel_backup /path/to/dataset -t stopsignal -t gonogo
 **Method 2: Python/Jupyter**
 
 ```python
-from remodel import BackupManager
+from remodeler import BackupManager
 
 backup_manager = BackupManager(data_root="/path/to/dataset")
 
@@ -428,7 +428,7 @@ backup_manager.create_backup(backup_name="before_major_changes")
 The Dispatcher can create backups automatically if they don't exist:
 
 ```python
-from remodel import Dispatcher
+from remodeler import Dispatcher
 
 operations = [...]
 
@@ -478,7 +478,7 @@ run_remodel /data/my_dataset operations_v3_rmdl.json
 Use multiple named backups as checkpoints in your workflow:
 
 ```python
-from remodel import BackupManager
+from remodeler import BackupManager
 
 backup_manager = BackupManager(data_root="/path/to/dataset")
 
@@ -527,7 +527,7 @@ run_remodel_restore /path/to/dataset -t stopsignal
 **Method 2: Python/Jupyter**
 
 ```python
-from remodel import BackupManager
+from remodeler import BackupManager
 
 backup_manager = BackupManager(data_root="/path/to/dataset")
 
@@ -634,7 +634,7 @@ run_remodel_backup /path/to/dataset -bn my_backup -x derivatives stimuli -v
 
 `-x`, `--exclude-dirs DIR [DIR ...]`
 
-> Exclude directories (e.g., `derivatives stimuli`). Paths with `remodel` are auto-excluded.
+> Exclude directories (e.g., `derivatives stimuli`). Paths with `remodeler` are auto-excluded.
 
 **Example - BIDS dataset:**
 
@@ -645,7 +645,7 @@ run_remodel_backup /data/ds002790 -x derivatives -t stopsignal -v
 **From Python/Jupyter:**
 
 ```python
-import remodel.cli.run_remodel_backup as cli_backup
+import remodeler.cli.run_remodel_backup as cli_backup
 
 data_root = '/path/to/dataset'
 arg_list = [data_root, '-x', 'derivatives', 'stimuli', '-v']
@@ -760,7 +760,7 @@ run_remodel /data/my_experiment /data/my_experiment/cleanup_rmdl.json \
 **From Python/Jupyter:**
 
 ```python
-import remodel.cli.run_remodel as cli_remodel
+import remodeler.cli.run_remodel as cli_remodel
 
 data_root = '/path/to/dataset'
 model_path = '/path/to/operations_rmdl.json'
@@ -812,7 +812,7 @@ run_remodel_restore /path/to/dataset -bn checkpoint_20240115 -v
 **From Python/Jupyter:**
 
 ```python
-import remodel.cli.run_remodel_restore as cli_restore
+import remodeler.cli.run_remodel_restore as cli_restore
 
 data_root = '/path/to/dataset'
 arg_list = [data_root, '-bn', 'my_backup', '-v']
@@ -882,7 +882,7 @@ for dataset_dir in datasets:
 Create custom remodeling operations by extending `BaseOp`:
 
 ```python
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 import pandas as pd
 
 class MyCustomOp(BaseOp):
