@@ -2,8 +2,8 @@ import unittest
 import os
 import re
 import glob
-import remodel
-from remodel.operations.valid_operations import valid_operations
+import remodeler
+from remodeler.operations.valid_operations import valid_operations
 
 
 class TestDocConsistency(unittest.TestCase):
@@ -23,7 +23,7 @@ class TestDocConsistency(unittest.TestCase):
             content = f.read()
 
         # Extract all class names documented via autoclass
-        # Matches: .. autoclass:: remodel.operations.some_module.ClassName
+        # Matches: .. autoclass:: remodeler.operations.some_module.ClassName
         documented_classes = set()
         pattern = r"\.\.\s+autoclass::\s+[\w\.]+\.(\w+)"
 
@@ -47,7 +47,7 @@ class TestDocConsistency(unittest.TestCase):
 
     def test_core_is_documented(self):
         """
-        Ensure all classes exported in remodel/__init__.py are documented in docs/api/core.rst.
+        Ensure all classes exported in remodeler/__init__.py are documented in docs/api/core.rst.
         """
         docs_path = os.path.join(self.docs_root, "core.rst")
 
@@ -55,10 +55,10 @@ class TestDocConsistency(unittest.TestCase):
         with open(docs_path, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Get exported classes from remodel/__init__.py
+        # Get exported classes from remodeler/__init__.py
         # We filter for classes that are actually defined in the package (not modules)
         exported_classes = [
-            name for name in dir(remodel) if not name.startswith("_") and isinstance(getattr(remodel, name), type)
+            name for name in dir(remodeler) if not name.startswith("_") and isinstance(getattr(remodeler, name), type)
         ]
 
         # Extract documented classes
@@ -75,17 +75,17 @@ class TestDocConsistency(unittest.TestCase):
 
         if missing_classes:
             self.fail(
-                "\nThe following core classes are exported by remodel but missing from core.rst:\n"
+                "\nThe following core classes are exported by remodeler but missing from core.rst:\n"
                 + "\n".join(f"- {cls}" for cls in missing_classes)
                 + "\n\nPlease add them to docs/api/core.rst."
             )
 
     def test_cli_is_documented(self):
         """
-        Ensure all CLI scripts in remodel/cli/ are documented in docs/api/cli.rst.
+        Ensure all CLI scripts in remodeler/cli/ are documented in docs/api/cli.rst.
         """
         docs_path = os.path.join(self.docs_root, "cli.rst")
-        cli_dir = os.path.abspath(os.path.join(self.current_dir, "..", "remodel", "cli"))
+        cli_dir = os.path.abspath(os.path.join(self.current_dir, "..", "remodeler", "cli"))
 
         # Read the documentation file
         with open(docs_path, "r", encoding="utf-8") as f:
@@ -98,9 +98,9 @@ class TestDocConsistency(unittest.TestCase):
         ]
 
         # Extract documented modules
-        # Matches: .. automodule:: remodel.cli.module_name
+        # Matches: .. automodule:: remodeler.cli.module_name
         documented_modules = set()
-        pattern = r"\.\.\s+automodule::\s+remodel\.cli\.(\w+)"
+        pattern = r"\.\.\s+automodule::\s+remodeler\.cli\.(\w+)"
 
         for match in re.finditer(pattern, content):
             documented_modules.add(match.group(1))
@@ -112,7 +112,7 @@ class TestDocConsistency(unittest.TestCase):
 
         if missing_modules:
             self.fail(
-                "\nThe following CLI modules are present in remodel/cli/ but missing from cli.rst:\n"
+                "\nThe following CLI modules are present in remodeler/cli/ but missing from cli.rst:\n"
                 + "\n".join(f"- {mod}" for mod in missing_modules)
                 + "\n\nPlease add them to docs/api/cli.rst."
             )

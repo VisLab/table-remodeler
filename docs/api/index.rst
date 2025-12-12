@@ -26,7 +26,7 @@ The primary entry point for programmatic use is the :class:`~remodel.dispatcher.
 
 .. code-block:: python
 
-   from remodel import Dispatcher
+   from remodeler import Dispatcher
    
    operations = [
        {"operation": "remove_columns", 

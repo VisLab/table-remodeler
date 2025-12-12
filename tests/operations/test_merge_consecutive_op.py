@@ -3,8 +3,8 @@ import math
 import numpy as np
 import pandas as pd
 import unittest
-from remodel.dispatcher import Dispatcher
-from remodel.operations.merge_consecutive_op import MergeConsecutiveOp
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.merge_consecutive_op import MergeConsecutiveOp
 
 
 class Test(unittest.TestCase):

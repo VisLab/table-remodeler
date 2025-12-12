@@ -2,8 +2,8 @@ import json
 import numpy as np
 import pandas as pd
 import unittest
-from remodel.dispatcher import Dispatcher
-from remodel.operations.remove_columns_op import RemoveColumnsOp
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.remove_columns_op import RemoveColumnsOp
 
 
 class Test(unittest.TestCase):

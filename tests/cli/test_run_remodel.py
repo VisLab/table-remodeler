@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 import zipfile
 from hed.errors import HedFileError
-from remodel.cli.run_remodel import parse_arguments, parse_tasks, main
+from remodeler.cli.run_remodel import parse_arguments, parse_tasks, main
 
 
 class Test(unittest.TestCase):

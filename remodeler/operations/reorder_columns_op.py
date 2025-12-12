@@ -1,7 +1,7 @@
 """Reorder columns in a columnar file."""
 
 import pandas as pd
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 
 
 class ReorderColumnsOp(BaseOp):

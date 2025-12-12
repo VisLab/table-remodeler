@@ -2,7 +2,7 @@ import os
 import json
 import unittest
 from copy import deepcopy
-from remodel.remodeler_validator import RemodelerValidator
+from remodeler.remodeler_validator import RemodelerValidator
 
 
 class Test(unittest.TestCase):

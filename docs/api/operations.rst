@@ -11,7 +11,7 @@ All operations inherit from these base classes.
 BaseOp
 ~~~~~~
 
-.. autoclass:: remodel.operations.base_op.BaseOp
+.. autoclass:: remodeler.operations.base_op.BaseOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -19,7 +19,7 @@ BaseOp
 BaseSummary
 ~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.base_summary.BaseSummary
+.. autoclass:: remodeler.operations.base_summary.BaseSummary
    :members:
    :undoc-members:
    :show-inheritance:
@@ -32,7 +32,7 @@ Operations that modify or reorganize tabular data.
 ConvertColumnsOp
 ~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.convert_columns_op.ConvertColumnsOp
+.. autoclass:: remodeler.operations.convert_columns_op.ConvertColumnsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -40,7 +40,7 @@ ConvertColumnsOp
 FactorColumnOp
 ~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.factor_column_op.FactorColumnOp
+.. autoclass:: remodeler.operations.factor_column_op.FactorColumnOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -48,7 +48,7 @@ FactorColumnOp
 MergeConsecutiveOp
 ~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.merge_consecutive_op.MergeConsecutiveOp
+.. autoclass:: remodeler.operations.merge_consecutive_op.MergeConsecutiveOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -56,7 +56,7 @@ MergeConsecutiveOp
 NumberGroupsOp
 ~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.number_groups_op.NumberGroupsOp
+.. autoclass:: remodeler.operations.number_groups_op.NumberGroupsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -64,7 +64,7 @@ NumberGroupsOp
 NumberRowsOp
 ~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.number_rows_op.NumberRowsOp
+.. autoclass:: remodeler.operations.number_rows_op.NumberRowsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -72,7 +72,7 @@ NumberRowsOp
 RemapColumnsOp
 ~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.remap_columns_op.RemapColumnsOp
+.. autoclass:: remodeler.operations.remap_columns_op.RemapColumnsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -80,7 +80,7 @@ RemapColumnsOp
 RemoveColumnsOp
 ~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.remove_columns_op.RemoveColumnsOp
+.. autoclass:: remodeler.operations.remove_columns_op.RemoveColumnsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -88,7 +88,7 @@ RemoveColumnsOp
 RemoveRowsOp
 ~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.remove_rows_op.RemoveRowsOp
+.. autoclass:: remodeler.operations.remove_rows_op.RemoveRowsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -96,7 +96,7 @@ RemoveRowsOp
 RenameColumnsOp
 ~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.rename_columns_op.RenameColumnsOp
+.. autoclass:: remodeler.operations.rename_columns_op.RenameColumnsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -104,7 +104,7 @@ RenameColumnsOp
 ReorderColumnsOp
 ~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.reorder_columns_op.ReorderColumnsOp
+.. autoclass:: remodeler.operations.reorder_columns_op.ReorderColumnsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -112,7 +112,7 @@ ReorderColumnsOp
 SplitRowsOp
 ~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.split_rows_op.SplitRowsOp
+.. autoclass:: remodeler.operations.split_rows_op.SplitRowsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -125,7 +125,7 @@ Operations for working with HED-annotated data.
 FactorHedTagsOp
 ~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.factor_hed_tags_op.FactorHedTagsOp
+.. autoclass:: remodeler.operations.factor_hed_tags_op.FactorHedTagsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -133,7 +133,7 @@ FactorHedTagsOp
 FactorHedTypeOp
 ~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.factor_hed_type_op.FactorHedTypeOp
+.. autoclass:: remodeler.operations.factor_hed_type_op.FactorHedTypeOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -141,7 +141,7 @@ FactorHedTypeOp
 SummarizeDefinitionsOp
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_definitions_op.SummarizeDefinitionsOp
+.. autoclass:: remodeler.operations.summarize_definitions_op.SummarizeDefinitionsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -149,7 +149,7 @@ SummarizeDefinitionsOp
 SummarizeHedTagsOp
 ~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_hed_tags_op.SummarizeHedTagsOp
+.. autoclass:: remodeler.operations.summarize_hed_tags_op.SummarizeHedTagsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -157,7 +157,7 @@ SummarizeHedTagsOp
 SummarizeHedTypeOp
 ~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_hed_type_op.SummarizeHedTypeOp
+.. autoclass:: remodeler.operations.summarize_hed_type_op.SummarizeHedTypeOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -165,7 +165,7 @@ SummarizeHedTypeOp
 SummarizeHedValidationOp
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_hed_validation_op.SummarizeHedValidationOp
+.. autoclass:: remodeler.operations.summarize_hed_validation_op.SummarizeHedValidationOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -173,7 +173,7 @@ SummarizeHedValidationOp
 SummarizeSidecarFromEventsOp
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_sidecar_from_events_op.SummarizeSidecarFromEventsOp
+.. autoclass:: remodeler.operations.summarize_sidecar_from_events_op.SummarizeSidecarFromEventsOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -186,7 +186,7 @@ Operations for analyzing and summarizing tabular data.
 SummarizeColumnNamesOp
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_column_names_op.SummarizeColumnNamesOp
+.. autoclass:: remodeler.operations.summarize_column_names_op.SummarizeColumnNamesOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -194,7 +194,7 @@ SummarizeColumnNamesOp
 SummarizeColumnValuesOp
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: remodel.operations.summarize_column_values_op.SummarizeColumnValuesOp
+.. autoclass:: remodeler.operations.summarize_column_values_op.SummarizeColumnValuesOp
    :members:
    :undoc-members:
    :show-inheritance:
@@ -204,5 +204,5 @@ Operation registry
 
 The valid_operations module maintains a registry of all available operations.
 
-.. autodata:: remodel.operations.valid_operations.valid_operations
+.. autodata:: remodeler.operations.valid_operations.valid_operations
    :annotation: = {operation_name: OperationClass}

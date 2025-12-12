@@ -2,7 +2,7 @@
 
 import argparse
 from hed.errors.exceptions import HedFileError
-from remodel.backup_manager import BackupManager
+from remodeler.backup_manager import BackupManager
 
 
 def get_parser():

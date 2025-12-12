@@ -4,8 +4,8 @@ import unittest
 import pandas as pd
 from hed.models import Sidecar
 from hed.schema import load_schema_version
-from remodel.dispatcher import Dispatcher
-from remodel.operations.summarize_hed_type_op import SummarizeHedTypeOp, HedTypeSummary
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.summarize_hed_type_op import SummarizeHedTypeOp, HedTypeSummary
 
 
 class Test(unittest.TestCase):

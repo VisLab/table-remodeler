@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Initial Release
 
-First public release of table-remodeler as a standalone package, extracted from hed-python.
+First public release of remodeler as a standalone package, extracted from hed-python.
 
 #### Goals
 

@@ -1,7 +1,7 @@
 """Merge consecutive rows of a columnar file with same column value."""
 
 import pandas as pd
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 
 
 class MergeConsecutiveOp(BaseOp):

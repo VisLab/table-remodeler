@@ -1,6 +1,6 @@
 """Implementation in progress."""
 
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 
 # TODO: This class is under development
 

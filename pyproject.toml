@@ -76,13 +76,13 @@ test = [
 ]
 
 [project.scripts]
-run_remodel = "remodel.cli.run_remodel:main"
-run_remodel_backup = "remodel.cli.run_remodel_backup:main"
-run_remodel_restore = "remodel.cli.run_remodel_restore:main"
+run_remodel = "remodeler.cli.run_remodel:main"
+run_remodel_backup = "remodeler.cli.run_remodel_backup:main"
+run_remodel_restore = "remodeler.cli.run_remodel_restore:main"
 
 [tool.setuptools.packages.find]
 where = [""]
-include = ["remodel*"]
+include = ["remodeler*"]
 namespaces = false
 
 [tool.codespell]
@@ -147,7 +147,7 @@ ignore = [
 max-complexity = 10
 
 [tool.ruff.lint.isort]
-known-first-party = ["remodel"]
+known-first-party = ["remodeler"]
 
 [tool.black]
 line-length = 127

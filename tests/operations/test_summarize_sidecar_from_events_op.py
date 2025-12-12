@@ -1,8 +1,8 @@
 import os
 import pandas as pd
 import unittest
-from remodel.dispatcher import Dispatcher
-from remodel.operations.summarize_sidecar_from_events_op import (
+from remodeler.dispatcher import Dispatcher
+from remodeler.operations.summarize_sidecar_from_events_op import (
     EventsToSidecarSummary,
     SummarizeSidecarFromEventsOp,
 )

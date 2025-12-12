@@ -17,7 +17,7 @@ This guide provides comprehensive documentation for developers who want to creat
 
 Operations are defined as classes that extend `BaseOp` regardless of whether they are transformations or summaries. However, summaries must also implement an additional supporting class that extends `BaseSummary` to hold the summary information.
 
-In order to be executed by the remodeling functions, an operation must appear in the `valid_operations` dictionary located in `remodel/operations/valid_operations.py`.
+In order to be executed by the remodeling functions, an operation must appear in the `valid_operations` dictionary located in `remodeler/operations/valid_operations.py`.
 
 ### Key components
 
@@ -40,7 +40,7 @@ Each operation class must have:
 ### Basic operation template
 
 ```python
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 
 class MyCustomOp(BaseOp):
     """Brief description of what this operation does."""
@@ -305,7 +305,7 @@ Summarization operations require both an operation class (extending `BaseOp`) an
 ### Summarization operation class
 
 ```python
-from remodel.operations.base_summary import BaseSummary
+from remodeler.operations.base_summary import BaseSummary
 
 class MySummarySummary(BaseSummary):
     """Holds summary information for my_summary operation."""
@@ -438,10 +438,10 @@ def get_summary_details(self, verbose=True):
 
 ### Registering your operation
 
-Add your operation to `remodel/operations/valid_operations.py`:
+Add your operation to `remodeler/operations/valid_operations.py`:
 
 ```python
-from remodel.operations.my_custom_op import MyCustomOp
+from remodeler.operations.my_custom_op import MyCustomOp
 
 valid_operations = {
     # ... existing operations ...
@@ -477,8 +477,8 @@ Create test files in `tests/operations/` following the pattern:
 ```python
 import unittest
 import pandas as pd
-from remodel.operations.my_custom_op import MyCustomOp
-from remodel import Dispatcher
+from remodeler.operations.my_custom_op import MyCustomOp
+from remodeler import Dispatcher
 
 class TestMyCustomOp(unittest.TestCase):
     """Test cases for MyCustomOp."""
@@ -653,7 +653,7 @@ class MyCustomOp(BaseOp):
 Here's a complete example of a custom operation that converts column values to uppercase:
 
 ```python
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 import pandas as pd
 
 class UppercaseColumnsOp(BaseOp):
@@ -723,8 +723,8 @@ class UppercaseColumnsOp(BaseOp):
 Register it:
 
 ```python
-# In remodel/operations/valid_operations.py
-from remodel.operations.uppercase_columns_op import UppercaseColumnsOp
+# In remodeler/operations/valid_operations.py
+from remodeler.operations.uppercase_columns_op import UppercaseColumnsOp
 
 valid_operations = {
     # ... existing operations ...
@@ -742,7 +742,7 @@ valid_operations = {
 
 ## Getting help
 
-- Review existing operations in `remodel/operations/` for examples
+- Review existing operations in `remodeler/operations/` for examples
 - Check the test suite in `tests/operations/` for testing patterns
 - Open an issue on GitHub for questions or feature requests
 - See the [User Guide](user_guide.md) for operation usage examples

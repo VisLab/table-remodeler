@@ -1,5 +1,5 @@
 [run]
-source = remodel
+source = remodeler
 branch = True
 relative_files = True
 omit =

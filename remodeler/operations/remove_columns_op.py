@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from remodel.operations.base_op import BaseOp
+from remodeler.operations.base_op import BaseOp
 
 
 class RemoveColumnsOp(BaseOp):
