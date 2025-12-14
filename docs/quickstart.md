@@ -47,7 +47,7 @@ In addition to restructuring during initial structuring of the tabular files, fu
 
 Remodeling operations fall into two categories:
 
-**Transformation operations** modify the tabular files by restructuring their content. They process an input DataFrame and return a transformed DataFrame without modifying the original data. Transformations are stateless and include:
+**Transformation operations** modify the tabular files by restructuring their content. They process an input pandas `DataFrame` and return a transformed `DataFrame` without modifying the original data. Transformations are stateless and include:
 
 <div align="center">
 
@@ -59,7 +59,7 @@ Remodeling operations fall into two categories:
 - **Factor**: Extract condition variables and design matrices
 - **Restructure**: Merge consecutive events, remap values, split trial-encoded rows
 
-**Summarization operations** extract information without modifying the input DataFrame. They analyze files and produce summary reports stored separately:
+**Summarization operations** extract information without modifying the input `DataFrame`. They analyze files and produce summary reports stored separately:
 
 <div align="center">
 
@@ -80,26 +80,26 @@ The following table summarizes all available operations:
 | Category | Operation | Example use case |
 | -------- | ------- | -----|
 | **clean-up** |  |  | 
-|  | [*remove_columns*](operations/transformations/remove_columns.md) | Remove temporary columns created during restructuring. |
-|  | [*remove_rows*](operations/transformations/remove_rows.md) | Remove rows with a particular value in a specified column. |
-|  | [*rename_columns*](operations/transformations/rename_columns.md) | Make columns names consistent across a dataset. |
-|  | [*reorder_columns*](operations/transformations/reorder_columns.md) | Make column order consistent across a dataset. |
+|  | [*remove_columns*](operations/transformations/remove_columns.md) | Remove temporary columns created during restructuring |
+|  | [*remove_rows*](operations/transformations/remove_rows.md) | Remove rows with a particular value in a specified column |
+|  | [*rename_columns*](operations/transformations/rename_columns.md) | Make columns names consistent across a dataset |
+|  | [*reorder_columns*](operations/transformations/reorder_columns.md) | Make column order consistent across a dataset |
 | **factor** |   |   | 
-|  | [*factor_column*](operations/transformations/factor_column.md) | Extract factor vectors from a column of condition variables. |
-|  | [*factor_hed_tags*](operations/transformations/factor_hed_tags.md) | Extract factor vectors from search queries of HED annotations. |
-|  | [*factor_hed_type*](operations/transformations/factor_hed_type.md) | Extract design matrices and/or condition variables. |
+|  | [*factor_column*](operations/transformations/factor_column.md) | Extract factor vectors from a column of condition variables |
+|  | [*factor_hed_tags*](operations/transformations/factor_hed_tags.md) | Extract factor vectors from search queries of HED annotations |
+|  | [*factor_hed_type*](operations/transformations/factor_hed_type.md) | Extract design matrices and/or condition variables |
 | **restructure** |  |  | 
-|  | [*merge_consecutive*](operations/transformations/merge_consecutive.md) | Replace multiple consecutive events of the same type<br/>with one event of longer duration. |
-|  | [*remap_columns*](operations/transformations/remap_columns.md) | Create *m* columns from values in *n* columns (for recoding). |
-|  | [*split_rows*](operations/transformations/split_rows.md) | Split trial-encoded rows into multiple events. |
+|  | [*merge_consecutive*](operations/transformations/merge_consecutive.md) | Replace multiple consecutive events of the same type with one of longer duration |
+|  | [*remap_columns*](operations/transformations/remap_columns.md) | Create *m* columns from values in *n* columns (for recoding) |
+|  | [*split_rows*](operations/transformations/split_rows.md) | Split trial-encoded rows into multiple events |
 | **summarization** |  |  | 
-|  | [*summarize_column_names*](operations/summarizations/summarize_column_names.md) | Summarize column names and order in the files. |
-|  | [*summarize_column_values*](operations/summarizations/summarize_column_values.md) |Count the occurrences of the unique column values. |
-|  | [*summarize_definitions*](operations/summarizations/summarize_definitions.md) |Summarize definitions used and report inconsistencies. |       
-|  | [*summarize_hed_tags*](operations/summarizations/summarize_hed_tags.md) | Summarize the HED tags present in the  <br/> HED annotations for the dataset. |
-|  | [*summarize_hed_type*](operations/summarizations/summarize_hed_type.md) | Summarize the detailed usage of a particular type tag <br/> such as *Condition-variable* or *Task* <br/> (used to automatically extract experimental designs). |
-|  | [*summarize_hed_validation*](operations/summarizations/summarize_hed_validation.md) | Validate the data files and report any errors. | 
-|  | [*summarize_sidecar_from_events*](operations/summarizations/summarize_sidecar_from_events.md) | Generate a sidecar template from an event file. | 
+|  | [*summarize_column_names*](operations/summarizations/summarize_column_names.md) | Summarize column names and order in the files |
+|  | [*summarize_column_values*](operations/summarizations/summarize_column_values.md) |Count the occurrences of the unique column values |
+|  | [*summarize_definitions*](operations/summarizations/summarize_definitions.md) |Summarize definitions used and report inconsistencies |       
+|  | [*summarize_hed_tags*](operations/summarizations/summarize_hed_tags.md) | Summarize the HED tags present in the  <br/> HED annotations for the dataset |
+|  | [*summarize_hed_type*](operations/summarizations/summarize_hed_type.md) | Summarize the detailed usage of a particular type tag such as *Condition-variable* or *Task* (used to automatically extract experimental designs) |
+|  | [*summarize_hed_validation*](operations/summarizations/summarize_hed_validation.md) | Validate the data files and report any errors | 
+|  | [*summarize_sidecar_from_events*](operations/summarizations/summarize_sidecar_from_events.md) | Generate a sidecar template from an event file | 
 ```
 
 For detailed parameter descriptions and examples of each operation, see the [**Operations reference**](./operations/index.rst).
@@ -260,8 +260,8 @@ This stop-signal task presented faces to participants who decided the sex by pre
 The file uses **trial-level encoding**: each row represents an entire trial with multiple events encoded as offsets:
 
 - The `onset` column marks the face presentation (go signal)
-- The `stop_signal_delay` column contains the offset to the stop signal (if present)
-- The `response_time` column contains the offset to the button press (if present)
+- The `stop_signal_delay` column contains the time delay of the stop signal (if present) from the onset
+- The `response_time` column contains the time delay of the button press (if present) from the onset
 
 For many analyses, **event-level encoding** is preferable: each row represents a single event.
 
@@ -460,7 +460,7 @@ For comprehensive command-line documentation, see the [**User guide**](./user_gu
 
 ### Jupyter notebooks
 
-For programmatic control with documentation, use the command-line scripts from within Jupyter notebooks. Example notebooks are available at [**hed-examples/remodeling**](https://github.com/hed-standard/hed-examples/tree/main/src/jupyter_notebooks/remodeling).
+For programmatic control with documentation, use the command-line scripts from within Jupyter notebooks. Example notebooks are available at [**table-remodeler/examples**](https://github.com/hed-standard/table-remodeler/tree/main/examples).
 
 These notebooks demonstrate how to:
 
@@ -477,5 +477,5 @@ Now that you understand the basics of remodeling:
 
 1. **Explore operations**: See the [**Operations reference**](./operations/index.rst) for detailed parameter documentation
 2. **Learn advanced workflows**: Read the [**User guide**](./user_guide.md) for CLI details, HED integration, and advanced topics
-3. **Create custom operations**: See the [**Implementation guide**](./implementation_guide.md) if you need custom remodeling operations
+3. **Create custom operations**: See the [**Custom operations**](./custom_operations.md) guide if you need custom remodeling operations
 4. **Try examples**: Download example datasets and remodeling files from [**hed-examples**](https://github.com/hed-standard/hed-examples)
