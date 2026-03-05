@@ -123,7 +123,7 @@ class Test(unittest.TestCase):
             list(df_test.columns) == self.sample_columns, "run_operations did not change the input df columns"
         )
         self.assertEqual(len(df_test), num_test_rows, "run_operations did not change the input df rows")
-        self.assertFalse(
+        self.assertTrue(
             np.array_equal(df_test_values, df_test.to_numpy()),
             "run_operations does not change the values in the input df",
         )
