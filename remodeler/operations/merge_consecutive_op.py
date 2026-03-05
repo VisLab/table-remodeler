@@ -96,7 +96,7 @@ class MergeConsecutiveOp(BaseOp):
         if self.match_columns and not self.ignore_missing and missing:
             raise ValueError(
                 "MissingMatchColumns",
-                f"{name}: {str(missing)} columns are unmatched by data columns[{str(df.columns)}] and not ignored",
+                f"{name}: {str(missing)} columns are unmatched by data columns [{str(df.columns)}] and not ignored",
             )
         match_columns = list(set(self.match_columns).intersection(set(df.columns)))
 

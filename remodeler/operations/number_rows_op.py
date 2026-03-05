@@ -60,7 +60,7 @@ class NumberRowsOp(BaseOp):
                 raise ValueError(
                     "MissingMatchValue",
                     f"Value {self.match_value['value']} does not exist in event file column"
-                    f"{self.match_value['column']}.",
+                    f" {self.match_value['column']}.",
                     "",
                 )
 

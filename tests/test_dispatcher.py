@@ -124,7 +124,7 @@ class Test(unittest.TestCase):
         )
         self.assertEqual(len(df_test), num_test_rows, "run_operations did not change the input df rows")
         self.assertFalse(
-            np.array_equal(df_test_values, df_test.to_numpy),
+            np.array_equal(df_test_values, df_test.to_numpy()),
             "run_operations does not change the values in the input df",
         )
         self.assertEqual(len(df_new), num_test_rows, "run_operations did not change the number of output rows")
