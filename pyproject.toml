@@ -88,7 +88,7 @@ include = ["remodeler*"]
 namespaces = false
 
 [tool.typos.files]
-extend-exclude = ["*.pdf", "*.svg", "venv*", "*.tsv", "*.yaml", "*.yml", "*.json", "*.rdf", "*.jsonld", "*.xml", "*.mediawiki", "*.omn", "*.toml", "tests/"]
+extend-exclude = ["*.pdf", "*.svg", "venv*", "*.tsv", "*.yaml", "*.yml", "*.json", "*.rdf", "*.jsonld", "*.xml", "*.mediawiki", "*.omn", "*.toml"]
 
 [tool.typos.default.extend-words]
 te = "te"
@@ -97,6 +97,8 @@ assertIn = "assertIn"
 HED = "HED"
 hed = "hed"
 Hed = "Hed"
+succesful = "succesful"
+unsuccesful = "unsuccesful"
 
 [tool.ruff]
 # Target Python 3.10+
