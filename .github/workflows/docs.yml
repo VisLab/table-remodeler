@@ -48,7 +48,7 @@ jobs:
           sphinx-build -b html docs docs/_build/html
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
@@ -63,9 +63,6 @@ jobs:
     needs: build
     # Only deploy when pushing to main branch, not on pull requests
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    permissions:
-      pages: write
-      id-token: write
     runs-on: ubuntu-latest
 
     # Specify the deployment environment
@@ -78,4 +75,4 @@ jobs:
       - name: Deploy to GitHub Pages
         # This is the official action for deploying the artifact to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
