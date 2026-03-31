@@ -10,8 +10,3 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "uv"
-    directory: "/"
-    target-branch: "main"
-    schedule:
-      interval: "weekly"
