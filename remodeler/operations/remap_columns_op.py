@@ -91,7 +91,6 @@ class RemapColumnsOp(BaseOp):
         """
 
         key_df = pd.DataFrame(self.map_list, columns=self.source_columns + self.destination_columns)
-        key_df[self.source_columns] = key_df[self.source_columns].astype(str)
         key_map = KeyMap(self.source_columns, target_cols=self.destination_columns, name="remap")
         key_map.update(key_df)
         return key_map
