@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-07-08
+
+### Added
+
+- Support for pandas 3.x (`pandas>=2.2.3,<4.0.0`), while remaining compatible with pandas 2.x.
+- `RELEASE_GUIDE.md` documenting the end-to-end release process.
+- `.github/copilot-instructions.md` with project conventions for AI-assisted development.
+- New `examples` optional dependency group (`jupyter`, `notebook`, `nbformat`, `nbconvert`, `ipykernel`), split out from `dev`.
+- `ruff` and `typos` GitHub Actions workflows.
+
+### Changed
+
+- Updated `hedtools` dependency requirement to `>=1.1.1`.
+- Removed direct dependencies on `numpy`, `openpyxl`, and `semantic-version` (no longer required directly).
+- Replaced `black` and `codespell` with `ruff format` and `typos` for code formatting and spell-checking; reformatted the entire codebase accordingly (line length 120).
+- Pinned third-party GitHub Actions to commit SHAs and updated action versions (`actions/checkout`, `actions/cache`, `actions/setup-python`, `astral-sh/setup-uv`, `lycheeverse/lychee-action`, `qltysh/qlty-action`, `actions/upload-pages-artifact`).
+- Reorganized documentation: merged `introduction.md` and `custom_operations.md` into an expanded `user_guide.md` and a renamed `overview.md`; substantially expanded the user guide and quickstart.
+- Significantly expanded unit test coverage across operations and CLI scripts.
+
+### Fixed
+
+- Fixed `remap_columns` failing to match mixed-type source values by coercing source columns to strings before building the remap key.
+- Fixed broken badge links and spacing in `README.md`.
+- Corrected a typo in the `0.2.0` changelog entry ("Reformated" -> "Reformatted").
+
 ## [0.2.0] - 2025-12-30
 
 - Reformatted the documentation to follow the HED website styles.
