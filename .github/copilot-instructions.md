@@ -6,7 +6,7 @@ Use Google-format docstrings (`Parameters:` not `Args:`). Place all work summari
 
 ## Project Overview
 
-`table-remodeler` (PyPI package: `table-remodeler`, importable as `remodeler`) transforms tabular data files through JSON-configurable operation pipelines. Primary use case: neuroimaging event file preprocessing with optional HED (Hierarchical Event Descriptors) annotation support. Python 3.10+, pandas 2.x (**pandas 3 is not supported**), MIT license.
+`table-remodeler` (PyPI package: `table-remodeler`, importable as `remodeler`) transforms tabular data files through JSON-configurable operation pipelines. Primary use case: neuroimaging event file preprocessing with optional HED (Hierarchical Event Descriptors) annotation support. Python 3.10+, pandas 2.x or 3.x, MIT license.
 
 Related: [hed-python](https://github.com/hed-standard/hed-python) (required `hedtools` dependency), [hed-schemas](https://github.com/hed-standard/hed-schemas).
 
@@ -109,8 +109,8 @@ dispatcher.run_operations()
 
 ## Dependencies & Constraints
 
-- `pandas>=2.2.3,<3.0.0` — **pandas 3 not supported**
-- `hedtools>=0.9.0` — HED operations; schemas auto-cached in `~/.hedtools/`
+- `pandas>=2.2.3,<4.0.0` — supports pandas 2.x and 3.x
+- `hedtools>=1.1.1` — HED operations; schemas auto-cached in `~/.hedtools/`
 - `jsonschema>=4.23.0`
 
 ## Common Pitfalls
