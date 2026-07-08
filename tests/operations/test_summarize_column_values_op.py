@@ -3,7 +3,10 @@ import os
 import pandas as pd
 import unittest
 from remodeler.dispatcher import Dispatcher
-from remodeler.operations.summarize_column_values_op import ColumnValueSummary, SummarizeColumnValuesOp
+from remodeler.operations.summarize_column_values_op import (
+    ColumnValueSummary,
+    SummarizeColumnValuesOp,
+)
 
 
 class Test(unittest.TestCase):
@@ -11,10 +14,28 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -49,7 +70,11 @@ class Test(unittest.TestCase):
     def test_constructor(self):
         parms = json.loads(self.json_parms)
         sum_op = SummarizeColumnValuesOp(parms)
-        self.assertIsInstance(sum_op, SummarizeColumnValuesOp, "constructor creates an object of the correct type")
+        self.assertIsInstance(
+            sum_op,
+            SummarizeColumnValuesOp,
+            "constructor creates an object of the correct type",
+        )
 
     def test_do_ops(self):
         parms = json.loads(self.json_parms)
@@ -66,7 +91,9 @@ class Test(unittest.TestCase):
         )
         self.get_dfs(sum_op, "name2", dispatch)
         self.assertEqual(
-            cat_len, len(self.sample_columns) - 2, "do_ops updating does not change number of categorical columns."
+            cat_len,
+            len(self.sample_columns) - 2,
+            "do_ops updating does not change number of categorical columns.",
         )
         context = dispatch.summary_dicts["test summary"]
         text_sum = context.get_text_summary()
@@ -100,10 +127,16 @@ class Test(unittest.TestCase):
 
     def test_summary_op(self):
         events = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/aomic_sub-0013_excerpt_events.tsv")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/aomic_sub-0013_excerpt_events.tsv",
+            )
         )
         column_summary_path = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/aomic_sub-0013_summary_all_rmdl.json")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/aomic_sub-0013_summary_all_rmdl.json",
+            )
         )
         with open(column_summary_path, "r") as fp:
             parms = json.load(fp)

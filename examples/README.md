@@ -32,19 +32,25 @@ Or in VS Code, simply open the `.ipynb` files directly.
 ## Available Examples
 
 ### 1. [run_remodel_backup.ipynb](run_remodel_backup.ipynb)
+
 Demonstrates creating backups of tabular data files before performing remodeling operations. Shows how to:
+
 - Create named backups
 - Exclude specific directories
 - Control which file types to backup
 
 ### 2. [run_remodel.ipynb](run_remodel.ipynb)
+
 Demonstrates executing remodeling operations on tabular data using JSON configuration files. Shows how to:
+
 - Apply transformation operations to data files
 - Use remodeling operation specifications
 - Control output and logging
 
 ### 3. [run_remodel_restore.ipynb](run_remodel_restore.ipynb)
+
 Demonstrates restoring files from previously created backups. Shows how to:
+
 - Restore from named backups
 - Revert changes made by remodeling operations
 
@@ -63,6 +69,7 @@ For a complete remodeling workflow, run the notebooks in this order:
 ## Contributing
 
 If you create new example notebooks, please:
+
 1. Add clear markdown documentation in cells
 2. Include expected outputs
 3. Use test data from `tests/data/` when possible

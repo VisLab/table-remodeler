@@ -16,7 +16,11 @@ def get_parser():
     parser = argparse.ArgumentParser(description="Creates a backup for the remodeling process.")
     parser.add_argument("data_dir", help="Full path of dataset root directory.")
     parser.add_argument(
-        "-bd", "--backup_dir", default="", dest="backup_dir", help="Directory for the backup that is being created"
+        "-bd",
+        "--backup_dir",
+        default="",
+        dest="backup_dir",
+        help="Directory for the backup that is being created",
     )
     parser.add_argument(
         "-bn",
@@ -34,7 +38,14 @@ def get_parser():
         help="Optional list of suffixes (no under_bar) of tsv files to be backed up. A * indicates all files allowed.",
     )
 
-    parser.add_argument("-t", "--task-names", dest="task_names", nargs="*", default=[], help="The names of the tasks.")
+    parser.add_argument(
+        "-t",
+        "--task-names",
+        dest="task_names",
+        nargs="*",
+        default=[],
+        help="The names of the tasks.",
+    )
     parser.add_argument(
         "-v",
         "--verbose",
@@ -72,7 +83,10 @@ def main(arg_list=None):
         args.suffixes = None
     exclude_dirs = args.exclude_dirs + ["remodeling"]
     file_list = io_util.get_file_list(
-        args.data_dir, name_suffix=args.suffixes, extensions=[".tsv"], exclude_dirs=exclude_dirs
+        args.data_dir,
+        name_suffix=args.suffixes,
+        extensions=[".tsv"],
+        exclude_dirs=exclude_dirs,
     )
     if args.task_names:
         file_list = io_util.get_filtered_by_element(file_list, args.task_names)

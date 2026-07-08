@@ -30,8 +30,14 @@ class SummarizeHedValidationOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {"type": "string", "description": "Name to use for the summary in titles."},
-            "summary_filename": {"type": "string", "description": "Name to use for the summary file name base."},
+            "summary_name": {
+                "type": "string",
+                "description": "Name to use for the summary in titles.",
+            },
+            "summary_filename": {
+                "type": "string",
+                "description": "Name to use for the summary file name base.",
+            },
             "append_timecode": {
                 "type": "boolean",
                 "description": "If true, the timecode is appended to the base filename so each run has a unique name.",
@@ -82,7 +88,12 @@ class SummarizeHedValidationOp(BaseOp):
             summary = HedValidationSummary(self)
             dispatcher.summary_dicts[self.summary_name] = summary
         summary.update_summary(
-            {"df": dispatcher.post_proc_data(df_new), "name": name, "schema": dispatcher.hed_schema, "sidecar": sidecar}
+            {
+                "df": dispatcher.post_proc_data(df_new),
+                "name": name,
+                "schema": dispatcher.hed_schema,
+                "sidecar": sidecar,
+            }
         )
         return df_new
 

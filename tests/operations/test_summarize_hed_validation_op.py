@@ -3,7 +3,10 @@ import os
 import unittest
 import pandas as pd
 from remodeler.dispatcher import Dispatcher
-from remodeler.operations.summarize_hed_validation_op import SummarizeHedValidationOp, HedValidationSummary
+from remodeler.operations.summarize_hed_validation_op import (
+    SummarizeHedValidationOp,
+    HedValidationSummary,
+)
 
 
 class Test(unittest.TestCase):
@@ -16,10 +19,28 @@ class Test(unittest.TestCase):
         cls.sample_sidecar_path = os.path.realpath(os.path.join(path, "task-stopsignal_acq-seq_events.json"))
         cls.sample_data = [
             [0.0776, 0.5083, "baloney", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -46,14 +67,28 @@ class Test(unittest.TestCase):
     def test_constructor(self):
         parms = json.loads(self.json_parms)
         sum_op1 = SummarizeHedValidationOp(parms)
-        self.assertIsInstance(sum_op1, SummarizeHedValidationOp, "constructor creates an object of the correct type")
+        self.assertIsInstance(
+            sum_op1,
+            SummarizeHedValidationOp,
+            "constructor creates an object of the correct type",
+        )
 
     def test_do_op(self):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedValidationOp(parms)
-        self.assertIsInstance(sum_op, SummarizeHedValidationOp, "constructor creates an object of the correct type")
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        self.assertIsInstance(
+            sum_op,
+            SummarizeHedValidationOp,
+            "constructor creates an object of the correct type",
+        )
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         sum_op.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
         self.assertIn(sum_op.summary_name, dispatch.summary_dicts)
         self.assertIsInstance(dispatch.summary_dicts[sum_op.summary_name], HedValidationSummary)
@@ -70,7 +105,13 @@ class Test(unittest.TestCase):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedValidationOp(parms)
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         sum_op.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
         sum_context = dispatch.summary_dicts[sum_op.summary_name]
         sum_obj1 = sum_context.get_summary_details()
@@ -94,7 +135,13 @@ class Test(unittest.TestCase):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedValidationOp(parms)
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         df = dispatch.prep_data(df)
         sum_op.do_op(dispatch, df, "subj2_run1", sidecar=self.bad_json_path)
 
@@ -120,7 +167,13 @@ class Test(unittest.TestCase):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedValidationOp(parms)
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         df = dispatch.prep_data(df)
         sum_op.do_op(dispatch, df, "subj2_run1", sidecar=self.bad_json_path)
         context = dispatch.summary_dicts[sum_op.summary_name]
@@ -140,7 +193,12 @@ class Test(unittest.TestCase):
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedValidationOp(parms)
-        sum_op.do_op(dispatch, df, "sub-0013_task-stopsignal_acq-seq_events.tsv", sidecar=self.sample_sidecar_path)
+        sum_op.do_op(
+            dispatch,
+            df,
+            "sub-0013_task-stopsignal_acq-seq_events.tsv",
+            sidecar=self.sample_sidecar_path,
+        )
         sum_context1 = dispatch.summary_dicts[sum_op.summary_name]
         self.assertIsInstance(sum_context1, HedValidationSummary)
         self.assertEqual(len(sum_context1.summary_dict), 1)

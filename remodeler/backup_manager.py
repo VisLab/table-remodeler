@@ -138,7 +138,12 @@ class BackupManager:
 
         """
         return os.path.realpath(
-            os.path.join(self.backups_path, backup_name, self.BACKUP_ROOT, self.get_file_key(file_name))
+            os.path.join(
+                self.backups_path,
+                backup_name,
+                self.BACKUP_ROOT,
+                self.get_file_key(file_name),
+            )
         )
 
     def get_file_key(self, file_name):
@@ -191,10 +196,16 @@ class BackupManager:
                 )
             backup_dict, files_not_in_backup, backups_not_in_directory = self._check_backup_consistency(backup)
             if files_not_in_backup:
-                raise HedFileError("MissingBackupFile", f"Backup {backup} has files not in backup_lock.json.", "")
+                raise HedFileError(
+                    "MissingBackupFile",
+                    f"Backup {backup} has files not in backup_lock.json.",
+                    "",
+                )
             if backups_not_in_directory:
                 raise HedFileError(
-                    "ExtraFilesInBackup", f"Backup {backup} backup_lock.json entries not in backup directory.", ""
+                    "ExtraFilesInBackup",
+                    f"Backup {backup} backup_lock.json entries not in backup directory.",
+                    "",
                 )
             backups[backup] = backup_dict
         return backups

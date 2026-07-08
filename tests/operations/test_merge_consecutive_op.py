@@ -22,7 +22,14 @@ class Test(unittest.TestCase):
             [21.1021, 0.5083, "unsuccesful_stop", 0.25, "left", "male"],
             [22.6103, 0.5083, "go", "n/a", "left", "male"],
         ]
-        cls.sample_columns = ["onset", "duration", "trial_type", "stop_signal_delay", "response_hand", "sex"]
+        cls.sample_columns = [
+            "onset",
+            "duration",
+            "trial_type",
+            "stop_signal_delay",
+            "response_hand",
+            "sex",
+        ]
 
         cls.result_data = [
             [0.0776, 0.5083, "go", "n/a", "right", "female"],
@@ -60,7 +67,8 @@ class Test(unittest.TestCase):
         df_test, df_new = self.get_dfs(op)
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         self.assertTrue(
-            list(df_new.columns) == list(df.columns), "merge_consecutive should not change the number of columns"
+            list(df_new.columns) == list(df.columns),
+            "merge_consecutive should not change the number of columns",
         )
         for index, _row in df_new.iterrows():
             if not math.isclose(df_new.loc[index, "onset"], df_new.loc[index, "onset"]):
@@ -119,18 +127,30 @@ class Test(unittest.TestCase):
         match_df1 = match_df.loc[:, ["duration", "stop_signal_delay", "response_hand", "sex"]]
         code_mask1 = pd.Series([False, False, False, True, True, True, True, True, False, False])
         remove_groups1 = MergeConsecutiveOp._get_remove_groups(match_df1, code_mask1)
-        self.assertEqual(max(remove_groups1), 3, "_get_remove_groups has three groups when duration is included")
+        self.assertEqual(
+            max(remove_groups1),
+            3,
+            "_get_remove_groups has three groups when duration is included",
+        )
         self.assertEqual(remove_groups1[4], 1, "_get_remove_groups has correct first group")
         self.assertEqual(remove_groups1[7], 3, "_get_remove_groups has correct second group")
         match_df2 = match_df.loc[:, ["stop_signal_delay", "response_hand", "sex"]]
         remove_groups2 = MergeConsecutiveOp._get_remove_groups(match_df2, code_mask1)
-        self.assertEqual(max(remove_groups2), 2, "_get_remove_groups has 2 groups when duration not included")
+        self.assertEqual(
+            max(remove_groups2),
+            2,
+            "_get_remove_groups has 2 groups when duration not included",
+        )
         self.assertEqual(remove_groups2[4], 1, "_get_remove_groups has correct first group")
         self.assertEqual(remove_groups2[5], 1, "_get_remove_groups has correct first group")
         self.assertEqual(remove_groups2[7], 2, "_get_remove_groups has correct second group")
         match_df3 = match_df.loc[:, ["trial_type"]]
         remove_groups3 = MergeConsecutiveOp._get_remove_groups(match_df3, code_mask1)
-        self.assertEqual(max(remove_groups3), 1, "_get_remove_groups has 2 groups when duration not included")
+        self.assertEqual(
+            max(remove_groups3),
+            1,
+            "_get_remove_groups has 2 groups when duration not included",
+        )
         self.assertEqual(remove_groups3[4], 1, "_get_remove_groups has correct first group")
         self.assertEqual(remove_groups3[5], 1, "_get_remove_groups has correct first group")
         self.assertEqual(remove_groups3[7], 1, "_get_remove_groups has correct second group")
@@ -172,7 +192,12 @@ class Test(unittest.TestCase):
 
     def test_do_op_missing_match(self):
         parms = json.loads(self.json_parms)
-        parms["match_columns"] = ["stop_signal_delay", "response_hand", "sex", "baloney"]
+        parms["match_columns"] = [
+            "stop_signal_delay",
+            "response_hand",
+            "sex",
+            "baloney",
+        ]
         parms["ignore_missing"] = False
         op = MergeConsecutiveOp(parms)
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)

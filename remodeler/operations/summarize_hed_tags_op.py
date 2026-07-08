@@ -36,13 +36,24 @@ class SummarizeHedTagsOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {"type": "string", "description": "Name to use for the summary in titles."},
-            "summary_filename": {"type": "string", "description": "Name to use for the summary file name base."},
+            "summary_name": {
+                "type": "string",
+                "description": "Name to use for the summary in titles.",
+            },
+            "summary_filename": {
+                "type": "string",
+                "description": "Name to use for the summary file name base.",
+            },
             "tags": {
                 "type": "object",
                 "description": "A dictionary with the template for how output of tags should be organized.",
                 "patternProperties": {
-                    ".*": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": True},
+                    ".*": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "minItems": 1,
+                        "uniqueItems": True,
+                    },
                     "minProperties": 1,
                     "additionalProperties": False,
                 },
@@ -111,7 +122,12 @@ class SummarizeHedTagsOp(BaseOp):
             summary = HedTagSummary(self)
             dispatcher.summary_dicts[self.summary_name] = summary
         summary.update_summary(
-            {"df": dispatcher.post_proc_data(df_new), "name": name, "schema": dispatcher.hed_schema, "sidecar": sidecar}
+            {
+                "df": dispatcher.post_proc_data(df_new),
+                "name": name,
+                "schema": dispatcher.hed_schema,
+                "sidecar": sidecar,
+            }
         )
         return df_new
 
@@ -147,9 +163,13 @@ class HedTagSummary(BaseSummary):
         """
         counts = HedTagCounts(new_info["name"], total_events=len(new_info["df"]))
         input_data = TabularInput(new_info["df"], sidecar=new_info["sidecar"], name=new_info["name"])
-        tag_man = HedTagManager(EventManager(input_data, new_info["schema"]), remove_types=self.sum_op.remove_types)
+        tag_man = HedTagManager(
+            EventManager(input_data, new_info["schema"]),
+            remove_types=self.sum_op.remove_types,
+        )
         hed_objs = tag_man.get_hed_objs(
-            include_context=self.sum_op.include_context, replace_defs=self.sum_op.replace_defs
+            include_context=self.sum_op.include_context,
+            replace_defs=self.sum_op.replace_defs,
         )
         for hed in hed_objs:
             counts.update_tag_counts(hed, new_info["name"])

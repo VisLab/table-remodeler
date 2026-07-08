@@ -63,7 +63,14 @@ class Test(unittest.TestCase):
 
     def test_parse_arguments(self):
         # Test no verbose
-        arg_list1 = [self.data_root, self.model_path, "-x", "derivatives", "-bn", "back1"]
+        arg_list1 = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "-bn",
+            "back1",
+        ]
         with patch("sys.stdout", new=io.StringIO()) as fp1:
             args1, operations1 = parse_arguments(arg_list1)
             self.assertFalse(fp1.getvalue())
@@ -72,7 +79,17 @@ class Test(unittest.TestCase):
         self.assertEqual(args1.suffixes, ["events"])
 
         # Test * for extensions and suffix as well as verbose
-        arg_list2 = [self.data_root, self.model_path, "-x", "derivatives", "-bn", "back1", "-f", "*", "-v"]
+        arg_list2 = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "-bn",
+            "back1",
+            "-f",
+            "*",
+            "-v",
+        ]
         with patch("sys.stdout", new=io.StringIO()) as fp2:
             args2, operations2 = parse_arguments(arg_list2)
             self.assertTrue(fp2.getvalue())
@@ -98,7 +115,16 @@ class Test(unittest.TestCase):
         self.assertFalse(tasks3)
 
     def test_main_bids(self):
-        arg_list = [self.data_root, self.model_path, "-x", "derivatives", "stimuli", "-b", "-hv", "8.3.0"]
+        arg_list = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "stimuli",
+            "-b",
+            "-hv",
+            "8.3.0",
+        ]
         with patch("sys.stdout", new=io.StringIO()) as fp:
             main(arg_list)
             self.assertFalse(fp.getvalue())
@@ -124,26 +150,58 @@ class Test(unittest.TestCase):
             self.assertFalse(fp.getvalue())
 
     def test_main_bids_verbose_bad_task(self):
-        arg_list = [self.data_root, self.model_path, "-x", "derivatives", "stimuli", "-b", "-t", "junk", "-v"]
+        arg_list = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "stimuli",
+            "-b",
+            "-t",
+            "junk",
+            "-v",
+        ]
         with patch("sys.stdout", new=io.StringIO()) as fp:
             main(arg_list)
             self.assertTrue(fp.getvalue())
 
     def test_main_bids_verbose(self):
-        arg_list = [self.data_root, self.model_path, "-x", "derivatives", "stimuli", "-b", "-v"]
+        arg_list = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "stimuli",
+            "-b",
+            "-v",
+        ]
         with patch("sys.stdout", new=io.StringIO()) as fp:
             main(arg_list)
             self.assertTrue(fp.getvalue())
 
     def test_main_bids_no_sidecar(self):
-        arg_list = [self.data_root, self.model_path, "-x", "derivatives", "stimuli", "-b"]
+        arg_list = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "stimuli",
+            "-b",
+        ]
         os.remove(self.sidecar_path)
         with patch("sys.stdout", new=io.StringIO()) as fp:
             main(arg_list)
             self.assertFalse(fp.getvalue())
 
     def test_main_bids_no_sidecar_with_hed(self):
-        arg_list = [self.data_root, self.summary_model_path, "-x", "derivatives", "stimuli", "-b"]
+        arg_list = [
+            self.data_root,
+            self.summary_model_path,
+            "-x",
+            "derivatives",
+            "stimuli",
+            "-b",
+        ]
         os.remove(self.sidecar_path)
         with patch("sys.stdout", new=io.StringIO()) as fp:
             main(arg_list)
@@ -157,7 +215,15 @@ class Test(unittest.TestCase):
             self.assertFalse(fp.getvalue())
 
     def test_main_direct_no_sidecar_with_hed(self):
-        arg_list = [self.data_root, self.summary_model_path, "-x", "derivatives", "stimuli", "-hv", "8.3.0"]
+        arg_list = [
+            self.data_root,
+            self.summary_model_path,
+            "-x",
+            "derivatives",
+            "stimuli",
+            "-hv",
+            "8.3.0",
+        ]
         os.remove(self.sidecar_path)
         with patch("sys.stdout", new=io.StringIO()) as fp:
             main(arg_list)
@@ -223,7 +289,14 @@ class Test(unittest.TestCase):
         self.assertEqual(context.exception.args[0], "DataDirectoryDoesNotExist")
 
         # Test no backup
-        arg_list = [self.data_root, self.model_path, "-x", "derivatives", "-bn", "back1"]
+        arg_list = [
+            self.data_root,
+            self.model_path,
+            "-x",
+            "derivatives",
+            "-bn",
+            "back1",
+        ]
         with self.assertRaises(HedFileError) as context:
             main(arg_list=arg_list)
         self.assertEqual(context.exception.args[0], "BackupDoesNotExist")

@@ -66,13 +66,17 @@ class NumberGroupsOp(BaseOp):
         if self.number_column_name in df.columns:
             if self.overwrite is False:
                 raise ValueError(
-                    "ExistingNumberColumn", f"Column {self.number_column_name} already exists in event file.", ""
+                    "ExistingNumberColumn",
+                    f"Column {self.number_column_name} already exists in event file.",
+                    "",
                 )
 
         # check if source_column exists
         if self.source_column not in df.columns:
             raise ValueError(
-                "MissingSourceColumn", f"Column {self.source_column} does not exist in event file {name}.", ""
+                "MissingSourceColumn",
+                f"Column {self.source_column} does not exist in event file {name}.",
+                "",
             )
 
         # check if all elements in value lists start and stop exist in the source_column
@@ -82,7 +86,8 @@ class NumberGroupsOp(BaseOp):
                 missing.append(element)
         if len(missing) > 0:
             raise ValueError(
-                "MissingValue", f"Start value(s) {missing} does not exist in {self.source_column} of event file {name}"
+                "MissingValue",
+                f"Start value(s) {missing} does not exist in {self.source_column} of event file {name}",
             )
 
         missing = []
@@ -91,7 +96,8 @@ class NumberGroupsOp(BaseOp):
                 missing.append(element)
         if len(missing) > 0:
             raise ValueError(
-                "MissingValue", f"Start value(s) {missing} does not exist in {self.source_column} of event file {name}"
+                "MissingValue",
+                f"Start value(s) {missing} does not exist in {self.source_column} of event file {name}",
             )
 
         df_new = df.copy()

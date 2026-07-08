@@ -15,24 +15,60 @@ class Test(unittest.TestCase):
         cls.model1_path = os.path.realpath(os.path.join(base_dir, "only_splitrow_rmdl.json"))
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
 
         cls.split = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
             [0.6426, 0, "response", "n/a", "n/a", "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [5.7774, 0.5, "stop_signal", "n/a", "n/a", "n/a", "n/a", "n/a"],
             [6.0674, 0, "response", "n/a", "n/a", "correct", "right", "female"],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [10.0356, 0, "response", "n/a", "n/a", "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
             [13.7939, 0.5, "stop_signal", "n/a", "n/a", "n/a", "n/a", "n/a"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [17.3521, 0.5, "stop_signal", "n/a", "n/a", "n/a", "n/a", "n/a"],
             [17.7351, 0, "response", "n/a", "n/a", "correct", "left", "male"],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
@@ -66,7 +102,11 @@ class Test(unittest.TestCase):
                     "duration": [0],
                     "copy_columns": ["response_accuracy", "response_hand", "sex"],
                 },
-                "stop_signal": {"onset_source": ["stop_signal_delay"], "duration": [0.5], "copy_columns": []},
+                "stop_signal": {
+                    "onset_source": ["stop_signal_delay"],
+                    "duration": [0.5],
+                    "copy_columns": [],
+                },
             },
             "remove_parent_row": False,
         }
@@ -92,7 +132,9 @@ class Test(unittest.TestCase):
 
         # Test that df_new has the right values
         self.assertEqual(
-            len(df_check), len(df_new), "split_rows should have expected number of rows when existing column anchor"
+            len(df_check),
+            len(df_new),
+            "split_rows should have expected number of rows when existing column anchor",
         )
         self.assertEqual(
             len(df_new.columns),
@@ -146,7 +188,9 @@ class Test(unittest.TestCase):
 
         # Test that df_new has the right values
         self.assertEqual(
-            len(df_check), len(df_new), "split_rows should have expected number of rows when new column anchor"
+            len(df_check),
+            len(df_new),
+            "split_rows should have expected number of rows when new column anchor",
         )
         self.assertEqual(
             len(df_new.columns),
@@ -154,7 +198,9 @@ class Test(unittest.TestCase):
             "split_rows should have expected number of columns when new column anchor",
         )
         self.assertIn(
-            "event_type", list(df_new.columns), "split_rows should have the new column when new column anchor"
+            "event_type",
+            list(df_new.columns),
+            "split_rows should have the new column when new column anchor",
         )
 
     def test_remove_parent(self):
@@ -196,7 +242,14 @@ class Test(unittest.TestCase):
 
     def test_split_rows_from_files(self):
         # Test when existing column is used as anchor event
-        df = pd.read_csv(self.events_path, delimiter="\t", header=0, dtype=str, keep_default_na=False, na_values=None)
+        df = pd.read_csv(
+            self.events_path,
+            delimiter="\t",
+            header=0,
+            dtype=str,
+            keep_default_na=False,
+            na_values=None,
+        )
         with open(self.model1_path) as fp:
             operation_list = json.load(fp)
         operations = Dispatcher.parse_operations(operation_list)
@@ -205,9 +258,18 @@ class Test(unittest.TestCase):
         df_new = operations[0].do_op(dispatch, df, "Name")
         self.assertIsInstance(df_new, pd.DataFrame)
         df_check = pd.read_csv(
-            self.events_path, delimiter="\t", header=0, dtype=str, keep_default_na=False, na_values=None
+            self.events_path,
+            delimiter="\t",
+            header=0,
+            dtype=str,
+            keep_default_na=False,
+            na_values=None,
         )
-        self.assertEqual(len(df_check), len(df), "split_rows should not change the length of the original dataframe")
+        self.assertEqual(
+            len(df_check),
+            len(df),
+            "split_rows should not change the length of the original dataframe",
+        )
         self.assertEqual(
             len(df_check.columns),
             len(df.columns),

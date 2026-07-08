@@ -11,12 +11,20 @@ from hed.tools.util.io_util import get_file_list
 class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.file_list = ["top_level.tsv", "sub1/sub1_events.tsv", "sub2/sub2_events.tsv", "sub2/sub2_next_events.tsv"]
+        cls.file_list = [
+            "top_level.tsv",
+            "sub1/sub1_events.tsv",
+            "sub2/sub2_events.tsv",
+            "sub2/sub2_next_events.tsv",
+        ]
         cls.test_root_back1 = os.path.realpath(
             os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/test_root_back1")
         )
         cls.test_zip_back1 = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/test_root_back1.zip")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/test_root_back1.zip",
+            )
         )
         extract_path = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/"))
         cls.alt_path = os.path.realpath(os.path.join(extract_path, "temp"))
@@ -57,7 +65,17 @@ class Test(unittest.TestCase):
         if os.path.exists(self.alt_path):
             shutil.rmtree(self.alt_path)
         self.assertFalse(os.path.exists(self.alt_path))
-        arg_list = [self.test_root_back1, "-bn", "back1", "-x", "derivatives", "-bd", self.alt_path, "-fs", "events"]
+        arg_list = [
+            self.test_root_back1,
+            "-bn",
+            "back1",
+            "-x",
+            "derivatives",
+            "-bd",
+            self.alt_path,
+            "-fs",
+            "events",
+        ]
         back_main(arg_list)
         files1 = get_file_list(self.test_root_back1, exclude_dirs=["derivatives"])
         self.assertEqual(len(files1), 4, "run_restore starts with the right number of files.")

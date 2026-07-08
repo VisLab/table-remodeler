@@ -10,7 +10,10 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         with open(
             os.path.realpath(
-                os.path.join(os.path.dirname(os.path.realpath(__file__)), "./data/all_remodel_operations.json")
+                os.path.join(
+                    os.path.dirname(os.path.realpath(__file__)),
+                    "./data/all_remodel_operations.json",
+                )
             )
         ) as f:
             cls.remodel_file = json.load(f)
@@ -46,7 +49,8 @@ class Test(unittest.TestCase):
         invalid_operation_type = ["string"]
         error_strings = self.validator.validate(invalid_operation_type)
         self.assertEqual(
-            error_strings[0], "Each operation must be defined in a dictionary: " + "string is not a dictionary object."
+            error_strings[0],
+            "Each operation must be defined in a dictionary: " + "string is not a dictionary object.",
         )
 
         invalid_operation_missing = [self.remodel_file[0].copy()]
@@ -186,7 +190,8 @@ class Test(unittest.TestCase):
         factor_column_validate[0]["parameters"]["factor_names"] = ["stopped"]
         error_strings = self.validator.validate(factor_column_validate)
         self.assertEqual(
-            error_strings[0], "Operation 1 (factor_column): factor_names must be " + "same length as factor_values"
+            error_strings[0],
+            "Operation 1 (factor_column): factor_names must be " + "same length as factor_values",
         )
 
         factor_hed_tags_validate = [deepcopy(self.remodel_file)[2]]
@@ -202,13 +207,17 @@ class Test(unittest.TestCase):
         merge_consecutive_validate[0]["parameters"]["match_columns"].append("trial_type")
         error_strings = self.validator.validate(merge_consecutive_validate)
         self.assertEqual(
-            error_strings[0], "Operation 1 (merge_consecutive): column_name `trial_type` " + "cannot be a match_column."
+            error_strings[0],
+            "Operation 1 (merge_consecutive): column_name `trial_type` " + "cannot be a match_column.",
         )
 
         remap_columns_validate_same_length = [deepcopy(self.remodel_file)[5]]
         remap_columns_validate_same_length[0]["parameters"]["map_list"][0] = [""]
         error_strings = self.validator.validate(remap_columns_validate_same_length)
-        self.assertEqual(error_strings[0], "Operation 1 (remap_columns): all map_list arrays must be of length 3.")
+        self.assertEqual(
+            error_strings[0],
+            "Operation 1 (remap_columns): all map_list arrays must be of length 3.",
+        )
 
         remap_columns_validate_right_length = [deepcopy(self.remodel_file[5])]
         remap_columns_validate_right_length[0]["parameters"]["map_list"] = [
@@ -216,7 +225,10 @@ class Test(unittest.TestCase):
             ["string3", "string4"],
         ]
         error_strings = self.validator.validate(remap_columns_validate_right_length)
-        self.assertEqual(error_strings[0], "Operation 1 (remap_columns): all map_list arrays must be of length 3.")
+        self.assertEqual(
+            error_strings[0],
+            "Operation 1 (remap_columns): all map_list arrays must be of length 3.",
+        )
 
         remap_columns_integer_sources = [deepcopy(self.remodel_file[5])]
         remap_columns_integer_sources[0]["parameters"]["integer_sources"] = ["unknown_column"]

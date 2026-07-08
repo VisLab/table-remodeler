@@ -31,8 +31,14 @@ class SummarizeHedTypeOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {"type": "string", "description": "Name to use for the summary in titles."},
-            "summary_filename": {"type": "string", "description": "Name to use for the summary file name base."},
+            "summary_name": {
+                "type": "string",
+                "description": "Name to use for the summary in titles.",
+            },
+            "summary_filename": {
+                "type": "string",
+                "description": "Name to use for the summary file name base.",
+            },
             "type_tag": {
                 "type": "string",
                 "description": "Type tag (such as Condition-variable or Task to design summaries for..",
@@ -83,7 +89,12 @@ class SummarizeHedTypeOp(BaseOp):
             summary = HedTypeSummary(self)
             dispatcher.summary_dicts[self.summary_name] = summary
         summary.update_summary(
-            {"df": dispatcher.post_proc_data(df_new), "name": name, "schema": dispatcher.hed_schema, "sidecar": sidecar}
+            {
+                "df": dispatcher.post_proc_data(df_new),
+                "name": name,
+                "schema": dispatcher.hed_schema,
+                "sidecar": sidecar,
+            }
         )
         return df_new
 
@@ -121,7 +132,11 @@ class HedTypeSummary(BaseSummary):
         if sidecar and not isinstance(sidecar, Sidecar):
             sidecar = Sidecar(sidecar)
         input_data = TabularInput(new_info["df"], sidecar=sidecar, name=new_info["name"])
-        type_values = HedType(EventManager(input_data, new_info["schema"]), new_info["name"], type_tag=self.type_tag)
+        type_values = HedType(
+            EventManager(input_data, new_info["schema"]),
+            new_info["name"],
+            type_tag=self.type_tag,
+        )
         counts = HedTypeCounts(new_info["name"], self.type_tag)
         counts.update_summary(type_values.get_summary(), type_values.total_events, new_info["name"])
         counts.add_descriptions(type_values.type_defs)

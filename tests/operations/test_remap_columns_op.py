@@ -10,10 +10,30 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, 1, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, 2, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                2,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "n/a", "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, 3, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, 4, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                4,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, 5, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -86,8 +106,16 @@ class Test(unittest.TestCase):
         self.assertEqual(after_len + 1, before_len)
         op = RemapColumnsOp(parms)
         df, df_test = self.get_dfs(op)
-        self.assertNotIn("response_type", df.columns, "remap_columns before does not have response_type column")
-        self.assertIn("response_type", df_test.columns, "remap_columns after has response_type column")
+        self.assertNotIn(
+            "response_type",
+            df.columns,
+            "remap_columns before does not have response_type column",
+        )
+        self.assertIn(
+            "response_type",
+            df_test.columns,
+            "remap_columns after has response_type column",
+        )
 
     def test_invalid_missing(self):
         # Test when no extras but ignored.

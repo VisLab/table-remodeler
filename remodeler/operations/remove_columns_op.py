@@ -21,7 +21,12 @@ class RemoveColumnsOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "column_names": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": True},
+            "column_names": {
+                "type": "array",
+                "items": {"type": "string"},
+                "minItems": 1,
+                "uniqueItems": True,
+            },
             "ignore_missing": {"type": "boolean"},
         },
         "required": ["column_names", "ignore_missing"],

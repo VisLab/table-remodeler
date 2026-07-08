@@ -40,9 +40,15 @@ class Test(unittest.TestCase):
         op = FactorHedTypeOp(parms)
         df_new = op.do_op(self.dispatch, self.df_test, "run-01", sidecar=self.json_path)
         df_new = self.dispatch.post_proc_data(df_new)
-        self.assertEqual(len(df_new), 200, "factor_hed_type_op length is correct when type_values specified")
         self.assertEqual(
-            len(df_new.columns), 11, "factor_hed_type_op has correct number of columns when type_values specified"
+            len(df_new),
+            200,
+            "factor_hed_type_op length is correct when type_values specified",
+        )
+        self.assertEqual(
+            len(df_new.columns),
+            11,
+            "factor_hed_type_op has correct number of columns when type_values specified",
         )
 
 

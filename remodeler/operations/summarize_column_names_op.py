@@ -25,8 +25,14 @@ class SummarizeColumnNamesOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {"type": "string", "description": "Name to use for the summary in titles."},
-            "summary_filename": {"type": "string", "description": "Name to use for the summary file name base."},
+            "summary_name": {
+                "type": "string",
+                "description": "Name to use for the summary in titles.",
+            },
+            "summary_filename": {
+                "type": "string",
+                "description": "Name to use for the summary file name base.",
+            },
             "append_timecode": {
                 "type": "boolean",
                 "description": "If true, the timecode is appended to the base filename so each run has a unique name.",

@@ -30,7 +30,10 @@ class MergeConsecutiveOp(BaseOp):
                 "type": "string",
                 "description": "The name of the column to check for repeated consecutive codes.",
             },
-            "event_code": {"type": ["string", "number"], "description": "The event code to match for duplicates."},
+            "event_code": {
+                "type": ["string", "number"],
+                "description": "The event code to match for duplicates.",
+            },
             "match_columns": {
                 "type": "array",
                 "description": "List of columns whose values must also match to be considered a repeat.",
@@ -40,7 +43,10 @@ class MergeConsecutiveOp(BaseOp):
                 "type": "boolean",
                 "description": "If true, then the duration should be computed based on start of first to end of last.",
             },
-            "ignore_missing": {"type": "boolean", "description": "If true, missing match columns are ignored."},
+            "ignore_missing": {
+                "type": "boolean",
+                "description": "If true, missing match columns are ignored.",
+            },
         },
         "required": ["column_name", "event_code", "set_durations", "ignore_missing"],
         "additionalProperties": False,
@@ -87,10 +93,14 @@ class MergeConsecutiveOp(BaseOp):
                 f"and missing columns are not ignored",
             )
         if self.set_durations and "onset" not in df.columns:
-            raise ValueError("MissingOnsetColumn", f"{name}: Data must have an onset column in order to set durations")
+            raise ValueError(
+                "MissingOnsetColumn",
+                f"{name}: Data must have an onset column in order to set durations",
+            )
         if self.set_durations and "duration" not in df.columns:
             raise ValueError(
-                "MissingDurationColumn", f"{name}: Data must have a duration column in order to set durations"
+                "MissingDurationColumn",
+                f"{name}: Data must have a duration column in order to set durations",
             )
         missing = set(self.match_columns).difference(set(df.columns))
         if self.match_columns and not self.ignore_missing and missing:
