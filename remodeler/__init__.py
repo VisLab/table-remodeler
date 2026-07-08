@@ -1,6 +1,6 @@
 """Remodeling tools for revising and summarizing tabular files."""
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 from .backup_manager import BackupManager
 from .dispatcher import Dispatcher
