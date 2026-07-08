@@ -25,7 +25,7 @@ All notable changes to this project will be documented in this file.
 
 - Fixed `remap_columns` failing to match mixed-type source values by coercing source columns to strings before building the remap key.
 - Fixed broken badge links and spacing in `README.md`.
-- Corrected a typo in the `0.2.0` changelog entry ("Reformated" -> "Reformatted").
+- Corrected a missing "t" typo in the `0.2.0` changelog entry ( -> "Reformatted").
 
 ## [0.2.0] - 2025-12-30
 
