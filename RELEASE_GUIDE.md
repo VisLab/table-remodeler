@@ -350,7 +350,7 @@ pip install dist/table_remodeler-<version>-py3-none-any.whl
 
 ```powershell
 # Navigate back to the repository
-cd h:\Repos\table-remodeler
+cd <path-to-table-remodeler-repo>
 
 # Run the test suite
 python -m unittest discover tests -v
@@ -360,7 +360,7 @@ python -m unittest discover tests -v
 
 ```bash
 # Navigate back to the repository
-cd ~/path/to/table-remodeler
+cd <path/to/table-remodeler>
 
 # Run the test suite
 python -m unittest discover tests -v
