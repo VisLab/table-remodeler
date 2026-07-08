@@ -25,7 +25,11 @@ def get_parser():
     parser.add_argument("data_dir", help="Full path of dataset root directory.")
     parser.add_argument("model_path", help="Full path of the file with remodeling instructions.")
     parser.add_argument(
-        "-bd", "--backup_dir", default="", dest="backup_dir", help="Directory for the backup that is being created"
+        "-bd",
+        "--backup_dir",
+        default="",
+        dest="backup_dir",
+        help="Directory for the backup that is being created",
     )
     parser.add_argument(
         "-bn",
@@ -65,7 +69,11 @@ def get_parser():
         help="Optional path to JSON sidecar with HED information",
     )
     parser.add_argument(
-        "-ld", "--log_dir", dest="log_dir", default="", help="Directory for storing log entries for errors."
+        "-ld",
+        "--log_dir",
+        dest="log_dir",
+        default="",
+        help="Directory for storing log entries for errors.",
     )
     parser.add_argument(
         "-nb",
@@ -153,7 +161,9 @@ def handle_backup(args):
         backup_man = BackupManager(args.data_dir)
         if not backup_man.get_backup(args.backup_name):
             raise HedFileError(
-                "BackupDoesNotExist", f"Backup {args.backup_name} does not exist. Please run_remodel_backup first", ""
+                "BackupDoesNotExist",
+                f"Backup {args.backup_name} does not exist. Please run_remodel_backup first",
+                "",
             )
         backup_man.restore_backup(args.backup_name, args.task_names, verbose=args.verbose)
         backup_name = args.backup_name
@@ -189,7 +199,10 @@ def parse_arguments(arg_list=None):
     validator = RemodelerValidator()
     errors = validator.validate(operations)
     if errors:
-        raise ValueError("UnableToFullyParseOperations", f"Fatal operation error, cannot continue:\n{errors}")
+        raise ValueError(
+            "UnableToFullyParseOperations",
+            f"Fatal operation error, cannot continue:\n{errors}",
+        )
     return args, operations
 
 
@@ -279,19 +292,27 @@ def main(arg_list=None):
     try:
         if not os.path.isdir(args.data_dir):
             raise HedFileError(
-                "DataDirectoryDoesNotExist", f"The root data directory {args.data_dir} does not exist", ""
+                "DataDirectoryDoesNotExist",
+                f"The root data directory {args.data_dir} does not exist",
+                "",
             )
         backup_name = handle_backup(args)
         save_dir = None
         if args.work_dir:
             save_dir = os.path.realpath(os.path.join(args.work_dir, Dispatcher.REMODELING_SUMMARY_PATH))
         tsv_files = io_util.get_file_list(
-            args.data_dir, name_suffix=args.suffixes, extensions=[".tsv"], exclude_dirs=args.exclude_dirs
+            args.data_dir,
+            name_suffix=args.suffixes,
+            extensions=[".tsv"],
+            exclude_dirs=args.exclude_dirs,
         )
         task_dict = parse_tasks(tsv_files, args.task_names)
         for task, files in task_dict.items():
             dispatch = Dispatcher(
-                operations, data_root=args.data_dir, backup_name=backup_name, hed_versions=args.hed_versions
+                operations,
+                data_root=args.data_dir,
+                backup_name=backup_name,
+                hed_versions=args.hed_versions,
             )
             run_ops(dispatch, args, files)
             if not args.no_summaries:

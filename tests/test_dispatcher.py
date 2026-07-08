@@ -17,10 +17,28 @@ class Test(unittest.TestCase):
         data_path = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "./data/"))
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -38,7 +56,8 @@ class Test(unittest.TestCase):
         cls.test_zip_back1 = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./data//test_root_back1.zip")
         cls.test_root_back1 = os.path.join(os.path.dirname(os.path.realpath(__file__)), "./data//test_root_back1")
         cls.summarize_model = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), "./data//test_root1_summarize_column_value_rmdl.json"
+            os.path.dirname(os.path.realpath(__file__)),
+            "./data//test_root1_summarize_column_value_rmdl.json",
         )
         cls.summarize_excerpt = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
@@ -59,7 +78,9 @@ class Test(unittest.TestCase):
             model1 = json.load(fp)
         dispatch = Dispatcher(model1)
         self.assertEqual(
-            len(dispatch.parsed_ops), len(model1), "dispatcher operation list should have one item for each operation"
+            len(dispatch.parsed_ops),
+            len(model1),
+            "dispatcher operation list should have one item for each operation",
         )
 
     def test_constructor_empty_operations(self):
@@ -85,7 +106,13 @@ class Test(unittest.TestCase):
         summary_path = dispatch1.get_summary_save_dir()
         self.assertEqual(
             summary_path,
-            os.path.realpath(os.path.join(self.test_root_back1, "derivatives", Dispatcher.REMODELING_SUMMARY_PATH)),
+            os.path.realpath(
+                os.path.join(
+                    self.test_root_back1,
+                    "derivatives",
+                    Dispatcher.REMODELING_SUMMARY_PATH,
+                )
+            ),
         )
         dispatch2 = Dispatcher(model1)
         with self.assertRaises(HedFileError) as context:
@@ -96,13 +123,26 @@ class Test(unittest.TestCase):
         test = [
             {
                 "operation": "remove_rows",
-                "parameters": {"column_name": "trial_type", "remove_values": ["succesful_stop", "unsuccesful_stop"]},
+                "parameters": {
+                    "column_name": "trial_type",
+                    "remove_values": ["succesful_stop", "unsuccesful_stop"],
+                },
             },
-            {"operation": "remove_rows", "parameters": {"column_name": "response_time", "remove_values": ["n/a"]}},
+            {
+                "operation": "remove_rows",
+                "parameters": {
+                    "column_name": "response_time",
+                    "remove_values": ["n/a"],
+                },
+            },
         ]
         dispatch = Dispatcher(test)
         parsed_ops = dispatch.parsed_ops
-        self.assertEqual(len(parsed_ops), len(test), "dispatch has a operation for each item in operation list")
+        self.assertEqual(
+            len(parsed_ops),
+            len(test),
+            "dispatch has a operation for each item in operation list",
+        )
         for item in parsed_ops:
             self.assertIsInstance(item, BaseOp)
 
@@ -117,19 +157,31 @@ class Test(unittest.TestCase):
         df_new = dispatch.run_operations(self.file_path)
         reordered_columns = ["onset", "duration", "trial_type", "response_time"]
         self.assertTrue(
-            reordered_columns == list(df_new.columns), "run_operations resulting df should have correct columns"
+            reordered_columns == list(df_new.columns),
+            "run_operations resulting df should have correct columns",
         )
         self.assertTrue(
-            list(df_test.columns) == self.sample_columns, "run_operations did not change the input df columns"
+            list(df_test.columns) == self.sample_columns,
+            "run_operations did not change the input df columns",
         )
-        self.assertEqual(len(df_test), num_test_rows, "run_operations did not change the input df rows")
+        self.assertEqual(
+            len(df_test),
+            num_test_rows,
+            "run_operations did not change the input df rows",
+        )
         self.assertTrue(
             np.array_equal(df_test_values, df_test.to_numpy()),
             "run_operations does not change the values in the input df",
         )
-        self.assertEqual(len(df_new), num_test_rows, "run_operations did not change the number of output rows")
         self.assertEqual(
-            len(dispatch.parsed_ops), len(model1), "dispatcher operation list should have one item for each operation"
+            len(df_new),
+            num_test_rows,
+            "run_operations did not change the number of output rows",
+        )
+        self.assertEqual(
+            len(dispatch.parsed_ops),
+            len(model1),
+            "dispatcher operation list should have one item for each operation",
         )
 
     def test_run_operations_hed(self):
@@ -154,7 +206,10 @@ class Test(unittest.TestCase):
             model1 = json.load(fp)
         dispatch1 = Dispatcher(model1, data_root=self.test_root_back1, backup_name="back1")
         file_list = get_file_list(
-            self.test_root_back1, name_suffix="events", extensions=[".tsv"], exclude_dirs=["derivatives"]
+            self.test_root_back1,
+            name_suffix="events",
+            extensions=[".tsv"],
+            exclude_dirs=["derivatives"],
         )
         for file in file_list:
             dispatch1.run_operations(file)
@@ -163,7 +218,11 @@ class Test(unittest.TestCase):
         dispatch1.save_summaries()
         self.assertTrue(os.path.exists(summary_path))
         file_list1 = os.listdir(summary_path)
-        self.assertEqual(2, len(file_list1), "save_summaries creates correct number of summary files when run.")
+        self.assertEqual(
+            2,
+            len(file_list1),
+            "save_summaries creates correct number of summary files when run.",
+        )
         dispatch1.save_summaries(save_formats=[])
         dir_list2 = os.listdir(summary_path)
         self.assertEqual(2, len(dir_list2), "save both summaries")

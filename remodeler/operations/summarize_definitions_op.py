@@ -26,8 +26,14 @@ class SummarizeDefinitionsOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {"type": "string", "description": "Name to use for the summary in titles."},
-            "summary_filename": {"type": "string", "description": "Name to use for the summary file name base."},
+            "summary_name": {
+                "type": "string",
+                "description": "Name to use for the summary in titles.",
+            },
+            "summary_filename": {
+                "type": "string",
+                "description": "Name to use for the summary file name base.",
+            },
             "append_timecode": {
                 "type": "boolean",
                 "description": "If true, the timecode is appended to the base filename so each run has a unique name.",
@@ -70,7 +76,12 @@ class SummarizeDefinitionsOp(BaseOp):
         df_new = df.copy()
         summary = dispatcher.summary_dicts.setdefault(self.summary_name, DefinitionSummary(self, dispatcher.hed_schema))
         summary.update_summary(
-            {"df": dispatcher.post_proc_data(df_new), "name": name, "sidecar": sidecar, "schema": dispatcher.hed_schema}
+            {
+                "df": dispatcher.post_proc_data(df_new),
+                "name": name,
+                "sidecar": sidecar,
+                "schema": dispatcher.hed_schema,
+            }
         )
         return df_new
 
@@ -149,7 +160,13 @@ class DefinitionSummary(BaseSummary):
         errors_summary = self._build_summary_dict(def_summary.errors, "Errors", None)
 
         known_defs_summary.update(errors_summary)
-        return {"Name": "", "Total events": 0, "Total files": 0, "Files": [], "Specifics": known_defs_summary}
+        return {
+            "Name": "",
+            "Total events": 0,
+            "Total files": 0,
+            "Files": [],
+            "Specifics": known_defs_summary,
+        }
         # return known_defs_summary
 
     def merge_all_info(self) -> object:

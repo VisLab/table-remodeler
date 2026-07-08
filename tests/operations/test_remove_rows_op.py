@@ -11,10 +11,28 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -34,7 +52,10 @@ class Test(unittest.TestCase):
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
 
-        base_parameters = {"column_name": "trial_type", "remove_values": ["succesful_stop", "unsuccesful_stop"]}
+        base_parameters = {
+            "column_name": "trial_type",
+            "remove_values": ["succesful_stop", "unsuccesful_stop"],
+        }
         cls.json_parms = json.dumps(base_parameters)
         cls.dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions="8.1.0")
 
@@ -54,7 +75,8 @@ class Test(unittest.TestCase):
         df, df_new = self.get_dfs(op)
         df1 = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         self.assertTrue(
-            list(df.columns) == list(df_new.columns), "remove_rows does not change the number of columns when all valid"
+            list(df.columns) == list(df_new.columns),
+            "remove_rows does not change the number of columns when all valid",
         )
         df_result = pd.DataFrame(self.result_data, columns=self.sample_columns)
         self.assertTrue(
@@ -63,7 +85,8 @@ class Test(unittest.TestCase):
         )
         # Test that df has not been changed by the op
         self.assertTrue(
-            list(df.columns) == list(df1.columns), "remove_rows should not change the input df columns when all valid"
+            list(df.columns) == list(df1.columns),
+            "remove_rows should not change the input df columns when all valid",
         )
         self.assertTrue(
             np.array_equal(df.to_numpy(), df1.to_numpy()),
@@ -88,7 +111,8 @@ class Test(unittest.TestCase):
         )
         # Test that df has not been changed by the op
         self.assertTrue(
-            list(df.columns) == list(df1.columns), "remove_rows should not change the input df columns when bad values"
+            list(df.columns) == list(df1.columns),
+            "remove_rows should not change the input df columns when bad values",
         )
         self.assertTrue(
             np.array_equal(df.to_numpy(), df1.to_numpy()),
@@ -113,7 +137,8 @@ class Test(unittest.TestCase):
         )
         # Test that df has not been changed by the op
         self.assertTrue(
-            list(df.columns) == list(df1.columns), "remove_rows should not change the input df columns when bad column"
+            list(df.columns) == list(df1.columns),
+            "remove_rows should not change the input df columns when bad column",
         )
         self.assertTrue(
             np.array_equal(df.to_numpy(), df1.to_numpy()),

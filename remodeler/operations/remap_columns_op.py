@@ -45,7 +45,11 @@ class RemapColumnsOp(BaseOp):
             "map_list": {
                 "type": "array",
                 "description": "An array of k lists each with m+n entries corresponding to the k unique keys.",
-                "items": {"type": "array", "items": {"type": ["string", "number"]}, "minItems": 1},
+                "items": {
+                    "type": "array",
+                    "items": {"type": ["string", "number"]},
+                    "minItems": 1,
+                },
                 "minItems": 1,
                 "uniqueItems": True,
             },
@@ -61,7 +65,12 @@ class RemapColumnsOp(BaseOp):
                 "uniqueItems": True,
             },
         },
-        "required": ["source_columns", "destination_columns", "map_list", "ignore_missing"],
+        "required": [
+            "source_columns",
+            "destination_columns",
+            "map_list",
+            "ignore_missing",
+        ],
         "additionalProperties": False,
     }
 

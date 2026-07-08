@@ -15,7 +15,11 @@ def get_parser():
     parser = argparse.ArgumentParser(description="Restores the backup files for the original data.")
     parser.add_argument("data_dir", help="Full path of dataset root directory.")
     parser.add_argument(
-        "-bd", "--backup-dir", default="", dest="backup_dir", help="Directory for the backup that is being restored"
+        "-bd",
+        "--backup-dir",
+        default="",
+        dest="backup_dir",
+        help="Directory for the backup that is being restored",
     )
     parser.add_argument(
         "-bn",
@@ -24,7 +28,14 @@ def get_parser():
         dest="backup_name",
         help="Name of the default backup for remodeling",
     )
-    parser.add_argument("-t", "--task-names", dest="task_names", nargs="*", default=[], help="The names of the tasks.")
+    parser.add_argument(
+        "-t",
+        "--task-names",
+        dest="task_names",
+        nargs="*",
+        default=[],
+        help="The names of the tasks.",
+    )
     parser.add_argument(
         "-v",
         "--verbose",

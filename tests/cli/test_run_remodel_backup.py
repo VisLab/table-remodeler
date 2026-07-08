@@ -12,7 +12,12 @@ from hed.tools.util.io_util import get_file_list
 class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        file_list = ["top_level.tsv", "sub1/sub1_events.tsv", "sub2/sub2_events.tsv", "sub2/sub2_next_events.tsv"]
+        file_list = [
+            "top_level.tsv",
+            "sub1/sub1_events.tsv",
+            "sub2/sub2_events.tsv",
+            "sub2/sub2_next_events.tsv",
+        ]
         # cls.file_list = file_list
         extract_path = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/"))
         cls.alt_path = os.path.realpath(os.path.join(extract_path, "temp"))
@@ -48,7 +53,10 @@ class Test(unittest.TestCase):
         pass
 
     def test_main_events(self):
-        self.assertFalse(os.path.exists(self.derv_path), "backup directory does not exist before creation")
+        self.assertFalse(
+            os.path.exists(self.derv_path),
+            "backup directory does not exist before creation",
+        )
         arg_list = [
             self.test_root,
             "-bn",
@@ -63,7 +71,11 @@ class Test(unittest.TestCase):
         main(arg_list)
         self.assertTrue(os.path.exists(self.derv_path), "backup directory exists before creation")
         json_path = os.path.realpath(
-            os.path.join(self.derv_path, BackupManager.DEFAULT_BACKUP_NAME, BackupManager.BACKUP_DICTIONARY)
+            os.path.join(
+                self.derv_path,
+                BackupManager.DEFAULT_BACKUP_NAME,
+                BackupManager.BACKUP_DICTIONARY,
+            )
         )
         with open(json_path, "r") as fp:
             key_dict = json.load(fp)
@@ -84,11 +96,18 @@ class Test(unittest.TestCase):
             "*",
         ]
 
-        self.assertFalse(os.path.exists(self.derv_path), "backup directory does not exist before creation")
+        self.assertFalse(
+            os.path.exists(self.derv_path),
+            "backup directory does not exist before creation",
+        )
         main(arg_list)
         self.assertTrue(os.path.exists(self.derv_path), "backup directory exists before creation")
         json_path = os.path.realpath(
-            os.path.join(self.derv_path, BackupManager.DEFAULT_BACKUP_NAME, BackupManager.BACKUP_DICTIONARY)
+            os.path.join(
+                self.derv_path,
+                BackupManager.DEFAULT_BACKUP_NAME,
+                BackupManager.BACKUP_DICTIONARY,
+            )
         )
         with open(json_path, "r") as fp:
             key_dict = json.load(fp)
@@ -118,7 +137,10 @@ class Test(unittest.TestCase):
         self.assertTrue(os.path.exists(der_path))
         back_path = os.path.realpath(
             os.path.join(
-                self.data_root, BackupManager.RELATIVE_BACKUP_LOCATION, BackupManager.DEFAULT_BACKUP_NAME, "backup_root"
+                self.data_root,
+                BackupManager.RELATIVE_BACKUP_LOCATION,
+                BackupManager.DEFAULT_BACKUP_NAME,
+                "backup_root",
             )
         )
         self.assertTrue(os.path.exists(back_path))
@@ -145,7 +167,10 @@ class Test(unittest.TestCase):
         self.assertTrue(os.path.exists(der_path))
         back_path = os.path.realpath(
             os.path.join(
-                self.data_root, BackupManager.RELATIVE_BACKUP_LOCATION, BackupManager.DEFAULT_BACKUP_NAME, "backup_root"
+                self.data_root,
+                BackupManager.RELATIVE_BACKUP_LOCATION,
+                BackupManager.DEFAULT_BACKUP_NAME,
+                "backup_root",
             )
         )
         self.assertTrue(os.path.exists(back_path))

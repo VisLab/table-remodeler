@@ -56,11 +56,25 @@ class Test(unittest.TestCase):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedTagsOp(parms)
-        self.assertIsInstance(sum_op, SummarizeHedTagsOp, "constructor creates an object of the correct type")
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        self.assertIsInstance(
+            sum_op,
+            SummarizeHedTagsOp,
+            "constructor creates an object of the correct type",
+        )
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         df_new = sum_op.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
         self.assertEqual(200, len(df_new), "summarize_hed_type_op dataframe length is correct")
-        self.assertEqual(10, len(df_new.columns), "summarize_hed_type_op has correct number of columns")
+        self.assertEqual(
+            10,
+            len(df_new.columns),
+            "summarize_hed_type_op has correct number of columns",
+        )
         self.assertIn(sum_op.summary_name, dispatch.summary_dicts)
         self.assertIsInstance(dispatch.summary_dicts[sum_op.summary_name], HedTagSummary)
         counts = dispatch.summary_dicts[sum_op.summary_name].summary_dict["subj2_run1"]
@@ -70,20 +84,37 @@ class Test(unittest.TestCase):
         self.assertNotIn("task", counts.tag_dict)
         self.assertNotIn("condition-variable", counts.tag_dict)
         df_new = sum_op.do_op(dispatch, dispatch.prep_data(df), "subj2_run2", sidecar=self.json_path)
-        self.assertEqual(len(dispatch.summary_dicts[sum_op.summary_name].summary_dict["subj2_run2"].tag_dict), 16)
+        self.assertEqual(
+            len(dispatch.summary_dicts[sum_op.summary_name].summary_dict["subj2_run2"].tag_dict),
+            16,
+        )
 
     def test_do_op_options(self):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.2.0"])
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
 
         # no replace, no context, types removed
         parms1 = json.loads(self.json_parms)
         parms1["summary_name"] = "tag summary 1"
         sum_op1 = SummarizeHedTagsOp(parms1)
         df_new1 = sum_op1.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
-        self.assertIsInstance(sum_op1, SummarizeHedTagsOp, "constructor creates an object of the correct type")
+        self.assertIsInstance(
+            sum_op1,
+            SummarizeHedTagsOp,
+            "constructor creates an object of the correct type",
+        )
         self.assertEqual(200, len(df_new1), "summarize_hed_type_op dataframe length is correct")
-        self.assertEqual(10, len(df_new1.columns), "summarize_hed_type_op has correct number of columns")
+        self.assertEqual(
+            10,
+            len(df_new1.columns),
+            "summarize_hed_type_op has correct number of columns",
+        )
         self.assertIn(sum_op1.summary_name, dispatch.summary_dicts)
         self.assertIsInstance(dispatch.summary_dicts[sum_op1.summary_name], HedTagSummary)
         counts1 = dispatch.summary_dicts[sum_op1.summary_name].summary_dict["subj2_run1"]
@@ -100,9 +131,17 @@ class Test(unittest.TestCase):
         parms2["summary_name"] = "tag summary 2"
         sum_op2 = SummarizeHedTagsOp(parms2)
         df_new2 = sum_op2.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
-        self.assertIsInstance(sum_op2, SummarizeHedTagsOp, "constructor creates an object of the correct type")
+        self.assertIsInstance(
+            sum_op2,
+            SummarizeHedTagsOp,
+            "constructor creates an object of the correct type",
+        )
         self.assertEqual(200, len(df_new2), "summarize_hed_type_op dataframe length is correct")
-        self.assertEqual(10, len(df_new2.columns), "summarize_hed_type_op has correct number of columns")
+        self.assertEqual(
+            10,
+            len(df_new2.columns),
+            "summarize_hed_type_op has correct number of columns",
+        )
         self.assertIn(sum_op2.summary_name, dispatch.summary_dicts)
         self.assertIsInstance(dispatch.summary_dicts[sum_op2.summary_name], HedTagSummary)
         counts2 = dispatch.summary_dicts[sum_op2.summary_name].summary_dict["subj2_run1"]
@@ -120,9 +159,17 @@ class Test(unittest.TestCase):
         parms3["summary_name"] = "tag summary 3"
         sum_op3 = SummarizeHedTagsOp(parms3)
         df_new3 = sum_op3.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
-        self.assertIsInstance(sum_op3, SummarizeHedTagsOp, "constructor creates an object of the correct type")
+        self.assertIsInstance(
+            sum_op3,
+            SummarizeHedTagsOp,
+            "constructor creates an object of the correct type",
+        )
         self.assertEqual(200, len(df_new3), "summarize_hed_type_op dataframe length is correct")
-        self.assertEqual(10, len(df_new3.columns), "summarize_hed_type_op has correct number of columns")
+        self.assertEqual(
+            10,
+            len(df_new3.columns),
+            "summarize_hed_type_op has correct number of columns",
+        )
         self.assertIn(sum_op3.summary_name, dispatch.summary_dicts)
         self.assertIsInstance(dispatch.summary_dicts[sum_op3.summary_name], HedTagSummary)
         counts3 = dispatch.summary_dicts[sum_op3.summary_name].summary_dict["subj2_run1"]
@@ -138,15 +185,28 @@ class Test(unittest.TestCase):
         my_schema = load_schema_version("8.2.0")
         my_json = {
             "code": {
-                "HED": {"code1": "((Def/Blech1, Green), Blue)", "code2": "((Def/Blech3, Description/Help me), Blue)"}
+                "HED": {
+                    "code1": "((Def/Blech1, Green), Blue)",
+                    "code2": "((Def/Blech3, Description/Help me), Blue)",
+                }
             },
             "defs": {"HED": {"def1": "(Definition/Blech1, (Condition-variable/Cat, Description/this is hard))"}},
         }
         my_json_str = json.dumps(my_json)
         my_sidecar = Sidecar(StringIO(my_json_str))
         data = [
-            [0.5, 0, "code1", "Description/This is a test, Label/Temp, (Def/Blech1, Green)"],
-            [0.6, 0, "code2", "Sensory-event, ((Description/Animal, Condition-variable/Blech))"],
+            [
+                0.5,
+                0,
+                "code1",
+                "Description/This is a test, Label/Temp, (Def/Blech1, Green)",
+            ],
+            [
+                0.6,
+                0,
+                "code2",
+                "Sensory-event, ((Description/Animal, Condition-variable/Blech))",
+            ],
         ]
         df = pd.DataFrame(data, columns=["onset", "duration", "code", "HED"])
         input_data = TabularInput(df, sidecar=my_sidecar, name="myName")
@@ -183,8 +243,18 @@ class Test(unittest.TestCase):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedTagsOp(parms)
-        self.assertIsInstance(sum_op, SummarizeHedTagsOp, "constructor creates an object of the correct type")
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        self.assertIsInstance(
+            sum_op,
+            SummarizeHedTagsOp,
+            "constructor creates an object of the correct type",
+        )
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         sum_op.do_op(dispatch, dispatch.prep_data(df), "subj2_run1", sidecar=self.json_path)
         self.assertIn(sum_op.summary_name, dispatch.summary_dicts)
         sum_context = dispatch.summary_dicts[sum_op.summary_name]
@@ -207,7 +277,13 @@ class Test(unittest.TestCase):
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedTagsOp(parms)
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         df = dispatch.prep_data(df)
         sum_op.do_op(dispatch, df, "subj2_run1", sidecar=self.json_path)
         sum_op.do_op(dispatch, df, "subj2_run2", sidecar=self.json_path)
@@ -262,10 +338,28 @@ class Test(unittest.TestCase):
 
         sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         sample_columns = [
@@ -280,7 +374,10 @@ class Test(unittest.TestCase):
         ]
 
         sidecar_path = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/aomic_sub-0013_events.json")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/aomic_sub-0013_events.json",
+            )
         )
 
         dispatch = Dispatcher(remodel_list, data_root=None, backup_name=None, hed_versions=["8.1.0"])
@@ -296,7 +393,10 @@ class Test(unittest.TestCase):
         # Assume we have a valid summary_json
         summary_json = {
             "Main tags": {
-                "tag_category_1": [{"tag": "tag1", "events": 5}, {"tag": "tag2", "events": 3}],
+                "tag_category_1": [
+                    {"tag": "tag1", "events": 5},
+                    {"tag": "tag2", "events": 3},
+                ],
                 "tag_category_2": [{"tag": "tag3", "events": 7}],
             }
         }

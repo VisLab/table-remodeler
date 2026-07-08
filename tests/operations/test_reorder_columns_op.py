@@ -22,10 +22,28 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -109,7 +127,13 @@ class Test(unittest.TestCase):
     def test_valid_extras_no_keep_others_ignore_missing(self):
         # Test when extras, no keep and ignore missing
         parms = json.loads(self.json_parms)
-        parms["column_order"] = ["onset", "duration", "response_time", "apples", "trial_type"]
+        parms["column_order"] = [
+            "onset",
+            "duration",
+            "response_time",
+            "apples",
+            "trial_type",
+        ]
         op = ReorderColumnsOp(parms)
         df, df_new = self.get_dfs(op)
         df1 = pd.DataFrame(self.sample_data, columns=self.sample_columns)
@@ -142,7 +166,13 @@ class Test(unittest.TestCase):
     def test_invalid_extras_no_keep_others_no_ignore_missing(self):
         # Test when extras, no keep and no ignore
         parms = json.loads(self.json_parms)
-        parms["column_order"] = ["onset", "duration", "response_time", "apples", "trial_type"]
+        parms["column_order"] = [
+            "onset",
+            "duration",
+            "response_time",
+            "apples",
+            "trial_type",
+        ]
         parms["ignore_missing"] = False
         op = ReorderColumnsOp(parms)
         with self.assertRaises(ValueError) as context:
@@ -152,7 +182,13 @@ class Test(unittest.TestCase):
     def test_valid_keep_others_ignore_missing(self):
         # Test extras, keep, ignore
         parms = json.loads(self.json_parms)
-        parms["column_order"] = ["onset", "duration", "response_time", "apples", "trial_type"]
+        parms["column_order"] = [
+            "onset",
+            "duration",
+            "response_time",
+            "apples",
+            "trial_type",
+        ]
         parms["keep_others"] = True
         op = ReorderColumnsOp(parms)
         df, df_new = self.get_dfs(op)
@@ -163,7 +199,9 @@ class Test(unittest.TestCase):
             "reorder_columns resulting df should have correct columns when extras, keep, and ignore",
         )
         self.assertEqual(
-            len(df), len(df_new), "reorder_columns should not change the number of events when extras, keep, and ignore"
+            len(df),
+            len(df_new),
+            "reorder_columns should not change the number of events when extras, keep, and ignore",
         )
 
         # Test that df has not been changed by the op

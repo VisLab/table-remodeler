@@ -11,10 +11,28 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -28,7 +46,10 @@ class Test(unittest.TestCase):
             "sex",
         ]
 
-        base_parameters = {"column_names": ["stop_signal_delay", "response_accuracy"], "ignore_missing": True}
+        base_parameters = {
+            "column_names": ["stop_signal_delay", "response_accuracy"],
+            "ignore_missing": True,
+        }
         cls.json_parms = json.dumps(base_parameters)
         cls.dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions="8.1.0")
 
@@ -46,12 +67,22 @@ class Test(unittest.TestCase):
         parms = json.loads(self.json_parms)
         op = RemoveColumnsOp(parms)
         df, df_new = self.get_dfs(op)
-        remaining_columns = ["onset", "duration", "trial_type", "response_time", "response_hand", "sex"]
+        remaining_columns = [
+            "onset",
+            "duration",
+            "trial_type",
+            "response_time",
+            "response_hand",
+            "sex",
+        ]
         self.assertTrue(
-            remaining_columns == list(df_new.columns), "remove_columns resulting df should have correct columns"
+            remaining_columns == list(df_new.columns),
+            "remove_columns resulting df should have correct columns",
         )
         self.assertEqual(
-            len(df), len(df_new), "remove_columns should not change the number of events when no extras and ignored"
+            len(df),
+            len(df_new),
+            "remove_columns should not change the number of events when no extras and ignored",
         )
 
         # Test that df has not been changed by the op
@@ -70,13 +101,22 @@ class Test(unittest.TestCase):
         parms["column_names"].append("face")
         op = RemoveColumnsOp(parms)
         df, df_new = self.get_dfs(op)
-        remaining_columns = ["onset", "duration", "trial_type", "response_time", "response_hand", "sex"]
+        remaining_columns = [
+            "onset",
+            "duration",
+            "trial_type",
+            "response_time",
+            "response_hand",
+            "sex",
+        ]
         self.assertTrue(
             remaining_columns == list(df_new.columns),
             "remove_columns resulting df should have correct columns when extras ignored",
         )
         self.assertEqual(
-            len(df), len(df_new), "remove_columns should not change the number of events when extras but ignored"
+            len(df),
+            len(df_new),
+            "remove_columns should not change the number of events when extras but ignored",
         )
 
         # Test that df has not been changed by the op
@@ -97,13 +137,22 @@ class Test(unittest.TestCase):
         op = RemoveColumnsOp(parms)
         df1 = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         df, df_new = self.get_dfs(op)
-        remaining_columns = ["onset", "duration", "trial_type", "response_time", "response_hand", "sex"]
+        remaining_columns = [
+            "onset",
+            "duration",
+            "trial_type",
+            "response_time",
+            "response_hand",
+            "sex",
+        ]
         self.assertTrue(
             remaining_columns == list(df_new.columns),
             "remove_columns resulting df should have correct columns when no extras but not ignored",
         )
         self.assertEqual(
-            len(df), len(df_new), "remove_columns should not change the number of events when no extras but not ignored"
+            len(df),
+            len(df_new),
+            "remove_columns should not change the number of events when no extras but not ignored",
         )
 
         # Test that df has not been changed by the op

@@ -5,7 +5,10 @@ import pandas as pd
 from hed.models import Sidecar
 from hed.schema import load_schema_version
 from remodeler.dispatcher import Dispatcher
-from remodeler.operations.summarize_hed_type_op import SummarizeHedTypeOp, HedTypeSummary
+from remodeler.operations.summarize_hed_type_op import (
+    SummarizeHedTypeOp,
+    HedTypeSummary,
+)
 
 
 class Test(unittest.TestCase):
@@ -21,10 +24,28 @@ class Test(unittest.TestCase):
         }
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -41,14 +62,23 @@ class Test(unittest.TestCase):
         cls.json_parms = json.dumps(base_parameters)
         cls.dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         cls.events = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/aomic_sub-0013_excerpt_events.tsv")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/aomic_sub-0013_excerpt_events.tsv",
+            )
         )
         cls.sidecar_path = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/aomic_sub-0013_events.json")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/aomic_sub-0013_events.json",
+            )
         )
         cls.hed_schema = load_schema_version("8.1.0")
         cls.summary_path = os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "../data/aomic_sub-0013_summary_all_rmdl.json")
+            os.path.join(
+                os.path.dirname(os.path.realpath(__file__)),
+                "../data/aomic_sub-0013_summary_all_rmdl.json",
+            )
         )
         rel_path = "../data/sub-002_task-FacePerception_run-1_events.tsv"
         cls.events_wh = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), rel_path))
@@ -62,11 +92,25 @@ class Test(unittest.TestCase):
     def test_constructor(self):
         parms = json.loads(self.json_parms)
         sum_op = SummarizeHedTypeOp(parms)
-        self.assertIsInstance(sum_op, SummarizeHedTypeOp, "constructor creates an object of the correct type")
-        df = pd.read_csv(self.data_path, delimiter="\t", header=0, keep_default_na=False, na_values=",null")
+        self.assertIsInstance(
+            sum_op,
+            SummarizeHedTypeOp,
+            "constructor creates an object of the correct type",
+        )
+        df = pd.read_csv(
+            self.data_path,
+            delimiter="\t",
+            header=0,
+            keep_default_na=False,
+            na_values=",null",
+        )
         df_new = sum_op.do_op(self.dispatch, df, "subj2_run1", sidecar=self.json_path)
         self.assertEqual(200, len(df_new), "summarize_hed_type_op dataframe length is correct")
-        self.assertEqual(10, len(list(df_new.columns)), "summarize_hed_type_op has correct number of columns")
+        self.assertEqual(
+            10,
+            len(list(df_new.columns)),
+            "summarize_hed_type_op has correct number of columns",
+        )
 
     def test_summary(self):
         with open(self.summary_path, "r") as fp:
@@ -112,7 +156,12 @@ class Test(unittest.TestCase):
         df = dispatch.get_data_file(self.events)
         old_len = len(df)
         sum_op = parsed_commands[2]
-        df = sum_op.do_op(dispatch, dispatch.prep_data(df), os.path.basename(self.events), sidecar=sidecar)
+        df = sum_op.do_op(
+            dispatch,
+            dispatch.prep_data(df),
+            os.path.basename(self.events),
+            sidecar=sidecar,
+        )
         self.assertEqual(len(df), old_len)
         context_dict = dispatch.summary_dicts
         self.assertIsInstance(context_dict, dict)

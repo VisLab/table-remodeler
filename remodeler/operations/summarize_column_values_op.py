@@ -29,8 +29,14 @@ class SummarizeColumnValuesOp(BaseOp):
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {"type": "string", "description": "Name to use for the summary in titles."},
-            "summary_filename": {"type": "string", "description": "Name to use for the summary file name base."},
+            "summary_name": {
+                "type": "string",
+                "description": "Name to use for the summary in titles.",
+            },
+            "summary_filename": {
+                "type": "string",
+                "description": "Name to use for the summary file name base.",
+            },
             "append_timecode": {
                 "type": "boolean",
                 "description": "If true, the timecode is appended to the base filename so each run has a unique name.",
@@ -140,7 +146,9 @@ class ColumnValueSummary(BaseSummary):
         name = new_info["name"]
         if name not in self.summary_dict:
             self.summary_dict[name] = TabularSummary(
-                value_cols=self.op.value_columns, skip_cols=self.op.skip_columns, name=name
+                value_cols=self.op.value_columns,
+                skip_cols=self.op.skip_columns,
+                name=name,
             )
         self.summary_dict[name].update(new_info["df"])
 
@@ -181,7 +189,11 @@ class ColumnValueSummary(BaseSummary):
             TabularSummary - the summary object for column values.
 
         """
-        all_sum = TabularSummary(value_cols=self.op.value_columns, skip_cols=self.op.skip_columns, name="Dataset")
+        all_sum = TabularSummary(
+            value_cols=self.op.value_columns,
+            skip_cols=self.op.skip_columns,
+            name="Dataset",
+        )
         for counts in self.summary_dict.values():
             all_sum.update_summary(counts)
         return all_sum

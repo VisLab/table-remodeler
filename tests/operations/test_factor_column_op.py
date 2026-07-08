@@ -16,18 +16,69 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.factored = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female", 0, 0],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female", 0, 1],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+                0,
+                1,
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female", 0, 0],
-            [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female", 1, 0],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male", 0, 1],
+            [
+                13.5939,
+                0.5083,
+                "succesful_stop",
+                0.2,
+                "n/a",
+                "n/a",
+                "n/a",
+                "female",
+                1,
+                0,
+            ],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+                0,
+                1,
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male", 0, 0],
         ]
         cls.sample_columns = [
@@ -40,7 +91,10 @@ class Test(unittest.TestCase):
             "response_hand",
             "sex",
         ]
-        cls.default_factor_columns = ["trial_type.succesful_stop", "trial_type.unsuccesful_stop"]
+        cls.default_factor_columns = [
+            "trial_type.succesful_stop",
+            "trial_type.unsuccesful_stop",
+        ]
 
     def setUp(self):
         self.base_parameters = {
@@ -67,12 +121,17 @@ class Test(unittest.TestCase):
         op = FactorColumnOp(self.base_parameters)
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)
 
-        df_check = pd.DataFrame(self.factored, columns=self.sample_columns + self.base_parameters["factor_names"])
+        df_check = pd.DataFrame(
+            self.factored,
+            columns=self.sample_columns + self.base_parameters["factor_names"],
+        )
         df_test = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         df_new = op.do_op(None, Dispatcher.prep_data(df_test), "sample_data")
         df_new = Dispatcher.post_proc_data(df_new)
         self.assertEqual(
-            len(df_check), len(df_new), "factor_column should not change number of rows with ignore missing"
+            len(df_check),
+            len(df_new),
+            "factor_column should not change number of rows with ignore missing",
         )
         self.assertEqual(
             len(df_check.columns),
@@ -102,7 +161,10 @@ class Test(unittest.TestCase):
         # Test when no extras and extras not ignored.
         op = FactorColumnOp(self.base_parameters)
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)
-        df_check = pd.DataFrame(self.factored, columns=self.sample_columns + self.base_parameters["factor_names"])
+        df_check = pd.DataFrame(
+            self.factored,
+            columns=self.sample_columns + self.base_parameters["factor_names"],
+        )
         df_test = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         df_test = Dispatcher.prep_data(df_test)
         df_new = op.do_op(None, df_test, "sample_data")
@@ -110,7 +172,9 @@ class Test(unittest.TestCase):
         df_test1 = Dispatcher.post_proc_data(df_test)
 
         self.assertEqual(
-            len(df_check), len(df_new), "factor_column should not change number of rows with no extras and no ignore"
+            len(df_check),
+            len(df_new),
+            "factor_column should not change number of rows with no extras and no ignore",
         )
         self.assertEqual(
             len(df_check.columns),
@@ -139,8 +203,15 @@ class Test(unittest.TestCase):
     def test_valid_factors_extras_ignore(self):
         # Test when extra factor values but ignored
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)
-        df_check = pd.DataFrame(self.factored, columns=self.sample_columns + self.base_parameters["factor_names"])
-        self.base_parameters["factor_values"] = ["succesful_stop", "unsuccesful_stop", "face"]
+        df_check = pd.DataFrame(
+            self.factored,
+            columns=self.sample_columns + self.base_parameters["factor_names"],
+        )
+        self.base_parameters["factor_values"] = [
+            "succesful_stop",
+            "unsuccesful_stop",
+            "face",
+        ]
         self.base_parameters["factor_names"] = ["stopped", "stop_failed", "baloney"]
         op = FactorColumnOp(self.base_parameters)
         df_check["baloney"] = [0, 0, 0, 0, 0, 0]
@@ -149,7 +220,9 @@ class Test(unittest.TestCase):
         df_new = op.do_op(None, df_new, "sample_data")
         df_new = Dispatcher.post_proc_data(df_new)
         self.assertEqual(
-            len(df_check), len(df_new), "factor_column should not change number of rows with extras and ignore missing"
+            len(df_check),
+            len(df_new),
+            "factor_column should not change number of rows with extras and ignore missing",
         )
         self.assertEqual(
             len(df_check.columns),
@@ -183,8 +256,15 @@ class Test(unittest.TestCase):
     def test_valid_factors_extras_no_ignore(self):
         # Test when extra factors are included but not ignored.
         df = pd.DataFrame(self.sample_data, columns=self.sample_columns)
-        df_check = pd.DataFrame(self.factored, columns=self.sample_columns + self.base_parameters["factor_names"])
-        self.base_parameters["factor_values"] = ["succesful_stop", "unsuccesful_stop", "face"]
+        df_check = pd.DataFrame(
+            self.factored,
+            columns=self.sample_columns + self.base_parameters["factor_names"],
+        )
+        self.base_parameters["factor_values"] = [
+            "succesful_stop",
+            "unsuccesful_stop",
+            "face",
+        ]
         self.base_parameters["factor_names"] = ["stopped", "stop_failed", "baloney"]
         op = FactorColumnOp(self.base_parameters)
         df_check["baloney"] = [0, 0, 0, 0, 0, 0]
@@ -192,7 +272,9 @@ class Test(unittest.TestCase):
         df_new = op.do_op(None, Dispatcher.prep_data(df_test), "sample_data")
         df_new = Dispatcher.post_proc_data(df_new)
         self.assertEqual(
-            len(df_check), len(df_new), "factor_column should not change number of rows with extras and ignore missing"
+            len(df_check),
+            len(df_new),
+            "factor_column should not change number of rows with extras and ignore missing",
         )
         self.assertEqual(
             len(df_check.columns),

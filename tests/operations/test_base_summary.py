@@ -105,7 +105,11 @@ class Test(unittest.TestCase):
         self.assertFalse(file_list1)
         dir_ind = os.path.realpath(os.path.join(self.summary_dir, test1.op.summary_name + "/", "individual_summaries/"))
         self.assertFalse(os.path.isdir(dir_ind))
-        test1.save(self.summary_dir, file_formats=[".json", ".tsv"], individual_summaries="consolidated")
+        test1.save(
+            self.summary_dir,
+            file_formats=[".json", ".tsv"],
+            individual_summaries="consolidated",
+        )
         dir_full = os.path.realpath(os.path.join(self.summary_dir, test1.op.summary_name + "/"))
         file_list2 = os.listdir(dir_full)
         self.assertEqual(len(file_list2), 1)
@@ -122,7 +126,11 @@ class Test(unittest.TestCase):
         test1 = TestSummary(op)
         file_list1 = os.listdir(self.summary_dir)
         self.assertFalse(file_list1)
-        test1.save(self.summary_dir, file_formats=[".json", ".tsv"], individual_summaries="separate")
+        test1.save(
+            self.summary_dir,
+            file_formats=[".json", ".tsv"],
+            individual_summaries="separate",
+        )
         dir_ind = os.path.realpath(os.path.join(self.summary_dir, test1.op.summary_name + "/", "individual_summaries/"))
         dir_full = os.path.realpath(os.path.join(self.summary_dir, test1.op.summary_name + "/"))
         self.assertTrue(os.path.isdir(dir_ind))

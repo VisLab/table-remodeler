@@ -28,7 +28,11 @@ class Dispatcher:
     REMODELING_SUMMARY_PATH = "remodel/summaries"
 
     def __init__(
-        self, operation_list, data_root=None, backup_name=BackupManager.DEFAULT_BACKUP_NAME, hed_versions=None
+        self,
+        operation_list,
+        data_root=None,
+        backup_name=BackupManager.DEFAULT_BACKUP_NAME,
+        hed_versions=None,
     ):
         """Constructor for the dispatcher.
 
@@ -83,7 +87,10 @@ class Dispatcher:
                     summary = context_item.get_text_summary(individual_summaries="consolidated")
                     summary = summary["Dataset"]
                 elif file_format == ".json":
-                    summary = json.dumps(context_item.get_summary(individual_summaries="consolidated"), indent=4)
+                    summary = json.dumps(
+                        context_item.get_summary(individual_summaries="consolidated"),
+                        indent=4,
+                    )
 
                 else:
                     continue
@@ -125,7 +132,13 @@ class Dispatcher:
         else:
             actual_path = file_designator
         try:
-            df = pd.read_csv(actual_path, sep="\t", header=0, keep_default_na=False, na_values=",null")
+            df = pd.read_csv(
+                actual_path,
+                sep="\t",
+                header=0,
+                keep_default_na=False,
+                na_values=",null",
+            )
         except Exception as e:
             raise HedFileError(
                 "BadDataFile",
@@ -170,7 +183,13 @@ class Dispatcher:
             df = self.post_proc_data(df)
         return df
 
-    def save_summaries(self, save_formats=None, individual_summaries="separate", summary_dir=None, task_name=""):
+    def save_summaries(
+        self,
+        save_formats=None,
+        individual_summaries="separate",
+        summary_dir=None,
+        task_name="",
+    ):
         """Save the summary files in the specified formats.
 
         Parameters:
@@ -196,7 +215,12 @@ class Dispatcher:
             summary_dir = self.get_summary_save_dir()
         os.makedirs(summary_dir, exist_ok=True)
         for _summary_name, summary_item in self.summary_dicts.items():
-            summary_item.save(summary_dir, save_formats, individual_summaries=individual_summaries, task_name=task_name)
+            summary_item.save(
+                summary_dir,
+                save_formats,
+                individual_summaries=individual_summaries,
+                task_name=task_name,
+            )
 
     @staticmethod
     def parse_operations(operation_list) -> list:

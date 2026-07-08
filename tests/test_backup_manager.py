@@ -12,7 +12,12 @@ from hed.tools.util.io_util import get_file_list
 class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        file_list = ["top_level.tsv", "sub1/sub1_events.tsv", "sub2/sub2_events.tsv", "sub2/sub2_next_events.tsv"]
+        file_list = [
+            "top_level.tsv",
+            "sub1/sub1_events.tsv",
+            "sub2/sub2_events.tsv",
+            "sub2/sub2_next_events.tsv",
+        ]
         cls.file_list = file_list
         cls.extract_path = os.path.realpath(os.path.join(os.path.dirname(__file__), "./data/"))
         test_root = os.path.realpath(os.path.join(os.path.dirname(__file__), "./data/test_root"))
@@ -50,16 +55,27 @@ class Test(unittest.TestCase):
 
     def test_constructor(self):
         back1_man = BackupManager(self.test_root_back1)
-        self.assertIsInstance(back1_man, BackupManager, "constructor creates a BackupManager if no backups")
+        self.assertIsInstance(
+            back1_man,
+            BackupManager,
+            "constructor creates a BackupManager if no backups",
+        )
         self.assertTrue(back1_man.backups_dict)
 
     def test_constructor_alternative_location(self):
         alt_path = os.path.realpath(os.path.join(self.extract_path, "temp_backs"))
         back1_man = BackupManager(self.test_root_back1, backups_root=alt_path)
-        self.assertIsInstance(back1_man, BackupManager, "constructor creates a BackupManager if no backups")
+        self.assertIsInstance(
+            back1_man,
+            BackupManager,
+            "constructor creates a BackupManager if no backups",
+        )
         self.assertFalse(back1_man.backups_dict)
         file_list = get_file_list(
-            self.test_root_back1, name_suffix="events", exclude_dirs=["derivatives"], extensions=[".tsv"]
+            self.test_root_back1,
+            name_suffix="events",
+            exclude_dirs=["derivatives"],
+            extensions=[".tsv"],
         )
         self.assertEqual(len(file_list), 3)
         back1_man.create_backup(file_list, backup_name="my_back")
@@ -104,7 +120,10 @@ class Test(unittest.TestCase):
     def test_create_backup(self):
         test_man = BackupManager(self.test_root)
         file_list = get_file_list(self.test_root)
-        self.assertFalse(test_man.get_backup("test_back1"), "create_backup doesn't have the backup before creation")
+        self.assertFalse(
+            test_man.get_backup("test_back1"),
+            "create_backup doesn't have the backup before creation",
+        )
         return_val1 = test_man.create_backup(file_list, backup_name="test_back1", verbose=False)
         self.assertTrue(return_val1, "create_backup returns true when it has created a backup.")
         backup1 = test_man.get_backup("test_back1")

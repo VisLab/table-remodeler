@@ -14,7 +14,9 @@ from remodeler.operations.split_rows_op import SplitRowsOp
 from remodeler.operations.summarize_column_names_op import SummarizeColumnNamesOp
 from remodeler.operations.summarize_column_values_op import SummarizeColumnValuesOp
 from remodeler.operations.summarize_definitions_op import SummarizeDefinitionsOp
-from remodeler.operations.summarize_sidecar_from_events_op import SummarizeSidecarFromEventsOp
+from remodeler.operations.summarize_sidecar_from_events_op import (
+    SummarizeSidecarFromEventsOp,
+)
 from remodeler.operations.summarize_hed_type_op import SummarizeHedTypeOp
 from remodeler.operations.summarize_hed_tags_op import SummarizeHedTagsOp
 from remodeler.operations.summarize_hed_validation_op import SummarizeHedValidationOp

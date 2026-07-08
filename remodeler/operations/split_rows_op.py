@@ -98,9 +98,15 @@ class SplitRowsOp(BaseOp):
 
         """
         if "onset" not in df.columns:
-            raise ValueError("MissingOnsetColumn", f"{name}: Data must have an onset column for split_rows_op")
+            raise ValueError(
+                "MissingOnsetColumn",
+                f"{name}: Data must have an onset column for split_rows_op",
+            )
         elif "duration" not in df.columns:
-            raise ValueError("MissingDurationColumn", f"{name}: Data must have an duration column for split_rows_op")
+            raise ValueError(
+                "MissingDurationColumn",
+                f"{name}: Data must have an duration column for split_rows_op",
+            )
         df_new = df.copy()
 
         if self.anchor_column not in df_new.columns:
@@ -175,7 +181,9 @@ class SplitRowsOp(BaseOp):
                 onsets = onsets.add(pd.to_numeric(df[onset], errors="coerce"))
             else:
                 raise TypeError(
-                    "BadOnsetInModel", f"Remodeling onset {str(onset)} must either be numeric or a column name.", ""
+                    "BadOnsetInModel",
+                    f"Remodeling onset {str(onset)} must either be numeric or a column name.",
+                    "",
                 )
         return onsets
 

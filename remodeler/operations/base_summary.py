@@ -76,7 +76,8 @@ class BaseSummary(ABC):
         summary = {"Dataset": dataset_summary, "Individual files": {}}
         if summary_details["Individual files"]:
             summary["Individual files"] = self.get_individual(
-                summary_details["Individual files"], separately=individual_summaries == "separate"
+                summary_details["Individual files"],
+                separately=individual_summaries == "separate",
             )
         return summary
 
@@ -180,10 +181,19 @@ class BaseSummary(ABC):
                 summary = self.get_summary(individual_summaries=individual_summaries)
             else:
                 continue
-            self._save_summary_files(save_dir, file_format, summary, individual_summaries, task_name=task_name)
+            self._save_summary_files(
+                save_dir,
+                file_format,
+                summary,
+                individual_summaries,
+                task_name=task_name,
+            )
 
             self.save_visualizations(
-                save_dir, file_formats=file_formats, individual_summaries=individual_summaries, task_name=task_name
+                save_dir,
+                file_formats=file_formats,
+                individual_summaries=individual_summaries,
+                task_name=task_name,
             )
 
     def save_visualizations(self, save_dir, file_formats=None, individual_summaries="separate", task_name=""):
@@ -220,7 +230,10 @@ class BaseSummary(ABC):
         this_save = os.path.join(save_dir, self.op.summary_name + "/")
         os.makedirs(os.path.realpath(this_save), exist_ok=True)
         filename = os.path.realpath(
-            os.path.join(this_save, self.op.summary_filename + task_name + time_stamp + file_format)
+            os.path.join(
+                this_save,
+                self.op.summary_filename + task_name + time_stamp + file_format,
+            )
         )
         individual = summary.get("Individual files", {})
         if individual_summaries == "none" or not individual:

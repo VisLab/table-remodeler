@@ -36,7 +36,10 @@ class ConvertColumnsOp(BaseOp):
                 "description": "Data type to convert the columns to.",
                 "enum": ["str", "int", "float", "fixed"],
             },
-            "decimal_places": {"type": "integer", "description": "The number of decimal points if converted to fixed."},
+            "decimal_places": {
+                "type": "integer",
+                "description": "The number of decimal points if converted to fixed.",
+            },
         },
         "required": ["column_names", "convert_to"],
         "additionalProperties": False,

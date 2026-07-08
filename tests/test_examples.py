@@ -66,12 +66,18 @@ class TestExampleNotebooks(unittest.TestCase):
                     # Check if it's a missing kernel error
                     if "No such kernel" in result.stderr:
                         return False, "SKIP_KERNEL_MISSING"
-                    return False, f"Execution failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+                    return (
+                        False,
+                        f"Execution failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}",
+                    )
 
                 return True, None
 
         except FileNotFoundError:
-            return False, "jupyter nbconvert not found. Install with: pip install jupyter nbconvert"
+            return (
+                False,
+                "jupyter nbconvert not found. Install with: pip install jupyter nbconvert",
+            )
         except Exception as e:
             return False, f"Unexpected error: {str(e)}"
 

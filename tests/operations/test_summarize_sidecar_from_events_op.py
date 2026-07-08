@@ -13,10 +13,28 @@ class Test(unittest.TestCase):
     def setUpClass(cls):
         cls.sample_data = [
             [0.0776, 0.5083, "go", "n/a", 0.565, "correct", "right", "female"],
-            [5.5774, 0.5083, "unsuccesful_stop", 0.2, 0.49, "correct", "right", "female"],
+            [
+                5.5774,
+                0.5083,
+                "unsuccesful_stop",
+                0.2,
+                0.49,
+                "correct",
+                "right",
+                "female",
+            ],
             [9.5856, 0.5084, "go", "n/a", 0.45, "correct", "right", "female"],
             [13.5939, 0.5083, "succesful_stop", 0.2, "n/a", "n/a", "n/a", "female"],
-            [17.1021, 0.5083, "unsuccesful_stop", 0.25, 0.633, "correct", "left", "male"],
+            [
+                17.1021,
+                0.5083,
+                "unsuccesful_stop",
+                0.25,
+                0.633,
+                "correct",
+                "left",
+                "male",
+            ],
             [21.6103, 0.5083, "go", "n/a", 0.443, "correct", "left", "male"],
         ]
         cls.sample_columns = [
@@ -44,7 +62,11 @@ class Test(unittest.TestCase):
 
     def test_constructor(self):
         sum_op = SummarizeSidecarFromEventsOp(self.base_parameters)
-        self.assertIsInstance(sum_op, SummarizeSidecarFromEventsOp, "constructor creates an object of the correct type")
+        self.assertIsInstance(
+            sum_op,
+            SummarizeSidecarFromEventsOp,
+            "constructor creates an object of the correct type",
+        )
 
     def test_do_ops(self):
         sum_op = SummarizeSidecarFromEventsOp(self.base_parameters)
@@ -62,7 +84,11 @@ class Test(unittest.TestCase):
         )
         self.assertEqual(cat_len, cat_base, "do_ops has right number of categorical columns")
         sum_op.do_op(dispatch, dispatch.prep_data(df1a), "name1")
-        self.assertEqual(len(df1.columns), len(self.sample_columns), "do_ops updating does not change number columns.")
+        self.assertEqual(
+            len(df1.columns),
+            len(self.sample_columns),
+            "do_ops updating does not change number columns.",
+        )
         sum_op.do_op(dispatch, dispatch.prep_data(df1a), "name2")
 
     def test_get_summary(self):
@@ -71,7 +97,11 @@ class Test(unittest.TestCase):
         df1 = pd.DataFrame(self.sample_data, columns=self.sample_columns)
         sum_op.do_op(dispatch, dispatch.prep_data(df1), "name1")
         context1 = dispatch.summary_dicts.get(self.base_parameters["summary_name"], None)
-        self.assertIsInstance(context1, EventsToSidecarSummary, "get_summary testing EventsToSidecarSummary")
+        self.assertIsInstance(
+            context1,
+            EventsToSidecarSummary,
+            "get_summary testing EventsToSidecarSummary",
+        )
         summary1 = context1.get_summary()
         self.assertIsInstance(summary1, dict, "get_summary returns a dictionary by default")
         self.assertIsInstance(summary1["Dataset"], dict)
@@ -90,7 +120,11 @@ class Test(unittest.TestCase):
         self.assertGreater(len(summary_text4["Dataset"]), len(summary_text5["Dataset"]))
         sum_op.do_op(dispatch, dispatch.prep_data(df1), "name2")
         context2 = dispatch.summary_dicts.get(self.base_parameters["summary_name"], None)
-        self.assertIsInstance(context1, EventsToSidecarSummary, "get_summary testing EventsToSidecarSummary")
+        self.assertIsInstance(
+            context1,
+            EventsToSidecarSummary,
+            "get_summary testing EventsToSidecarSummary",
+        )
         summary_text6 = context2.get_text_summary(individual_summaries="separate")
         self.assertIsInstance(summary_text6, dict)
 
