@@ -43,14 +43,8 @@ from remodeler import Dispatcher
 
 # Define operations
 operations = [
-    {
-        "operation": "remove_columns",
-        "parameters": {"column_names": ["unnecessary_col"]}
-    },
-    {
-        "operation": "rename_columns",
-        "parameters": {"column_mapping": {"old_name": "new_name"}}
-    }
+    {"operation": "remove_columns", "parameters": {"column_names": ["unnecessary_col"]}},
+    {"operation": "rename_columns", "parameters": {"column_mapping": {"old_name": "new_name"}}},
 ]
 
 # Execute operations
