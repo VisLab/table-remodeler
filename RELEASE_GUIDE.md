@@ -322,16 +322,22 @@ tar -tzf dist/table_remodeler-<version>.tar.gz
 **Windows (PowerShell):**
 
 ```powershell
-# Create a fresh virtual environment for testing
-python -m venv test_env
+# Deactivate the current virtual environment
+deactivate
+
+# Create a fresh virtual environment for testing using the project's Python
+.venv\Scripts\python -m venv test_env
 .\test_env\Scripts\Activate.ps1
 ```
 
 **Linux/macOS (Bash):**
 
 ```bash
-# Create a fresh virtual environment for testing
-python -m venv test_env
+# Deactivate the current virtual environment
+deactivate
+
+# Create a fresh virtual environment for testing using the project's Python
+.venv/bin/python -m venv test_env
 source test_env/bin/activate
 ```
 

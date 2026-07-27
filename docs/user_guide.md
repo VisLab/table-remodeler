@@ -53,14 +53,8 @@ import pandas as pd
 
 # Define your remodeling operations
 operations = [
-    {
-        "operation": "rename_columns",
-        "parameters": {"column_mapping": {"old_col_name": "new_col_name"}}
-    },
-    {
-        "operation": "remove_columns",
-        "parameters": {"column_names": ["unwanted_column"]}
-    }
+    {"operation": "rename_columns", "parameters": {"column_mapping": {"old_col_name": "new_col_name"}}},
+    {"operation": "remove_columns", "parameters": {"column_names": ["unwanted_column"]}},
 ]
 
 # Create a dispatcher and run operations
@@ -77,15 +71,12 @@ print("✓ Remodeling complete!")
 ```python
 from remodeler import Dispatcher
 
-operations = [{
-    "operation": "rename_columns",
-    "parameters": {
-        "column_mapping": {
-            "stimulus_type": "trial_type",
-            "resp_time": "response_time"
-        }
+operations = [
+    {
+        "operation": "rename_columns",
+        "parameters": {"column_mapping": {"stimulus_type": "trial_type", "resp_time": "response_time"}},
     }
-}]
+]
 
 dispatcher = Dispatcher(operations, data_root="/path/to/data")
 dispatcher.run_operations()
@@ -94,51 +85,34 @@ dispatcher.run_operations()
 ### Removing columns
 
 ```python
-operations = [{
-    "operation": "remove_columns",
-    "parameters": {
-        "column_names": ["temporary_col", "debug_info"]
-    }
-}]
+operations = [{"operation": "remove_columns", "parameters": {"column_names": ["temporary_col", "debug_info"]}}]
 ```
 
 ### Converting column types
 
 ```python
-operations = [{
-    "operation": "convert_columns",
-    "parameters": {
-        "column_names": ["duration", "response_time"],
-        "data_type": "float"
+operations = [
+    {
+        "operation": "convert_columns",
+        "parameters": {"column_names": ["duration", "response_time"], "data_type": "float"},
     }
-}]
+]
 ```
 
 ### Reordering columns
 
 ```python
-operations = [{
-    "operation": "reorder_columns",
-    "parameters": {
-        "column_names": ["onset", "duration", "trial_type", "response"]
-    }
-}]
+operations = [
+    {"operation": "reorder_columns", "parameters": {"column_names": ["onset", "duration", "trial_type", "response"]}}
+]
 ```
 
 ### Remapping values
 
 ```python
-operations = [{
-    "operation": "remap_columns",
-    "parameters": {
-        "remap": {
-            "trial_type": {
-                "go": "go_trial",
-                "stop": "stop_trial"
-            }
-        }
-    }
-}]
+operations = [
+    {"operation": "remap_columns", "parameters": {"remap": {"trial_type": {"go": "go_trial", "stop": "stop_trial"}}}}
+]
 ```
 
 ## Working with hed annotations
@@ -169,10 +143,7 @@ dispatcher = Dispatcher(operations, hed_versions="8.3.0")
 
 ```python
 # Using standard HED 8.3.0 + SCORE library 1.0.0
-dispatcher = Dispatcher(
-    operations,
-    hed_versions=["8.3.0", "sc:score_1.0.0"]
-)
+dispatcher = Dispatcher(operations, hed_versions=["8.3.0", "sc:score_1.0.0"])
 ```
 
 When using multiple schemas, all but one must have a namespace prefix (e.g., `sc:`). Tags from that schema must use the prefix in annotations (e.g., `sc:Sleep-modulator`).
@@ -198,19 +169,9 @@ The `-b` flag enables BIDS mode, which:
 ```python
 from remodeler import Dispatcher
 
-operations = [
-    {
-        "operation": "summarize_hed_validation",
-        "parameters": {"summary_name": "validation_check"}
-    }
-]
+operations = [{"operation": "summarize_hed_validation", "parameters": {"summary_name": "validation_check"}}]
 
-dispatcher = Dispatcher(
-    operations,
-    data_root="/data/my_bids_dataset",
-    hed_versions="8.3.0",
-    bids_format=True
-)
+dispatcher = Dispatcher(operations, data_root="/data/my_bids_dataset", hed_versions="8.3.0", bids_format=True)
 dispatcher.run_operations()
 ```
 
@@ -232,7 +193,7 @@ dispatcher = Dispatcher(
     operations,
     data_root="/data/my_experiment",
     hed_versions="8.3.0",
-    json_sidecar="/data/my_experiment/task_events.json"
+    json_sidecar="/data/my_experiment/task_events.json",
 )
 ```
 
@@ -241,20 +202,14 @@ dispatcher = Dispatcher(
 Validate HED annotations across all files:
 
 ```python
-operations = [{
-    "operation": "summarize_hed_validation",
-    "parameters": {
-        "summary_name": "hed_validation_report",
-        "summary_filename": "validation_results"
+operations = [
+    {
+        "operation": "summarize_hed_validation",
+        "parameters": {"summary_name": "hed_validation_report", "summary_filename": "validation_results"},
     }
-}]
+]
 
-dispatcher = Dispatcher(
-    operations,
-    data_root="/path/to/dataset",
-    hed_versions="8.3.0",
-    bids_format=True
-)
+dispatcher = Dispatcher(operations, data_root="/path/to/dataset", hed_versions="8.3.0", bids_format=True)
 dispatcher.run_operations()
 ```
 
@@ -265,20 +220,11 @@ Validation errors are reported in the summary file, not as exceptions. This allo
 Generate comprehensive summaries of HED tag usage:
 
 ```python
-operations = [{
-    "operation": "summarize_hed_tags",
-    "parameters": {
-        "summary_name": "all_hed_tags",
-        "summary_filename": "tag_usage"
-    }
-}]
+operations = [
+    {"operation": "summarize_hed_tags", "parameters": {"summary_name": "all_hed_tags", "summary_filename": "tag_usage"}}
+]
 
-dispatcher = Dispatcher(
-    operations,
-    data_root="/path/to/dataset",
-    hed_versions="8.3.0",
-    bids_format=True
-)
+dispatcher = Dispatcher(operations, data_root="/path/to/dataset", hed_versions="8.3.0", bids_format=True)
 dispatcher.run_operations()
 ```
 
@@ -294,28 +240,17 @@ The summary includes:
 Extract binary factor columns based on HED tag queries:
 
 ```python
-operations = [{
-    "operation": "factor_hed_tags",
-    "parameters": {
-        "queries": [
-            "Visual-presentation",
-            "Auditory-presentation",
-            "Action and Button-press"
-        ],
-        "query_names": [
-            "has_visual",
-            "has_auditory",
-            "has_button_press"
-        ]
+operations = [
+    {
+        "operation": "factor_hed_tags",
+        "parameters": {
+            "queries": ["Visual-presentation", "Auditory-presentation", "Action and Button-press"],
+            "query_names": ["has_visual", "has_auditory", "has_button_press"],
+        },
     }
-}]
+]
 
-dispatcher = Dispatcher(
-    operations,
-    data_root="/path/to/dataset",
-    hed_versions="8.3.0",
-    bids_format=True
-)
+dispatcher = Dispatcher(operations, data_root="/path/to/dataset", hed_versions="8.3.0", bids_format=True)
 dispatcher.run_operations()
 ```
 
@@ -326,20 +261,14 @@ This creates new columns (`has_visual`, `has_auditory`, `has_button_press`) with
 Extract condition variables and design matrices using HED type tags:
 
 ```python
-operations = [{
-    "operation": "factor_hed_type",
-    "parameters": {
-        "type_tag": "Condition-variable",
-        "type_values": ["stimulus-type", "response-hand"]
+operations = [
+    {
+        "operation": "factor_hed_type",
+        "parameters": {"type_tag": "Condition-variable", "type_values": ["stimulus-type", "response-hand"]},
     }
-}]
+]
 
-dispatcher = Dispatcher(
-    operations,
-    data_root="/path/to/dataset",
-    hed_versions="8.3.0",
-    bids_format=True
-)
+dispatcher = Dispatcher(operations, data_root="/path/to/dataset", hed_versions="8.3.0", bids_format=True)
 dispatcher.run_operations()
 ```
 
@@ -424,7 +353,7 @@ operations = [...]
 dispatcher = Dispatcher(
     operations,
     data_root="/path/to/dataset",
-    backup_name="auto_backup"  # Creates if doesn't exist
+    backup_name="auto_backup",  # Creates if doesn't exist
 )
 dispatcher.run_operations()
 ```
@@ -488,7 +417,7 @@ backup_manager.create_backup(backup_name="03_analysis_ready")
 dispatcher = Dispatcher(
     different_operations,
     data_root="/path/to/dataset",
-    backup_name="02_cleaned"  # Use checkpoint as starting point
+    backup_name="02_cleaned",  # Use checkpoint as starting point
 )
 ```
 
@@ -636,8 +565,8 @@ run_remodel_backup /data/ds002790 -x derivatives -t stopsignal -v
 ```python
 import remodeler.cli.run_remodel_backup as cli_backup
 
-data_root = '/path/to/dataset'
-arg_list = [data_root, '-x', 'derivatives', 'stimuli', '-v']
+data_root = "/path/to/dataset"
+arg_list = [data_root, "-x", "derivatives", "stimuli", "-v"]
 cli_backup.main(arg_list)
 ```
 
@@ -751,9 +680,9 @@ run_remodel /data/my_experiment /data/my_experiment/cleanup_rmdl.json \
 ```python
 import remodeler.cli.run_remodel as cli_remodel
 
-data_root = '/path/to/dataset'
-model_path = '/path/to/operations_rmdl.json'
-arg_list = [data_root, model_path, '-b', '-x', 'derivatives', '-v']
+data_root = "/path/to/dataset"
+model_path = "/path/to/operations_rmdl.json"
+arg_list = [data_root, model_path, "-b", "-x", "derivatives", "-v"]
 cli_remodel.main(arg_list)
 ```
 
@@ -803,8 +732,8 @@ run_remodel_restore /path/to/dataset -bn checkpoint_20240115 -v
 ```python
 import remodeler.cli.run_remodel_restore as cli_restore
 
-data_root = '/path/to/dataset'
-arg_list = [data_root, '-bn', 'my_backup', '-v']
+data_root = "/path/to/dataset"
+arg_list = [data_root, "-bn", "my_backup", "-v"]
 cli_restore.main(arg_list)
 ```
 
@@ -821,27 +750,13 @@ cli_restore.main(arg_list)
 ```python
 operations = [
     # First: standardize column names
-    {
-        "operation": "rename_columns",
-        "parameters": {"column_mapping": {"stim": "stimulus", "resp": "response"}}
-    },
+    {"operation": "rename_columns", "parameters": {"column_mapping": {"stim": "stimulus", "resp": "response"}}},
     # Second: remove unnecessary columns
-    {
-        "operation": "remove_columns",
-        "parameters": {"column_names": ["debug", "temp"]}
-    },
+    {"operation": "remove_columns", "parameters": {"column_names": ["debug", "temp"]}},
     # Third: convert types
-    {
-        "operation": "convert_columns",
-        "parameters": {"column_names": ["duration"], "data_type": "float"}
-    },
+    {"operation": "convert_columns", "parameters": {"column_names": ["duration"], "data_type": "float"}},
     # Fourth: reorder for readability
-    {
-        "operation": "reorder_columns",
-        "parameters": {
-            "column_names": ["onset", "duration", "stimulus", "response"]
-        }
-    }
+    {"operation": "reorder_columns", "parameters": {"column_names": ["onset", "duration", "stimulus", "response"]}},
 ]
 
 dispatcher = Dispatcher(operations, data_root="/path/to/data")
@@ -857,7 +772,7 @@ datasets = Path("/data").glob("sub-*/")
 
 operations = [
     {"operation": "rename_columns", "parameters": {...}},
-    {"operation": "remove_columns", "parameters": {...}}
+    {"operation": "remove_columns", "parameters": {...}},
 ]
 
 for dataset_dir in datasets:
@@ -899,43 +814,38 @@ Each operation class must have:
 ```python
 from remodeler.operations.base_op import BaseOp
 
+
 class MyCustomOp(BaseOp):
     """Brief description of what this operation does."""
-    
+
     NAME = "my_custom_operation"
-    
+
     PARAMS = {
         "type": "object",
         "properties": {
-            "my_parameter": {
-                "type": "string",
-                "description": "Description of parameter"
-            },
-            "optional_param": {
-                "type": "integer", 
-                "description": "Optional parameter"
-            }
+            "my_parameter": {"type": "string", "description": "Description of parameter"},
+            "optional_param": {"type": "integer", "description": "Optional parameter"},
         },
         "required": ["my_parameter"],
-        "additionalProperties": False
+        "additionalProperties": False,
     }
-    
+
     def __init__(self, parameters):
         """Initialize the operation with validated parameters."""
         super().__init__(parameters)
-        self.my_parameter = parameters['my_parameter']
-        self.optional_param = parameters.get('optional_param', None)
-    
+        self.my_parameter = parameters["my_parameter"]
+        self.optional_param = parameters.get("optional_param", None)
+
     def do_op(self, dispatcher, df, name, sidecar=None):
         """
         Execute the operation on a DataFrame.
-        
+
         Parameters:
             dispatcher (Dispatcher): The dispatcher managing operations
             df (pd.DataFrame): The tabular data to transform
             name (str): Identifier for the file (for error messages)
             sidecar (dict): Optional JSON sidecar for HED operations
-            
+
         Returns:
             pd.DataFrame: The transformed DataFrame
         """
@@ -943,15 +853,15 @@ class MyCustomOp(BaseOp):
         # For transformations, return modified DataFrame
         # For summaries, update dispatcher.summary_dict and return original df
         return df
-    
+
     @staticmethod
     def validate_input_data(parameters):
         """
         Perform additional validation beyond JSON schema.
-        
+
         Parameters:
             parameters (dict): The operation parameters
-            
+
         Returns:
             list: List of error message strings (empty if no errors)
         """
@@ -975,7 +885,7 @@ PARAMS = {
     "required": [
         # List required parameter names
     ],
-    "additionalProperties": False  # Recommended: disallow unexpected parameters
+    "additionalProperties": False,  # Recommended: disallow unexpected parameters
 }
 ```
 
@@ -1045,24 +955,14 @@ PARAMS = {
     "properties": {
         "column_mapping": {
             "type": "object",
-            "patternProperties": {
-                ".*": {
-                    "type": "string"
-                }
-            },
+            "patternProperties": {".*": {"type": "string"}},
             "minProperties": 1,
-            "description": "Dictionary mapping old column names to new names"
+            "description": "Dictionary mapping old column names to new names",
         },
-        "ignore_missing": {
-            "type": "boolean",
-            "description": "If false, raise error for missing columns"
-        }
+        "ignore_missing": {"type": "boolean", "description": "If false, raise error for missing columns"},
     },
-    "required": [
-        "column_mapping",
-        "ignore_missing"
-    ],
-    "additionalProperties": False
+    "required": ["column_mapping", "ignore_missing"],
+    "additionalProperties": False,
 }
 ```
 
@@ -1086,7 +986,7 @@ Always call the superclass constructor first:
 def __init__(self, parameters):
     super().__init__(parameters)
     # Then initialize operation-specific attributes
-    self.column_names = parameters['column_names']
+    self.column_names = parameters["column_names"]
 ```
 
 **The do_op method:**
@@ -1134,24 +1034,22 @@ Use this static method for validation that cannot be expressed in JSON schema.
 def validate_input_data(parameters):
     """
     Validate parameters beyond JSON schema constraints.
-    
+
     Common use cases:
     - Checking list lengths match
     - Validating value ranges based on other parameters
     - Checking for logical inconsistencies
-    
+
     Returns:
         list: User-friendly error messages (empty if valid)
     """
     errors = []
-    
+
     # Example: Check that two lists have the same length
     if parameters.get("query_names"):
         if len(parameters["query_names"]) != len(parameters["queries"]):
-            errors.append(
-                "The query_names list must have the same length as queries list."
-            )
-    
+            errors.append("The query_names list must have the same length as queries list.")
+
     return errors
 ```
 
@@ -1164,68 +1062,64 @@ Summarization operations require both an operation class (extending `BaseOp`) an
 ```python
 from remodeler.operations.base_summary import BaseSummary
 
+
 class MySummarySummary(BaseSummary):
     """Holds summary information for my_summary operation."""
-    
+
     def __init__(self, sum_op):
         """Initialize with operation parameters."""
         super().__init__(sum_op)
         self.summary_data = {}  # Store your summary data
-    
+
     def update_summary(self, summary_dict):
         """
         Update summary with information from one file.
-        
+
         Parameters:
             summary_dict (dict): File-specific information
                 Example: {"name": "file.tsv", "column_names": [...]}
         """
         # Extract and store information
-        name = summary_dict['name']
+        name = summary_dict["name"]
         # ... accumulate your summary data
-    
+
     def get_summary_details(self, verbose=True):
         """
         Return the summary information as a dictionary.
-        
+
         Parameters:
             verbose (bool): If True, include detailed information
-            
+
         Returns:
             dict: Summary data formatted for output
         """
         return {
-            'summary_type': 'my_summary',
-            'data': self.summary_data
+            "summary_type": "my_summary",
+            "data": self.summary_data,
             # ... your summary structure
         }
 
+
 class MySummaryOp(BaseOp):
     """Summarize some aspect of the data."""
-    
+
     NAME = "my_summary"
-    
+
     PARAMS = {
         "type": "object",
         "properties": {
-            "summary_name": {
-                "type": "string",
-                "description": "Unique identifier for this summary"
-            },
-            "summary_filename": {
-                "type": "string",
-                "description": "Base filename for saving summary"
-            }
+            "summary_name": {"type": "string", "description": "Unique identifier for this summary"},
+            "summary_filename": {"type": "string", "description": "Base filename for saving summary"},
         },
         "required": ["summary_name", "summary_filename"],
-        "additionalProperties": False
+        "additionalProperties": False,
     }
-    
+
     def __init__(self, parameters):
         super().__init__(parameters)
-        self.summary_name = parameters['summary_name']
-        self.summary_filename = parameters['summary_filename']
-    
+        self.summary_name = parameters["summary_name"]
+        self.summary_filename = parameters["summary_filename"]
+
     def do_op(self, dispatcher, df, name, sidecar=None):
         """Update summary without modifying DataFrame."""
         # Get or create summary object
@@ -1233,22 +1127,19 @@ class MySummaryOp(BaseOp):
         if not summary:
             summary = MySummarySummary(self)
             dispatcher.summary_dict[self.summary_name] = summary
-        
+
         # Update with file-specific information
-        summary.update_summary({
-            "name": name,
-            "data": self._extract_data(df)
-        })
-        
+        summary.update_summary({"name": name, "data": self._extract_data(df)})
+
         # Return original DataFrame unchanged
         return df
-    
+
     def _extract_data(self, df):
         """Helper method to extract relevant data."""
         extracted_data = {}
         # TODO: Your data extraction logic goes here
         return extracted_data
-    
+
     @staticmethod
     def validate_input_data(parameters):
         return []  # No additional validation needed
@@ -1260,12 +1151,12 @@ class MySummaryOp(BaseOp):
 
 ```python
 def update_summary(self, summary_dict):
-    file_name = summary_dict['name']
-    file_data = summary_dict['data']
-    
+    file_name = summary_dict["name"]
+    file_data = summary_dict["data"]
+
     # Store file-specific information
     self.file_summaries[file_name] = file_data
-    
+
     # Update overall statistics
     self.total_files += 1
     # ... accumulate other data
@@ -1276,15 +1167,15 @@ def update_summary(self, summary_dict):
 ```python
 def get_summary_details(self, verbose=True):
     details = {
-        'overall': {
-            'total_files': self.total_files,
+        "overall": {
+            "total_files": self.total_files,
             # ... overall statistics
         }
     }
-    
+
     if verbose:
-        details['individual_files'] = self.file_summaries
-    
+        details["individual_files"] = self.file_summaries
+
     return details
 ```
 
@@ -1334,61 +1225,57 @@ import pandas as pd
 from remodeler.operations.my_custom_op import MyCustomOp
 from remodeler import Dispatcher
 
+
 class TestMyCustomOp(unittest.TestCase):
     """Test cases for MyCustomOp."""
-    
+
     def setUp(self):
         """Set up test fixtures."""
-        self.sample_df = pd.DataFrame({
-            'col1': [1, 2, 3],
-            'col2': ['a', 'b', 'c']
-        })
-    
+        self.sample_df = pd.DataFrame({"col1": [1, 2, 3], "col2": ["a", "b", "c"]})
+
     def test_basic_functionality(self):
         """Test basic operation behavior."""
-        params = {
-            'my_parameter': 'value'
-        }
+        params = {"my_parameter": "value"}
         op = MyCustomOp(params)
-        
+
         # Create a simple dispatcher for testing
         dispatcher = Dispatcher([], data_root=".")
-        
+
         result = op.do_op(dispatcher, self.sample_df, "test_file.tsv")
-        
+
         # Assert expected transformations
         self.assertIsInstance(result, pd.DataFrame)
         # ... more assertions
-    
+
     def test_parameter_validation(self):
         """Test parameter validation."""
         # Test invalid parameters
-        errors = MyCustomOp.validate_input_data({
-            'my_parameter': 'value',
-            'invalid_list': [1, 2]  # Wrong length
-        })
+        errors = MyCustomOp.validate_input_data(
+            {
+                "my_parameter": "value",
+                "invalid_list": [1, 2],  # Wrong length
+            }
+        )
         self.assertTrue(len(errors) > 0)
-        
+
         # Test valid parameters
-        errors = MyCustomOp.validate_input_data({
-            'my_parameter': 'value',
-            'valid_list': [1, 2, 3]
-        })
+        errors = MyCustomOp.validate_input_data({"my_parameter": "value", "valid_list": [1, 2, 3]})
         self.assertEqual(len(errors), 0)
-    
+
     def test_error_handling(self):
         """Test error conditions."""
-        params = {'my_parameter': 'value'}
+        params = {"my_parameter": "value"}
         op = MyCustomOp(params)
         dispatcher = Dispatcher([], data_root=".")
-        
+
         # Test with problematic data
-        bad_df = pd.DataFrame({'wrong_col': [1, 2, 3]})
-        
+        bad_df = pd.DataFrame({"wrong_col": [1, 2, 3]})
+
         with self.assertRaises(KeyError):
             op.do_op(dispatcher, bad_df, "test.tsv")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
 ```
 
@@ -1403,15 +1290,13 @@ def test_full_remodeling_workflow(self):
         {
             "operation": "my_custom_operation",
             "description": "Test my operation",
-            "parameters": {
-                "my_parameter": "test_value"
-            }
+            "parameters": {"my_parameter": "test_value"},
         }
     ]
-    
+
     dispatcher = Dispatcher(operations, data_root="path/to/test/data")
     dispatcher.run_operations()
-    
+
     # Assert expected results
 ```
 
@@ -1438,20 +1323,15 @@ def test_full_remodeling_workflow(self):
 def do_op(self, dispatcher, df, name, sidecar=None):
     # Check preconditions
     if self.column_name not in df.columns:
-        raise ValueError(
-            f"Column '{self.column_name}' not found in {name}. "
-            f"Available columns: {list(df.columns)}"
-        )
-    
+        raise ValueError(f"Column '{self.column_name}' not found in {name}. Available columns: {list(df.columns)}")
+
     # Perform operation with try/except for specific errors
     try:
         result = df.copy()
         # ... transformation logic
         return result
     except Exception as e:
-        raise RuntimeError(
-            f"Error processing {name} with {self.NAME}: {str(e)}"
-        )
+        raise RuntimeError(f"Error processing {name} with {self.NAME}: {str(e)}")
 ```
 
 **Performance considerations:**
@@ -1510,10 +1390,11 @@ Here's a complete example of a custom operation that converts column values to u
 from remodeler.operations.base_op import BaseOp
 import pandas as pd
 
+
 class UppercaseColumnsOp(BaseOp):
     """
     Convert specified columns to uppercase.
-    
+
     Example JSON:
         {
             "operation": "uppercase_columns",
@@ -1524,9 +1405,9 @@ class UppercaseColumnsOp(BaseOp):
             }
         }
     """
-    
+
     NAME = "uppercase_columns"
-    
+
     PARAMS = {
         "type": "object",
         "properties": {
@@ -1534,40 +1415,34 @@ class UppercaseColumnsOp(BaseOp):
                 "type": "array",
                 "items": {"type": "string"},
                 "minItems": 1,
-                "description": "List of column names to convert to uppercase"
+                "description": "List of column names to convert to uppercase",
             },
-            "ignore_missing": {
-                "type": "boolean",
-                "description": "If true, ignore columns not in DataFrame"
-            }
+            "ignore_missing": {"type": "boolean", "description": "If true, ignore columns not in DataFrame"},
         },
         "required": ["column_names", "ignore_missing"],
-        "additionalProperties": False
+        "additionalProperties": False,
     }
-    
+
     def __init__(self, parameters):
         super().__init__(parameters)
-        self.column_names = parameters['column_names']
-        self.ignore_missing = parameters['ignore_missing']
-    
+        self.column_names = parameters["column_names"]
+        self.ignore_missing = parameters["ignore_missing"]
+
     def do_op(self, dispatcher, df, name, sidecar=None):
         """Convert specified columns to uppercase."""
         result = df.copy()
-        
+
         for col in self.column_names:
             if col not in result.columns:
                 if not self.ignore_missing:
-                    raise KeyError(
-                        f"Column '{col}' not found in {name}. "
-                        f"Available: {list(result.columns)}"
-                    )
+                    raise KeyError(f"Column '{col}' not found in {name}. Available: {list(result.columns)}")
                 continue
-            
+
             # Convert to uppercase, preserving NaN values
             result[col] = result[col].str.upper()
-        
+
         return result
-    
+
     @staticmethod
     def validate_input_data(parameters):
         """No additional validation needed beyond JSON schema."""
@@ -1704,10 +1579,7 @@ Common execution errors:
 The `summarize_hed_validation` operation reports HED errors in the summary file rather than raising exceptions. This allows you to see all validation issues across all files:
 
 ```python
-operations = [{
-    "operation": "summarize_hed_validation",
-    "parameters": {"summary_name": "validation_check"}
-}]
+operations = [{"operation": "summarize_hed_validation", "parameters": {"summary_name": "validation_check"}}]
 
 dispatcher.run_operations()
 # No exception raised even if HED errors exist
