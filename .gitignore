@@ -117,8 +117,9 @@ site/
 /.venv/
 config.py
 
-# VS Code
-.vscode/
+# VS Code - launch.json and tasks.json stay local; settings.json is committed
+.vscode/*
+!.vscode/settings.json
 
 ############
 ## Windows
@@ -142,3 +143,12 @@ tests/data/test_root/
 tests/data/test_root_back1/
 tests/data/test_root_bad/
 tests/data/eeg_ds003645s_hed_remodel/
+
+# Personal per-repo Claude Code notes (imports .status/local-environment.md)
+CLAUDE.local.md
+
+# Personal per-repo settings (absolute paths, claudeMdExcludes)
+.claude/settings.local.json
+
+# Real tokens and machine values; .env.example is the committed documentation
+.env
