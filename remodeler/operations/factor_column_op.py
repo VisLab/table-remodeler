@@ -1,6 +1,7 @@
 """Append to tabular file columns of factors based on column values."""
 
 import pandas as pd
+
 from remodeler.operations.base_op import BaseOp
 
 

@@ -1,10 +1,9 @@
 """Manager for file backups for remodeling tools."""
 
-import os
 import json
+import os
 import shutil
 from datetime import datetime
-from typing import Union
 
 from hed.errors.exceptions import HedFileError
 from hed.tools.util import io_util
@@ -80,7 +79,7 @@ class BackupManager:
             json.dump(backup, fp, indent=4)
         return True
 
-    def get_backup(self, backup_name) -> Union[dict, None]:
+    def get_backup(self, backup_name) -> dict | None:
         """Return the dictionary corresponding to backup_name.
 
         Parameters:
@@ -241,7 +240,7 @@ class BackupManager:
                 f"Backup root path {backup_root_path} for {backup_name} does not exist so backup invalid",
                 "",
             )
-        with open(backup_dict_path, "r") as fp:
+        with open(backup_dict_path) as fp:
             backup_dict = json.load(fp)
         backup_paths = {
             os.path.realpath(os.path.join(backup_root_path, backup_key)) for backup_key in backup_dict.keys()

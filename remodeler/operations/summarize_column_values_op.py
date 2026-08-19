@@ -2,6 +2,7 @@
 
 import pandas as pd
 from hed.tools.analysis.tabular_summary import TabularSummary
+
 from remodeler.operations.base_op import BaseOp
 from remodeler.operations.base_summary import BaseSummary
 

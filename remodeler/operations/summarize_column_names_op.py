@@ -2,6 +2,7 @@
 
 import pandas as pd
 from hed.tools.analysis.column_name_summary import ColumnNameSummary
+
 from remodeler.operations.base_op import BaseOp
 from remodeler.operations.base_summary import BaseSummary
 

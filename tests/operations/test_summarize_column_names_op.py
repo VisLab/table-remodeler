@@ -1,7 +1,8 @@
 import json
 import os
-import pandas as pd
 import unittest
+
+import pandas as pd
 
 # from hed.tools.analysis.column_name_summary import ColumnNameSummary
 from remodeler.dispatcher import Dispatcher
@@ -108,7 +109,7 @@ class Test(unittest.TestCase):
         )
 
     def test_summary_op(self):
-        with open(self.model_path, "r") as fp:
+        with open(self.model_path) as fp:
             parms = json.load(fp)
         parsed_commands = Dispatcher.parse_operations(parms)
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions="8.1.0")

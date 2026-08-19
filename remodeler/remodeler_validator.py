@@ -1,7 +1,9 @@
 """Validator for remodeler input files."""
 
-import jsonschema
 from copy import deepcopy
+
+import jsonschema
+
 from remodeler.operations.valid_operations import valid_operations
 
 

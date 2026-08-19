@@ -1,7 +1,9 @@
 import json
 import os
-import pandas as pd
 import unittest
+
+import pandas as pd
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.summarize_column_values_op import (
     ColumnValueSummary,
@@ -138,7 +140,7 @@ class Test(unittest.TestCase):
                 "../data/aomic_sub-0013_summary_all_rmdl.json",
             )
         )
-        with open(column_summary_path, "r") as fp:
+        with open(column_summary_path) as fp:
             parms = json.load(fp)
         parsed_commands = Dispatcher.parse_operations(parms)
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])

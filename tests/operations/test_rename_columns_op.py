@@ -1,7 +1,9 @@
 import json
-import pandas as pd
-import numpy as np
 import unittest
+
+import numpy as np
+import pandas as pd
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.rename_columns_op import RenameColumnsOp
 

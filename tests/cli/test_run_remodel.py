@@ -1,11 +1,13 @@
-import os
 import io
+import os
 import shutil
 import unittest
-from unittest.mock import patch
 import zipfile
+from unittest.mock import patch
+
 from hed.errors import HedFileError
-from remodeler.cli.run_remodel import parse_arguments, parse_tasks, main
+
+from remodeler.cli.run_remodel import main, parse_arguments, parse_tasks
 
 
 class Test(unittest.TestCase):

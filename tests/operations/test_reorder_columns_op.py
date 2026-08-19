@@ -1,7 +1,9 @@
 import json
+import unittest
+
 import numpy as np
 import pandas as pd
-import unittest
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.reorder_columns_op import ReorderColumnsOp
 

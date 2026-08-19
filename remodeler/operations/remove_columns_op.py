@@ -48,7 +48,7 @@ class RemoveColumnsOp(BaseOp):
         else:
             self.error_handling = "raise"
 
-    def do_op(self, dispatcher, df, name, sidecar=None) -> "pd.DataFrame":
+    def do_op(self, dispatcher, df, name, sidecar=None) -> pd.DataFrame:
         """Remove indicated columns from a dataframe.
 
         Parameters:

@@ -1,13 +1,15 @@
 import json
 import os
 import unittest
+
 import pandas as pd
 from hed.models import Sidecar
 from hed.schema import load_schema_version
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.summarize_hed_type_op import (
-    SummarizeHedTypeOp,
     HedTypeSummary,
+    SummarizeHedTypeOp,
 )
 
 
@@ -113,7 +115,7 @@ class Test(unittest.TestCase):
         )
 
     def test_summary(self):
-        with open(self.summary_path, "r") as fp:
+        with open(self.summary_path) as fp:
             parms = json.load(fp)
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         df = dispatch.get_data_file(self.events)
@@ -135,7 +137,7 @@ class Test(unittest.TestCase):
         self.assertIsInstance(summary2a["Individual files"]["run-02"], dict)
 
     def test_text_summary_with_levels(self):
-        with open(self.summary_path, "r") as fp:
+        with open(self.summary_path) as fp:
             parms = json.load(fp)
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])
         df = dispatch.get_data_file(self.events_wh)
@@ -149,7 +151,7 @@ class Test(unittest.TestCase):
     def test_text_summary(self):
         sidecar = Sidecar(self.sidecar_path, name="aomic_sidecar")
 
-        with open(self.summary_path, "r") as fp:
+        with open(self.summary_path) as fp:
             parms = json.load(fp)
         parsed_commands = Dispatcher.parse_operations(parms)
         dispatch = Dispatcher([], data_root=None, backup_name=None, hed_versions=["8.1.0"])

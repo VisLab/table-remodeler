@@ -1,7 +1,8 @@
-import unittest
+import glob
 import os
 import re
-import glob
+import unittest
+
 import remodeler
 from remodeler.operations.valid_operations import valid_operations
 
@@ -19,7 +20,7 @@ class TestDocConsistency(unittest.TestCase):
         docs_path = os.path.join(self.docs_root, "operations.rst")
 
         # Read the documentation file
-        with open(docs_path, "r", encoding="utf-8") as f:
+        with open(docs_path, encoding="utf-8") as f:
             content = f.read()
 
         # Extract all class names documented via autoclass
@@ -52,7 +53,7 @@ class TestDocConsistency(unittest.TestCase):
         docs_path = os.path.join(self.docs_root, "core.rst")
 
         # Read the documentation file
-        with open(docs_path, "r", encoding="utf-8") as f:
+        with open(docs_path, encoding="utf-8") as f:
             content = f.read()
 
         # Get exported classes from remodeler/__init__.py
@@ -88,7 +89,7 @@ class TestDocConsistency(unittest.TestCase):
         cli_dir = os.path.abspath(os.path.join(self.current_dir, "..", "remodeler", "cli"))
 
         # Read the documentation file
-        with open(docs_path, "r", encoding="utf-8") as f:
+        with open(docs_path, encoding="utf-8") as f:
             content = f.read()
 
         # Find all python files in cli directory, excluding __init__.py

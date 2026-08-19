@@ -1,6 +1,7 @@
 """Remove rows from a columnar file based on column values."""
 
 import pandas as pd
+
 from remodeler.operations.base_op import BaseOp
 
 

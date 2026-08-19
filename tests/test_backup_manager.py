@@ -1,12 +1,14 @@
-import os
 import io
+import os
 import shutil
 import unittest
-from unittest.mock import patch
 import zipfile
+from unittest.mock import patch
+
 from hed.errors import HedFileError
-from remodeler.backup_manager import BackupManager
 from hed.tools.util.io_util import get_file_list
+
+from remodeler.backup_manager import BackupManager
 
 
 class Test(unittest.TestCase):

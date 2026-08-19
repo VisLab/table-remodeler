@@ -1,13 +1,14 @@
 """Append columns of factors based on column values to a columnar file."""
 
 import pandas as pd
-from remodeler.operations.base_op import BaseOp
-from hed.models.tabular_input import TabularInput
-from hed.models.sidecar import Sidecar
 from hed.models import query_service
+from hed.models.sidecar import Sidecar
+from hed.models.tabular_input import TabularInput
 from hed.tools.analysis.event_manager import EventManager
 from hed.tools.analysis.hed_tag_manager import HedTagManager
 from hed.tools.util.data_util import replace_na
+
+from remodeler.operations.base_op import BaseOp
 
 
 class FactorHedTagsOp(BaseOp):

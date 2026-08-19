@@ -1,8 +1,9 @@
 """Abstract base class for the contents of summary operations."""
 
+import json
 import os
 from abc import ABC, abstractmethod
-import json
+
 from hed.tools.util import io_util
 
 

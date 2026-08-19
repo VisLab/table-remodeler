@@ -1,7 +1,9 @@
 """Command-line program for restoring files from remodeler backup."""
 
 import argparse
+
 from hed.errors.exceptions import HedFileError
+
 from remodeler.backup_manager import BackupManager
 
 

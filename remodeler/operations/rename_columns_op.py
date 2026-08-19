@@ -1,7 +1,9 @@
 """Rename columns in a columnar file."""
 
 from __future__ import annotations
+
 import pandas as pd
+
 from remodeler.operations.base_op import BaseOp
 
 
@@ -48,7 +50,7 @@ class RenameColumnsOp(BaseOp):
         else:
             self.error_handling = "raise"
 
-    def do_op(self, dispatcher, df, name, sidecar=None) -> "pd.DataFrame":
+    def do_op(self, dispatcher, df, name, sidecar=None) -> pd.DataFrame:
         """Rename columns as specified in column_mapping dictionary.
 
         Parameters:
