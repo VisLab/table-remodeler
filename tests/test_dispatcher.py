@@ -1,14 +1,16 @@
-import os
 import json
+import os
 import shutil
 import unittest
-import pandas as pd
-import numpy as np
 import zipfile
+
+import numpy as np
+import pandas as pd
 from hed.errors.exceptions import HedFileError
+from hed.tools.util.io_util import get_file_list
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.base_op import BaseOp
-from hed.tools.util.io_util import get_file_list
 
 
 class Test(unittest.TestCase):

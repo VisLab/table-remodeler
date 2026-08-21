@@ -1,7 +1,8 @@
-import os
 import json
+import os
 import unittest
 from copy import deepcopy
+
 from remodeler.remodeler_validator import RemodelerValidator
 
 

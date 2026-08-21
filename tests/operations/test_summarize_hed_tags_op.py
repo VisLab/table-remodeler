@@ -1,16 +1,18 @@
 import json
 import os
 import unittest
-import pandas as pd
-from hed.models import HedString, TabularInput, Sidecar
-from hed.schema import load_schema_version
-from hed.tools.analysis.hed_tag_counts import HedTagCounts
-from hed.tools.analysis.event_manager import EventManager
-from hed.tools.analysis.hed_tag_manager import HedTagManager
 from io import StringIO
+
+import pandas as pd
+from hed.models import HedString, Sidecar, TabularInput
 from hed.models.df_util import expand_defs
+from hed.schema import load_schema_version
+from hed.tools.analysis.event_manager import EventManager
+from hed.tools.analysis.hed_tag_counts import HedTagCounts
+from hed.tools.analysis.hed_tag_manager import HedTagManager
+
 from remodeler.dispatcher import Dispatcher
-from remodeler.operations.summarize_hed_tags_op import SummarizeHedTagsOp, HedTagSummary
+from remodeler.operations.summarize_hed_tags_op import HedTagSummary, SummarizeHedTagsOp
 
 
 class Test(unittest.TestCase):

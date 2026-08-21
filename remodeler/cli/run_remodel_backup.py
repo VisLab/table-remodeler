@@ -1,8 +1,10 @@
 """Command-line program for creating a remodeler backup."""
 
 import argparse
+
 from hed.errors.exceptions import HedFileError
 from hed.tools.util import io_util
+
 from remodeler.backup_manager import BackupManager
 
 

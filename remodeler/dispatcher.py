@@ -1,19 +1,20 @@
 """Controller for applying operations to tabular files and saving the results."""
 
 from __future__ import annotations
+
+import json
 import os
-from typing import Union
 
 import numpy as np
 import pandas as pd
-import json
 from hed.errors.exceptions import HedFileError
-from hed.schema.hed_schema_io import load_schema_version
 from hed.schema.hed_schema import HedSchema
 from hed.schema.hed_schema_group import HedSchemaGroup
+from hed.schema.hed_schema_io import load_schema_version
+from hed.tools.util import io_util
+
 from remodeler.backup_manager import BackupManager
 from remodeler.operations.valid_operations import valid_operations
-from hed.tools.util import io_util
 
 # This isn't supported in all versions of pandas
 try:
@@ -104,7 +105,7 @@ class Dispatcher:
                 )
         return summary_list
 
-    def get_data_file(self, file_designator) -> "pd.DataFrame":
+    def get_data_file(self, file_designator) -> pd.DataFrame:
         """Get the correct data file give the file designator.
 
         Parameters:
@@ -161,7 +162,7 @@ class Dispatcher:
             return os.path.realpath(os.path.join(self.data_root, "derivatives", Dispatcher.REMODELING_SUMMARY_PATH))
         raise HedFileError("NoDataRoot", "Dispatcher must have a data root to produce directories", "")
 
-    def run_operations(self, file_path, sidecar=None, verbose=False) -> "pd.DataFrame":
+    def run_operations(self, file_path, sidecar=None, verbose=False) -> pd.DataFrame:
         """Run the dispatcher operations on a file.
 
         Parameters:
@@ -240,7 +241,7 @@ class Dispatcher:
         return operations
 
     @staticmethod
-    def prep_data(df) -> "pd.DataFrame":
+    def prep_data(df) -> pd.DataFrame:
         """Make a copy and replace all n/a entries in the data frame by np.nan for processing.
 
         Parameters:
@@ -256,7 +257,7 @@ class Dispatcher:
         return result
 
     @staticmethod
-    def post_proc_data(df) -> "pd.DataFrame":
+    def post_proc_data(df) -> pd.DataFrame:
         """Replace all nan entries with 'n/a' for BIDS compliance.
 
         Parameters:
@@ -299,7 +300,7 @@ class Dispatcher:
         return errors
 
     @staticmethod
-    def get_schema(hed_versions) -> Union["HedSchema", "HedSchemaGroup", None]:
+    def get_schema(hed_versions) -> HedSchema | HedSchemaGroup | None:
         """Return the schema objects represented by the hed_versions.
 
         Parameters:

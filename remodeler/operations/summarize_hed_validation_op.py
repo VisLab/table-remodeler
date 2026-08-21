@@ -1,11 +1,12 @@
 """Validate the HED tags in a dataset and report errors."""
 
 import os
+
 import pandas as pd
-from hed.errors import error_reporter
-from hed.errors import error_types
+from hed.errors import error_reporter, error_types
 from hed.models.sidecar import Sidecar
 from hed.models.tabular_input import TabularInput
+
 from remodeler.operations.base_op import BaseOp
 from remodeler.operations.base_summary import BaseSummary
 

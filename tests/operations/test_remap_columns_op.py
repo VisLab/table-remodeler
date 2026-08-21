@@ -1,6 +1,8 @@
 import json
-import pandas as pd
 import unittest
+
+import pandas as pd
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.remap_columns_op import RemapColumnsOp
 

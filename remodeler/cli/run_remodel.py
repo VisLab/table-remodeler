@@ -1,17 +1,19 @@
 """Main command-line program for running the remodeling tools."""
 
-import os
+import argparse
 import io
 import json
-import argparse
 import logging
+import os
+
 from hed.errors.exceptions import HedFileError
 from hed.models.sidecar import Sidecar
-from remodeler.remodeler_validator import RemodelerValidator
-from remodeler.dispatcher import Dispatcher
-from remodeler.backup_manager import BackupManager
-from hed.tools.util import io_util
 from hed.tools.bids import bids_util
+from hed.tools.util import io_util
+
+from remodeler.backup_manager import BackupManager
+from remodeler.dispatcher import Dispatcher
+from remodeler.remodeler_validator import RemodelerValidator
 
 
 def get_parser():
@@ -194,7 +196,7 @@ def parse_arguments(arg_list=None):
     args.model_path = os.path.realpath(args.model_path)
     if args.verbose:
         print(f"Data directory: {args.data_dir}\nModel path: {args.model_path}")
-    with open(args.model_path, "r") as fp:
+    with open(args.model_path) as fp:
         operations = json.load(fp)
     validator = RemodelerValidator()
     errors = validator.validate(operations)

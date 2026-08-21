@@ -1,9 +1,10 @@
 """Map values in m columns in a columnar file into a new combinations in n columns."""
 
-import pandas as pd
 import numpy as np
-from remodeler.operations.base_op import BaseOp
+import pandas as pd
 from hed.tools.analysis.key_map import KeyMap
+
+from remodeler.operations.base_op import BaseOp
 
 
 class RemapColumnsOp(BaseOp):

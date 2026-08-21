@@ -1,11 +1,12 @@
 """Summarize the HED type tags in collection of tabular files."""
 
 import pandas as pd
-from hed.models.tabular_input import TabularInput
 from hed.models.sidecar import Sidecar
+from hed.models.tabular_input import TabularInput
+from hed.tools.analysis.event_manager import EventManager
 from hed.tools.analysis.hed_type import HedType
 from hed.tools.analysis.hed_type_counts import HedTypeCounts
-from hed.tools.analysis.event_manager import EventManager
+
 from remodeler.operations.base_op import BaseOp
 from remodeler.operations.base_summary import BaseSummary
 

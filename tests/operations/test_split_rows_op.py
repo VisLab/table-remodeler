@@ -1,8 +1,10 @@
-import os
 import json
-import pandas as pd
-import numpy as np
+import os
 import unittest
+
+import numpy as np
+import pandas as pd
+
 from remodeler.dispatcher import Dispatcher
 from remodeler.operations.split_rows_op import SplitRowsOp
 

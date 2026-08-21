@@ -1,12 +1,14 @@
-import os
 import json
+import os
 import shutil
 import unittest
 import zipfile
+
 from hed.errors import HedFileError
+from hed.tools.util.io_util import get_file_list
+
 from remodeler.backup_manager import BackupManager
 from remodeler.cli.run_remodel_backup import main
-from hed.tools.util.io_util import get_file_list
 
 
 class Test(unittest.TestCase):
@@ -77,7 +79,7 @@ class Test(unittest.TestCase):
                 BackupManager.BACKUP_DICTIONARY,
             )
         )
-        with open(json_path, "r") as fp:
+        with open(json_path) as fp:
             key_dict = json.load(fp)
         self.assertEqual(len(key_dict), 3, "The backup of events.tsv does not include top_level.tsv")
         file_list = get_file_list(self.derv_path, name_suffix="events")
@@ -109,7 +111,7 @@ class Test(unittest.TestCase):
                 BackupManager.BACKUP_DICTIONARY,
             )
         )
-        with open(json_path, "r") as fp:
+        with open(json_path) as fp:
             key_dict = json.load(fp)
         self.assertEqual(len(key_dict), 4, "The backup of events.tsv does not include top_level.tsv")
         back_path = os.path.realpath(os.path.join(self.derv_path, BackupManager.DEFAULT_BACKUP_NAME, "backup_root"))

@@ -1,8 +1,9 @@
 import os
 import shutil
 import unittest
-from remodeler.operations.base_summary import BaseSummary
+
 from remodeler.operations.base_op import BaseOp
+from remodeler.operations.base_summary import BaseSummary
 
 
 class TestOp(BaseOp):

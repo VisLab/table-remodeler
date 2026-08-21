@@ -1,7 +1,8 @@
 import os
 import unittest
-from remodeler.operations.factor_hed_type_op import FactorHedTypeOp
+
 from remodeler.dispatcher import Dispatcher
+from remodeler.operations.factor_hed_type_op import FactorHedTypeOp
 
 
 class Test(unittest.TestCase):

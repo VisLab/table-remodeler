@@ -3,9 +3,10 @@
 import numpy as np
 import pandas as pd
 from hed.models.tabular_input import TabularInput
-from hed.tools.analysis.hed_tag_counts import HedTagCounts
 from hed.tools.analysis.event_manager import EventManager
+from hed.tools.analysis.hed_tag_counts import HedTagCounts
 from hed.tools.analysis.hed_tag_manager import HedTagManager
+
 from remodeler.operations.base_op import BaseOp
 from remodeler.operations.base_summary import BaseSummary
 
