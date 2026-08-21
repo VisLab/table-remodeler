@@ -38,6 +38,10 @@ CI runs all of these on push/PR to `main`: tests on Linux and Windows across sup
 - At runtime, summaries save to `remodel/summaries/` inside the dataset - that spelling is part of the on-disk format, not a typo.
 - Adding an operation: create `remodeler/operations/<name>_op.py` inheriting `BaseOp` (define `NAME`, `PARAMS`, `do_op`, `validate_input_data`), then register it in `remodeler/operations/valid_operations.py`.
 
+## Git flow
+
+Hosted at hed-standard; `origin` is the VisLab fork and `upstream` is hed-standard. Local `main` is a clean mirror of `upstream/main` - never commit or merge to it locally. All work goes on a branch based on `upstream/main`, pushed to the fork, and merged via a PR to hed-standard.
+
 ## Related repositories
 
 - `hed-python` - provides the required `hedtools` dependency (HED operations). Not vendored here.
