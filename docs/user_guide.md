@@ -1250,12 +1250,10 @@ class TestMyCustomOp(unittest.TestCase):
     def test_parameter_validation(self):
         """Test parameter validation."""
         # Test invalid parameters
-        errors = MyCustomOp.validate_input_data(
-            {
-                "my_parameter": "value",
-                "invalid_list": [1, 2],  # Wrong length
-            }
-        )
+        errors = MyCustomOp.validate_input_data({
+            "my_parameter": "value",
+            "invalid_list": [1, 2],  # Wrong length
+        })
         self.assertTrue(len(errors) > 0)
 
         # Test valid parameters
